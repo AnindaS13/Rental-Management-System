@@ -1,3 +1,5 @@
+package Model;
+
 class Renter {
 
     private String propertyType;

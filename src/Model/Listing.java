@@ -1,15 +1,20 @@
+package Model;
+
+import Model.Landlord;
+
 public class Listing {
-    
+
+
+    private int listingID;
     private String propertyType;
     private int numbedRooms;
     private int numbathRooms;
     private boolean isFurnished;
     private String quadrant;
     private int listingTime;
-    private Landlord landlord;
+    private String landlord;
 
-
-    Listing(String propertType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, int listingTime, Landlord landlord)
+    public Listing(String propertType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, int listingTime, String landlord)
     {
         this.propertyType = propertyType;
         this.numbedRooms = bedrooms;
@@ -20,15 +25,19 @@ public class Listing {
         this.landlord = landlord;
     }
 
+    public int getListingID() {
+        return listingID;
+    }
 
-
+    public void setListingID(int listingID) {
+        this.listingID = listingID;
+    }
     public String getPropertyType() {
         return this.propertyType;
     }
     public void setPropertyType(String propertyType) {
         this.propertyType = propertyType;
     }
-
 
     public int getNumbedRooms() {
     	return this.numbedRooms;
@@ -70,10 +79,10 @@ public class Listing {
     }
 
 
-    public Landlord getLandlord() {
+    public String getLandlord() {
     	return this.landlord;
     }
-    public void setLandlord(Landlord landlord) {
+    public void setLandlord(String landlord) {
     	this.landlord = landlord;
     }
 

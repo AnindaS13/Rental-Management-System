@@ -1,3 +1,5 @@
+package Model;
+
 public class Manager {
 
     // add a fee variable cause manager can change fees
