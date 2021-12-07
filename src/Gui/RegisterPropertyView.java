@@ -53,7 +53,7 @@ public class RegisterPropertyView implements Component
 
 
     AddPropBtn.setBounds(380, 800, 150, 50);  //Register Prop Button implemented
-    AddPropBtn.setBackground(Color.GRAY);
+    AddPropBtn.setBackground(Color.lightGray);
 
 
     JLabel type =  new JLabel("Type"); //Making the labels for the inputs
@@ -69,10 +69,15 @@ public class RegisterPropertyView implements Component
 
 
     typeBox.setBounds(70, 230, 200, 40); //added input for types
+    typeBox.setBackground(Color.lightGray);
     furn.setBounds(560, 230, 200, 40); //added input for furnished status
+    furn.setBackground(Color.lightGray);
     bedroomnum.setBounds(70, 480, 200, 40); //added input for bedroom number
+    bedroomnum.setBackground(Color.lightGray);
     bathroomnum.setBounds(560,480, 200,40); //added input for number of bathrooms
+    bathroomnum.setBackground(Color.lightGray);
     quadrants.setBounds(340, 640, 200, 40); //added quadrant input
+    quadrants.setBackground(Color.lightGray);
 
     mainFrame.add(AddPropBtn); //adding add property button to frame
     mainFrame.add(type); //adding type label to frame
