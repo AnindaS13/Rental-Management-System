@@ -1,7 +1,10 @@
 package Controller;
 
+import Gui.RegisterPropertyView;
 import Gui.RenterListingView;
+import Model.Landlord;
 import Model.Listing;
+import Model.Manager;
 
 public class ParentController {
 	
@@ -22,6 +25,14 @@ public class ParentController {
 			    Listing model = new Listing();
 			    ListingController controller = new ListingController (model, u);
 			    controller.connectDB();
+				break;
+				
+		case "register":
+				System.out.println("listing screen view");
+				Manager m = new Manager();
+				Landlord l = new Landlord(); 
+				RegisterPropertyView r = new RegisterPropertyView();
+				RegisterPropertyController c = new RegisterPropertyController(l, m, r);
 				break;
 		}
 	}

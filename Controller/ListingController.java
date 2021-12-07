@@ -42,14 +42,14 @@ public class ListingController extends ParentController {
 	}
 	
 	
-//	public static void main(String[] args) {
-//	System.out.println("Main");
-//    RenterListingView u = new RenterListingView();
-//    Listing model = new Listing();
-//    ListingController controller = new ListingController (model, u);
-//    controller.connectDB();
-//    
-// //   u.setVisible(true);
-//	}
+	public static void main(String[] args) {
+	System.out.println("Listing controller");
+    RenterListingView u = new RenterListingView();
+    Listing model = new Listing();
+    ListingController controller = new ListingController (model, u);
+    controller.connectDB();
+    
+ //   u.setVisible(true);
+	}
 }
 

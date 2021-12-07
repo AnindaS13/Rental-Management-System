@@ -33,6 +33,7 @@ public class ContactController extends ParentController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("register button pressed");	
+			switchView("register");
 		}
 	}
 	
