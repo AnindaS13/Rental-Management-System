@@ -16,7 +16,7 @@ public class ListingController extends ParentController {
 		this.listingModel = model;
 		this.listingView = view;
 		
-		listingView.returnButton(new ButtonListener());	
+		listingView.searchButton(new ButtonListener());	
 		}
 	
 	@Override
@@ -30,7 +30,7 @@ public class ListingController extends ParentController {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("button pressed");
 			switchView("login");
-			//testing
+			
 		}
 	}
 	
