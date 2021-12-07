@@ -24,7 +24,7 @@ public class RenterListingView implements Component {
     RenterListingView() {
         listings.add(new Listing("Apartment", 4,4, true, "ne", 10, "Landlord"));
         listings.add(new Listing("House", 4,4, true, "ne", 10, "Landlord"));
-        for(int row = 0; row < Listing.size(); row++) {
+        for(int row = 0; row < listings.size(); row++) {
                 String id = Integer.toString(listings.get(row).getListingID());
                 String type = listings.get(row).getPropertyType();
                 String bedrooms =  Integer.toString(listings.get(row).getNumbedRooms());
