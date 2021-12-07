@@ -22,19 +22,7 @@ public class RenterListingView implements Component {
     List<String[]> values = new ArrayList<String[]>();
 
     RenterListingView() {
-        listings.add(new Listing("Apartment", 4,4, true, "ne", 10, "Landlord"));
-        listings.add(new Listing("House", 4,4, true, "ne", 10, "Landlord"));
-        for(int row = 0; row < listings.size(); row++) {
-                String id = Integer.toString(listings.get(row).getListingID());
-                String type = listings.get(row).getPropertyType();
-                String bedrooms =  Integer.toString(listings.get(row).getNumbedRooms());
-                String bathrooms =  Integer.toString(listings.get(row).getNumbathRooms());
-                String furnished = Boolean.toString(listings.get(row).getIsFurnished());
-                String quadrant = listings.get(row).getQuadrant();
-                values.add(new String[] { id, type, bedrooms,  bathrooms, furnished,   quadrant});
-        }
 
-        draw();
     }
 
     @SuppressWarnings("serial")

@@ -36,16 +36,16 @@ public class RegisterPropertyView implements Component
     @Override
     public void draw()
     {
-    JFrame mainFrame = new JFrame();
-    mainFrame.setTitle("Register Properties");  //Giving frame the size set and title
-    mainFrame.setResizable(true);
-    mainFrame.setSize(900,900);
+
+    frame.setTitle("Register Properties");  //Giving frame the size set and title
+    frame.setResizable(true);
+    frame.setSize(900,900);
 
     JPanel navBarpanel = new JPanel(); //Setting navbar sizes and adding buttons to it
     navBarpanel.add(RegisterBtn);
     navBarpanel.add(ListingsBtn);
     navBarpanel.add(MessagesBtn);
-    navBarpanel.setSize(mainFrame.getWidth(),50);
+    navBarpanel.setSize(frame.getWidth(),50);
     RegisterBtn.setBounds(0,0,166,50);
     ListingsBtn.setBounds(166,0,167,50);
     MessagesBtn.setBounds(333,0,167,50);
@@ -79,23 +79,23 @@ public class RegisterPropertyView implements Component
     quadrants.setBounds(340, 640, 200, 40); //added quadrant input
     quadrants.setBackground(Color.lightGray);
 
-    mainFrame.add(AddPropBtn); //adding add property button to frame
-    mainFrame.add(type); //adding type label to frame
-    mainFrame.add(furnishStat); //adding furnish label to frame
-    mainFrame.add(NumBeds); //adding numbeds label to frame
-    mainFrame.add(NumBath); //adding bathroom label to frame
-    mainFrame.add(quadrants); //adding quadrants input to frame
-    mainFrame.add(bathroomnum); // added bathroom num input to frame
-    mainFrame.add(bedroomnum); //added bedroom num input to frame
-    mainFrame.add(quad); //adding quadrant label to frame
-    mainFrame.add(navBarpanel); //adding navbar to frame to frame
+    frame.add(AddPropBtn); //adding add property button to frame
+    frame.add(type); //adding type label to frame
+    frame.add(furnishStat); //adding furnish label to frame
+    frame.add(NumBeds); //adding numbeds label to frame
+    frame.add(NumBath); //adding bathroom label to frame
+    frame.add(quadrants); //adding quadrants input to frame
+    frame.add(bathroomnum); // added bathroom num input to frame
+    frame.add(bedroomnum); //added bedroom num input to frame
+    frame.add(quad); //adding quadrant label to frame
+    frame.add(navBarpanel); //adding navbar to frame to frame
 
 
-    mainFrame.add(typeBox); //adding the type selector input to frame
-    mainFrame.add(furn);
-    mainFrame.setLayout(null);
-    mainFrame.setResizable(true);
-    mainFrame.setVisible(true);
+    frame.add(typeBox); //adding the type selector input to frame
+    frame.add(furn);
+    frame.setLayout(null);
+    frame.setResizable(true);
+    frame.setVisible(true);
     }
 
 
