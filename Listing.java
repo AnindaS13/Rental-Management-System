@@ -1,26 +1,47 @@
 public class Listing {
     
-    private String propertyType;
+    private int ID; // pk, ai
+    // all below nn
+    private String propertyType; 
     private int numbedRooms;
     private int numbathRooms;
     private boolean isFurnished;
     private String quadrant;
-    private int listingTime;
-    private Landlord landlord;
+    private String listingTime;
+    private String email; // fk from landlord
+    private String status;
+    private boolean balance;
+
+ 
 
 
-    Listing(String propertType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, int listingTime, Landlord landlord)
+
+    public Listing(int id, String propertType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, String listingTime, String email, String status, boolean balance)
     {
+        this.ID = id;
         this.propertyType = propertyType;
         this.numbedRooms = bedrooms;
         this.numbathRooms = bathrooms;
         this.isFurnished = isFurnished;
         this.quadrant = quadrant;
         this.listingTime = listingTime;
-        this.landlord = landlord;
+        this.email = email;
+        this.status = status;
+        this.balance = balance;
+
+
+
     }
 
 
+    public int getID()
+    {
+        return this.ID;
+    }
+    public void setID(int id)
+    {
+        this.ID = id;
+    }
 
     public String getPropertyType() {
         return this.propertyType;
@@ -62,19 +83,35 @@ public class Listing {
     }
 
 
-    public int getListingTime() {
+    public String getListingTime() {
     	return this.listingTime;
     }
-    public void setListingTime(int listingTime) {
+    public void setListingTime(String listingTime) {
     	this.listingTime = listingTime;
     }
 
 
-    public Landlord getLandlord() {
-    	return this.landlord;
+    public String email() {
+    	return this.email;
     }
-    public void setLandlord(Landlord landlord) {
-    	this.landlord = landlord;
+    public void setEmail(String email) {
+    	this.email = email;
+    }
+
+
+    public String getStatus() {
+        return this.status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+   
+   
+    public boolean getBalance() {
+        return this.balance;
+    }
+    public void setBalance(boolean balance) {
+        this.balance = balance;
     }
 
 }

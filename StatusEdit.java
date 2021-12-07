@@ -1,4 +1,4 @@
 public interface StatusEdit {
-    
-    public String editStatus();
+    // no db
+    public String editStatus(int propertyID, String status);
 }
