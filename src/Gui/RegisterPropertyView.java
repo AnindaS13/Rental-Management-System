@@ -17,12 +17,17 @@ public class RegisterPropertyView implements Component
 {
     private String types [] = {"Apartment", "Detached Home", "Attached Home", "Townhouse"};
     private String furnst [] = {"Yes", "No"};
+    private String q[] = {"NE", "SW", "SE", "NW"};
     private JButton RegisterBtn= new JButton("Register a Property");
     private JButton ListingsBtn= new JButton("Listings");
     private JButton MessagesBtn= new JButton("Messages");
     private JButton AddPropBtn= new JButton("Add Property");
     private JComboBox typeBox = new JComboBox(types);
     private JComboBox furn = new JComboBox(furnst);
+    private JTextField bedroomnum = new JTextField("Enter in Numeric Form");
+    private JTextField bathroomnum = new JTextField("Enter in Numeric Form");
+    private JComboBox quadrants = new JComboBox(q);
+
     RegisterPropertyView()
     {
         draw();
@@ -58,19 +63,25 @@ public class RegisterPropertyView implements Component
     JLabel furnishStat = new JLabel("Furnished");
     furnishStat.setBounds(640, 200, 150, 20);
     JLabel NumBath = new JLabel("Number of Bathrooms");
-    NumBath.setBounds(640, 450, 150, 20);
+    NumBath.setBounds(600, 450, 150, 20);
     JLabel quad = new JLabel("Quadrant");
     quad.setBounds(420, 600, 150, 50);
 
 
-    typeBox.setBounds(70, 230, 200, 50); //added input for types
-    furn.setBounds(560, 230, 200, 50); //added input for furnished status
+    typeBox.setBounds(70, 230, 200, 40); //added input for types
+    furn.setBounds(560, 230, 200, 40); //added input for furnished status
+    bedroomnum.setBounds(70, 480, 200, 40); //added input for bedroom number
+    bathroomnum.setBounds(560,480, 200,40); //added input for number of bathrooms
+    quadrants.setBounds(340, 640, 200, 40); //added quadrant input
 
     mainFrame.add(AddPropBtn); //adding add property button to frame
     mainFrame.add(type); //adding type label to frame
     mainFrame.add(furnishStat); //adding furnish label to frame
     mainFrame.add(NumBeds); //adding numbeds label to frame
     mainFrame.add(NumBath); //adding bathroom label to frame
+    mainFrame.add(quadrants); //adding quadrants input to frame
+    mainFrame.add(bathroomnum); // added bathroom num input to frame
+    mainFrame.add(bedroomnum); //added bedroom num input to frame
     mainFrame.add(quad); //adding quadrant label to frame
     mainFrame.add(navBarpanel); //adding navbar to frame to frame
 
@@ -114,8 +125,13 @@ public class RegisterPropertyView implements Component
         return (String)typeBox.getSelectedItem();
     }
 
-    public String getFurn()
+    public boolean getFurn()
     {
-        return (String)furn.getSelectedItem();
+        return Boolean.parseBoolean((String)furn.getSelectedItem());
     }
+
+    public int getBathNum() {return Integer.parseInt(bathroomnum.getSelectedText());}
+
+    public int getBedNum() {return Integer.parseInt(bedroomnum.getSelectedText());}
+
 }
