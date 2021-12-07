@@ -4,6 +4,8 @@ import java.sql.*;
 import java.io.*;
 import java.util.*;
 
+import Model.Listing;
+
 public class DBConnect {
 
 
@@ -31,6 +33,42 @@ public class DBConnect {
         catch(SQLException e){
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<Listing> getListing() {
+    	PreparedStatement p=null;
+    	ResultSet rs=null;
+    	initializeConnection();
+    	ArrayList<Listing> allListing = new ArrayList<Listing>();
+    	
+    	try {
+    		//Sql query
+	    	String sql = "select * from listing";
+	    	p= connect.prepareStatement(sql);
+	    	rs = p.executeQuery();
+	    	
+	    	//Retrieving data
+	    	while(rs.next()) {
+	    		int id = rs.getInt("ID");
+	    		String property = rs.getString("propertyType");
+	    		System.out.println(property);
+	    		int bed = rs.getInt("bedrooms");
+	    		int bath = rs.getInt("bathrooms");
+	    		boolean furnished = rs.getBoolean("Furnished");
+	    		String quad = rs.getString("quadrant");
+	    		
+	    		allListing.add(new Listing (id,property, bed, bath, furnished, quad, 0 ,""));
+	    	}
+	    	
+    	}
+    	
+    	// Catch block to handle exception
+        catch (SQLException e) {
+ 
+            // Print exception pop-up on scrreen
+            System.out.println(e);
+        }
+    	return allListing;
     }
    
 }

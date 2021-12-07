@@ -24,20 +24,37 @@ public class RenterListingView implements Component {
     private JComboBox quadrant = new JComboBox();
     private JComboBox furnished = new JComboBox();
     private JButton search = new JButton("Search");
+    JTable table = new JTable();
+   
 
     public RenterListingView() {
-        listings.add(new Listing("Apartment", 4,4, true, "ne", 10, "Landlord"));
-        listings.add(new Listing("House", 4,4, true, "ne", 10, "Landlord"));
-        for(int row = 0; row < listings.size(); row++) {
-                String id = Integer.toString(listings.get(row).getListingID());
-                String type = listings.get(row).getPropertyType();
-                String bedrooms =  Integer.toString(listings.get(row).getNumbedRooms());
-                String bathrooms =  Integer.toString(listings.get(row).getNumbathRooms());
-                String furnished = Boolean.toString(listings.get(row).getIsFurnished());
-                String quadrant = listings.get(row).getQuadrant();
-                values.add(new String[] { id, type, bedrooms,  bathrooms, furnished,   quadrant});
-        }
+//        listings.add(new Listing("Apartment", 4,4, true, "ne", 10, "Landlord"));
+//        listings.add(new Listing("House", 4,4, true, "ne", 10, "Landlord"));
+//        for(int row = 0; row < listings.size(); row++) {
+//                String id = Integer.toString(listings.get(row).getListingID());
+//                String type = listings.get(row).getPropertyType();
+//                String bedrooms =  Integer.toString(listings.get(row).getNumbedRooms());
+//                String bathrooms =  Integer.toString(listings.get(row).getNumbathRooms());
+//                String furnished = Boolean.toString(listings.get(row).getIsFurnished());
+//                String quadrant = listings.get(row).getQuadrant();
+//                values.add(new String[] { id, type, bedrooms,  bathrooms, furnished,   quadrant});
+//        }
         draw();
+        //setOutput();
+    }
+    
+    public void setOutput(ArrayList<Listing> input) {
+    	Object columnNames[] = { "Property ID", "Type", "Bedrooms", "Bathrooms", "Furnished", "Quadrant"};
+    	DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+    	
+    	for(int i=0; i< input.size(); i++) {
+	    	Object rowData[] = {input.get(i).getListingID(), input.get(i).getPropertyType(), 
+	    						input.get(i).getNumbedRooms(), input.get(i).getNumbathRooms(), 
+	    						input.get(i).getIsFurnished(), input.get(i).getQuadrant()};
+	    	//System.out.println(input.get(i).getPropertyType());
+	    	model.addRow(rowData);
+    	}
+    	table.setModel(model);
     }
 
     public void returnSearch(ActionListener actionListener) {
@@ -66,7 +83,7 @@ public class RenterListingView implements Component {
         scrollPane.setBounds(10, 238, 466, 215);
         frame.getContentPane().add(scrollPane);
 
-        JTable table = new JTable();
+        //JTable table = new JTable();
         table.setBackground(new Color(255, 255, 255));
         table.setModel(new DefaultTableModel(values.toArray(new Object[][] {}),
                 new String[] {

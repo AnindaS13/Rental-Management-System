@@ -11,6 +11,7 @@ public class ListingController extends ParentController {
 	
 	Listing listingModel;
 	RenterListingView listingView;
+	DBConnect db = new DBConnect();
 	
 	public ListingController(Listing model, RenterListingView view) {
 		this.listingModel = model;
@@ -18,6 +19,10 @@ public class ListingController extends ParentController {
 		
 		listingView.searchButton(new ButtonListener());	
 		}
+	
+	public void connectDB() {
+		db.initializeConnection();
+	}
 	
 	@Override
 	public void switchView(String view) {
@@ -28,22 +33,22 @@ public class ListingController extends ParentController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("button pressed");
-			switchView("login");
+			
+			listingView.setOutput(db.getListing());
+//			System.out.println("button pressed");
+//			switchView("login");
 			
 		}
 	}
 	
-	public String data () {
-		
-		return "";
-	}
 	
 	public static void main(String[] args) {
 	System.out.println("Main");
     RenterListingView u = new RenterListingView();
     Listing model = new Listing();
     ListingController controller = new ListingController (model, u);
+    controller.connectDB();
+    
  //   u.setVisible(true);
 	}
 }

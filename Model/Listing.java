@@ -16,8 +16,20 @@ public class Listing {
     
     public Listing () {}
 
-    public Listing(String propertType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, int listingTime, String landlord)
+    public Listing(String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, int listingTime, String landlord)
     {
+        this.propertyType = propertyType;
+        this.numbedRooms = bedrooms;
+        this.numbathRooms = bathrooms;
+        this.isFurnished = isFurnished;
+        this.quadrant = quadrant;
+        this.listingTime = listingTime;
+        this.landlord = landlord;
+    }
+    
+    public Listing(int id, String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, int listingTime, String landlord)
+    {	
+    	this.listingID = id;
         this.propertyType = propertyType;
         this.numbedRooms = bedrooms;
         this.numbathRooms = bathrooms;
