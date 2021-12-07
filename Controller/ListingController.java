@@ -18,7 +18,7 @@ public class ListingController extends ParentController {
 		this.listingView = view;
 		
 		listingView.searchButton(new ButtonListener());	
-		}
+	}
 	
 	public void connectDB() {
 		db.initializeConnection();

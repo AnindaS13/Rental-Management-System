@@ -28,9 +28,7 @@ public class ReadMessageView implements Component{
     
     public ReadMessageView() {
 
-
         draw();
-
     }
 
 

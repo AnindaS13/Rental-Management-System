@@ -4,11 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Gui.ReadMessageView;
-import Gui.RenterListingView;
 import Model.UnregisteredRenter;
 import Model.RegisteredRenter;
 import Model.Landlord;
-import Model.Listing;
+
 
 public class ContactController extends ParentController {
 	
@@ -46,17 +45,17 @@ public class ContactController extends ParentController {
 		}
 	}
 	
-	@Override
-	public void switchView(String view) {
-		super.switchView(view);
-	}
-	
 	public class MessageButton implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Message button pressed");	
 		}
+	}
+	
+	@Override
+	public void switchView(String view) {
+		super.switchView(view);
 	}
 	
 	public static void main(String[] args) {
