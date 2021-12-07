@@ -3,8 +3,12 @@ package Model;
 public class UnregisteredRenter {
 
     private Listing listing;
+    
+    public UnregisteredRenter()
+    {
+    }
 
-    UnregisteredRenter(Listing listing)
+    public UnregisteredRenter(Listing listing)
     {
         this.listing = listing;
     }

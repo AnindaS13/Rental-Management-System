@@ -4,8 +4,12 @@ public class RegisteredRenter {
 
     public Listing listings;
 
+    
+    public RegisteredRenter()
+    {
+    }
 
-    RegisteredRenter(Listing listing)
+    public RegisteredRenter(Listing listing)
     {
         this.listings = listing;
     }
