@@ -15,11 +15,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegisterPropertyView implements Component
 {
+    private String types [] = {"Apartment", "Detached Home", "Attached Home", "Townhouse"};
+    private String furnst [] = {"Yes", "No"};
     private JButton RegisterBtn= new JButton("Register a Property");
     private JButton ListingsBtn= new JButton("Listings");
     private JButton MessagesBtn= new JButton("Messages");
     private JButton AddPropBtn= new JButton("Add Property");
-
+    private JComboBox typeBox = new JComboBox(types);
+    private JComboBox furn = new JComboBox(furnst);
     RegisterPropertyView()
     {
         draw();
@@ -51,7 +54,7 @@ public class RegisterPropertyView implements Component
     JLabel type =  new JLabel("Type"); //Making the labels for the inputs
     type.setBounds(150, 200, 150, 20);
     JLabel NumBeds = new JLabel("Number of Bedrooms");
-    NumBeds.setBounds(150, 450, 150, 20);
+    NumBeds.setBounds(110, 450, 150, 20);
     JLabel furnishStat = new JLabel("Furnished");
     furnishStat.setBounds(640, 200, 150, 20);
     JLabel NumBath = new JLabel("Number of Bathrooms");
@@ -60,9 +63,8 @@ public class RegisterPropertyView implements Component
     quad.setBounds(420, 600, 150, 50);
 
 
-
-
-
+    typeBox.setBounds(70, 230, 200, 50); //added input for types
+    furn.setBounds(560, 230, 200, 50); //added input for furnished status
 
     mainFrame.add(AddPropBtn); //adding add property button to frame
     mainFrame.add(type); //adding type label to frame
@@ -71,6 +73,10 @@ public class RegisterPropertyView implements Component
     mainFrame.add(NumBath); //adding bathroom label to frame
     mainFrame.add(quad); //adding quadrant label to frame
     mainFrame.add(navBarpanel); //adding navbar to frame to frame
+
+
+    mainFrame.add(typeBox); //adding the type selector input to frame
+    mainFrame.add(furn);
     mainFrame.setLayout(null);
     mainFrame.setResizable(true);
     mainFrame.setVisible(true);
@@ -101,5 +107,15 @@ public class RegisterPropertyView implements Component
     public void AddPropPerformed(ActionListener a) //To submit the form and register a property
     {
         this.AddPropBtn.addActionListener(a);
+    }
+
+    public String getTypeInput()
+    {
+        return (String)typeBox.getSelectedItem();
+    }
+
+    public String getFurn()
+    {
+        return (String)furn.getSelectedItem();
     }
 }
