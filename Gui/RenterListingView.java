@@ -24,6 +24,8 @@ public class RenterListingView implements Component {
     private JComboBox quadrant = new JComboBox();
     private JComboBox furnished = new JComboBox();
     private JButton search = new JButton("Search");
+    private JButton subscribe = new JButton("Subscribe");
+
     private JTextField message = new JTextField("Enter Text",2);
     private JButton sendMessageBtn = new JButton("Send");
     private JButton logOutBtn = new JButton("Log Out");
