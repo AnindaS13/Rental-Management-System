@@ -1,4 +1,7 @@
 package Model;
+
+import java.util.ArrayList;
+
 public class Listing {
 
     private int ID; // pk, ai
@@ -115,6 +118,21 @@ public class Listing {
 
     public int getListingID() {
         return ID;
+    }
+
+
+    public ArrayList<Listing> filterListings (ArrayList<Listing> listings, String propType, int bedrooms, int bathrooms, boolean furnished, String quad)
+    {
+        ArrayList<Listing> filteredlist = new ArrayList<Listing>();
+        for (int i = 0; i < listings.size(); i++)
+        {
+            if (listings.get(i).propertyType == propType && listings.get(i).numbedRooms == bedrooms && listings.get(i).numbathRooms == bathrooms 
+            && listings.get(i).isFurnished == furnished && listings.get(i).quadrant == quad)
+            {
+                filteredlist.add(listings.get(i));
+            }
+        }
+        return filteredlist;
     }
 
 
