@@ -1,4 +1,5 @@
 package Gui;
+
 import Model.Listing;
 
 import java.util.*;
@@ -17,11 +18,18 @@ public class EditListStatusLandlordView implements Component{
     List<String[]> values = new ArrayList<String[]>();
     private JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane();
-
-    EditListStatusLandlordView(ArrayList<Listing> input)
+    private JButton RegisterBtn= new JButton("Register a Property");
+    private JButton ListingsBtn= new JButton("Listings");
+    private JButton MessagesBtn= new JButton("Messages");
+    private JTextField idVal= new JTextField();
+    private JLabel idOfProp = new JLabel("Enter the the ID of the property you wish to edit the status for:");
+    private JButton submitChange = new JButton("Submit");
+    private JLabel changedStatus = new JLabel("Enter the new status for the property:");
+    private JTextField statusVal = new JTextField();
+    public EditListStatusLandlordView(ArrayList<Listing> input)
     {
-    setTable(input);
-    draw();
+        setTable(input);
+        draw();
     }
 
     public void setTable(ArrayList<Listing> input)
@@ -48,11 +56,30 @@ public class EditListStatusLandlordView implements Component{
         frame.setResizable(true);
         frame.setSize(900,900);
 
+        JPanel navBarpanel = new JPanel(); //Setting navbar sizes and adding buttons to it
+        navBarpanel.add(RegisterBtn);
+        navBarpanel.add(ListingsBtn);
+        navBarpanel.add(MessagesBtn);
+        navBarpanel.setSize(frame.getWidth(),50);
+        navBarpanel.setLayout(new GridLayout());
+
+        idOfProp.setBounds(50,600,400,20);
+        idVal.setBounds(50,620,400,30);
+        changedStatus.setBounds(50,660,400,20);
+        statusVal.setBounds(50,680,400,30);
+        submitChange.setBounds(50, 730,400,30);
+
         table.setBounds(30,200,500,300);
         table.setRowHeight(20);
         scrollPane.setViewportView(table);
         scrollPane.setBounds(30, 238, 800, 300);
         frame.getContentPane().add(scrollPane);
+        frame.add(navBarpanel);
+        frame.add(idOfProp);
+        frame.add(statusVal);
+        frame.add(idVal);
+        frame.add(changedStatus);
+        frame.add(submitChange);
         frame.setLayout(null);
         frame.setVisible(true);
         System.out.println("in draw");
@@ -64,5 +91,27 @@ public class EditListStatusLandlordView implements Component{
         in.add(new Listing(1, "Apartment", 4, 5, true, "NE", "10:10", "johndoe@gmail.com", "Active", true));
         in.add(new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "johndoe@gmail.com", "Active", true));
         EditListStatusLandlordView x = new EditListStatusLandlordView(in);
+        Listing obj = new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "johndoe@gmail.com", "Active", true);
+        System.out.println(obj.getID());
+    }
+
+    public void RegisterPerformed(ActionListener a) //For register property navbar redirect
+    {
+        this.RegisterBtn.addActionListener(a);
+    }
+
+    public void ListingsPerformed(ActionListener a) // For Listings navbar redirect
+    {
+        this.ListingsBtn.addActionListener(a);
+    }
+
+    public void MessagesPerformed(ActionListener a) //For messages navbar redirect
+    {
+        this.MessagesBtn.addActionListener(a);
+    }
+
+    public void updateStatus(ActionListener a) //For messages navbar redirect
+    {
+        this.submitChange.addActionListener(a);
     }
 }
