@@ -71,4 +71,29 @@ public class EditFeesView implements Component{
     {
     EditFeesView x = new EditFeesView();
     }
+
+    public void renterLandlordPerformed(ActionListener a) //For register property navbar redirect
+    {
+        this.RenterLandlordBtn.addActionListener(a);
+    }
+
+    public void ListingsPerformed(ActionListener a) // For Listings navbar redirect
+    {
+        this.ListingsBtn.addActionListener(a);
+    }
+
+    public void SummaryReportPerformed(ActionListener a) //For messages navbar redirect
+    {
+        this.SumRepBtn.addActionListener(a);
+    }
+
+    public void EditFeesPerformed (ActionListener a)
+    {
+        this.editFeeBtn.addActionListener(a);
+    }
+
+    public void updateStatus (ActionListener a)
+    {
+        this.subChanges.addActionListener(a);
+    }
 }

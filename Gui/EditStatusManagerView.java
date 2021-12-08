@@ -94,7 +94,7 @@ public class EditStatusManagerView implements Component{
         System.out.println(obj.getID());
     }
 
-    public void RegisterPerformed(ActionListener a) //For register property navbar redirect
+    public void renterLandlordPerformed(ActionListener a) //For register property navbar redirect
     {
         this.RenterLandlordBtn.addActionListener(a);
     }
@@ -104,13 +104,18 @@ public class EditStatusManagerView implements Component{
         this.ListingsBtn.addActionListener(a);
     }
 
-    public void MessagesPerformed(ActionListener a) //For messages navbar redirect
+    public void SummaryReportPerformed(ActionListener a) //For messages navbar redirect
     {
         this.SumRepBtn.addActionListener(a);
     }
 
-    public void updateStatus(ActionListener a) //For messages navbar redirect
+    public void updateStatus(ActionListener a)
     {
         this.submitChange.addActionListener(a);
+    }
+
+    public void EditFeesPerformed (ActionListener a)
+    {
+        this.editFeeBtn.addActionListener(a);
     }
 }

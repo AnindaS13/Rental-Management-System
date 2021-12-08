@@ -26,6 +26,12 @@ public class EditListStatusLandlordView implements Component{
     private JButton submitChange = new JButton("Submit");
     private JLabel changedStatus = new JLabel("Enter the new status for the property:");
     private JTextField statusVal = new JTextField();
+
+    private JButton payBtn = new JButton("Pay");
+    private JLabel idForPayLabel = new JLabel("Enter the property ID for which you will pay the fee:");
+    private JTextField idInputForPay = new JTextField();
+
+
     public EditListStatusLandlordView(ArrayList<Listing> input)
     {
         setTable(input);
@@ -63,18 +69,25 @@ public class EditListStatusLandlordView implements Component{
         navBarpanel.setSize(frame.getWidth(),50);
         navBarpanel.setLayout(new GridLayout());
 
-        idOfProp.setBounds(50,600,400,20);
-        idVal.setBounds(50,620,400,30);
-        changedStatus.setBounds(50,660,400,20);
-        statusVal.setBounds(50,680,400,30);
-        submitChange.setBounds(50, 730,400,30);
+        idOfProp.setBounds(50,460,400,20);
+        idVal.setBounds(50,480,400,30);
+        changedStatus.setBounds(50,530,400,20);
+        statusVal.setBounds(50,550,400,30);
+        submitChange.setBounds(50, 600,400,30);
 
-        table.setBounds(30,200,500,300);
+        idForPayLabel.setBounds(540,460,300,20);
+        idInputForPay.setBounds(540,490,300,30);
+        payBtn.setBounds(540,530,300,30);
+
+        table.setBounds(30,100,500,300);
         table.setRowHeight(20);
         scrollPane.setViewportView(table);
-        scrollPane.setBounds(30, 238, 800, 300);
+        scrollPane.setBounds(30, 100, 800, 300);
         frame.getContentPane().add(scrollPane);
         frame.add(navBarpanel);
+        frame.add(payBtn);
+        frame.add(idInputForPay);
+        frame.add(idForPayLabel);
         frame.add(idOfProp);
         frame.add(statusVal);
         frame.add(idVal);
@@ -110,8 +123,15 @@ public class EditListStatusLandlordView implements Component{
         this.MessagesBtn.addActionListener(a);
     }
 
-    public void updateStatus(ActionListener a) //For messages navbar redirect
+    public void updateStatus(ActionListener a) //For update status of form button
     {
         this.submitChange.addActionListener(a);
     }
+
+    public void paySubmission(ActionListener a) //For submitting your fee payment
+    {
+        this.payBtn.addActionListener(a);
+    }
+
+
 }
