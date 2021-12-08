@@ -25,10 +25,11 @@ public class ReadMessageView implements Component{
     private String [] column = {"mID", "Message"};
     private JTable messageTable = new JTable(data,column);
     private JScrollPane scrollPane = new JScrollPane();
-    
     public ReadMessageView() {
 
+
         draw();
+
     }
 
 

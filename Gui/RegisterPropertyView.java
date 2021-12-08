@@ -129,15 +129,15 @@ public class RegisterPropertyView implements Component
     {
         return (String)typeBox.getSelectedItem();
     }
-    
-    public String getQuadrant()
-    {
-    	return (String)quadrants.getSelectedItem();
-    }
 
     public boolean getFurn()
     {
         return Boolean.parseBoolean((String)furn.getSelectedItem());
+    }
+    
+    public String getQuadrant()
+    {
+        return (String)quadrants.getSelectedItem();
     }
 
     public int getBathNum() {

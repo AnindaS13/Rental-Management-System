@@ -1,51 +1,47 @@
 package Model;
-
-import Model.Landlord;
-
 public class Listing {
 
-
-    private int listingID;
+    private int ID; // pk, ai
+    // all below nn
     private String propertyType;
     private int numbedRooms;
     private int numbathRooms;
     private boolean isFurnished;
     private String quadrant;
-    private int listingTime;
-    private String landlord;
-    
+    private String listingTime;
+    private String email; // fk from landlord
+    private String status;
+    private boolean balance;
+
+
+
     public Listing () {}
 
-    public Listing(String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, int listingTime, String landlord)
+    public Listing(int id, String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, String listingTime, String email, String status, boolean balance)
     {
+        this.ID = id;
         this.propertyType = propertyType;
         this.numbedRooms = bedrooms;
         this.numbathRooms = bathrooms;
         this.isFurnished = isFurnished;
         this.quadrant = quadrant;
         this.listingTime = listingTime;
-        this.landlord = landlord;
-    }
-    
-    public Listing(int id, String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, int listingTime, String landlord)
-    {	
-    	this.listingID = id;
-        this.propertyType = propertyType;
-        this.numbedRooms = bedrooms;
-        this.numbathRooms = bathrooms;
-        this.isFurnished = isFurnished;
-        this.quadrant = quadrant;
-        this.listingTime = listingTime;
-        this.landlord = landlord;
+        this.email = email;
+        this.status = status;
+        this.balance = balance;
+
     }
 
-    public int getListingID() {
-        return listingID;
+
+    public int getID()
+    {
+        return this.ID;
+    }
+    public void setID(int id)
+    {
+        this.ID = id;
     }
 
-    public void setListingID(int listingID) {
-        this.listingID = listingID;
-    }
     public String getPropertyType() {
         return this.propertyType;
     }
@@ -53,51 +49,74 @@ public class Listing {
         this.propertyType = propertyType;
     }
 
+
     public int getNumbedRooms() {
-    	return this.numbedRooms;
+        return this.numbedRooms;
     }
     public void setNumbedRooms(int numbedRooms) {
-    	this.numbedRooms = numbedRooms;
+        this.numbedRooms = numbedRooms;
     }
 
 
     public int getNumbathRooms() {
-    	return this.numbathRooms;
+        return this.numbathRooms;
     }
     public void setNumbathRooms(int numbathRooms) {
-    	this.numbathRooms = numbathRooms;
+        this.numbathRooms = numbathRooms;
     }
 
 
     public boolean getIsFurnished() {
-    	return this.isFurnished;
+        return this.isFurnished;
     }
     public void setIsFurnished(boolean isFurnished) {
-    	this.isFurnished = isFurnished;
+        this.isFurnished = isFurnished;
     }
 
 
     public String getQuadrant() {
-    	return this.quadrant;
+        return this.quadrant;
     }
     public void setQuadrant(String quadrant) {
-    	this.quadrant = quadrant;
+        this.quadrant = quadrant;
     }
 
 
-    public int getListingTime() {
-    	return this.listingTime;
+    public String getListingTime() {
+        return this.listingTime;
     }
-    public void setListingTime(int listingTime) {
-    	this.listingTime = listingTime;
+    public void setListingTime(String listingTime) {
+        this.listingTime = listingTime;
     }
 
 
-    public String getLandlord() {
-    	return this.landlord;
+    public String email() {
+        return this.email;
     }
-    public void setLandlord(String landlord) {
-    	this.landlord = landlord;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+
+    public String getStatus() {
+        return this.status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    public boolean getBalance() {
+        return this.balance;
+    }
+    public void setBalance(boolean balance) {
+        this.balance = balance;
+    }
+
+    public int getListingID() {
+        return ID;
+    }
+
+
 
 }

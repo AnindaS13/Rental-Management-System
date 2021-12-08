@@ -55,9 +55,13 @@ public class DBConnect {
 	    		int bed = rs.getInt("bedrooms");
 	    		int bath = rs.getInt("bathrooms");
 	    		boolean furnished = rs.getBoolean("Furnished");
+	    		String time = rs.getString("listingTime");
 	    		String quad = rs.getString("quadrant");
+	    		String email= rs.getString("email");
+	    		String status= rs.getString("status");
+	    		boolean bal= rs.getBoolean("balance");
 	    		
-	    		allListing.add(new Listing (id,property, bed, bath, furnished, quad, 0 ,""));
+	    		allListing.add(new Listing (id,property, bed, bath, furnished, quad, time, email, status ,bal));
 	    	}
 	    	
     	}
