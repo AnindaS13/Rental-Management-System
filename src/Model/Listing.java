@@ -17,7 +17,7 @@ public class Listing {
 
 
 
-    public Listing(int id, String propertType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, String listingTime, String email, String status, boolean balance)
+    public Listing(int id, String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, String listingTime, String email, String status, boolean balance)
     {
         this.ID = id;
         this.propertyType = propertyType;
@@ -114,5 +114,11 @@ public class Listing {
     public void setBalance(boolean balance) {
         this.balance = balance;
     }
+
+    public int getListingID() {
+        return ID;
+    }
+
+
 
 }
