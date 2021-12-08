@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 // make actionlisteners too
 
 public class RenterListingView implements Component {
-    private ArrayList<Listing> listings = new ArrayList<Listing>();
+	private ArrayList<Listing> listings = new ArrayList<Listing>();
     List<String[]> values = new ArrayList<String[]>();
 
     private JComboBox PropertyType = new JComboBox();
@@ -24,6 +24,9 @@ public class RenterListingView implements Component {
     private JComboBox quadrant = new JComboBox();
     private JComboBox furnished = new JComboBox();
     private JButton search = new JButton("Search");
+    private JTextField message = new JTextField("Enter Text",2);
+    private JButton sendMessageBtn = new JButton("Send");
+    private JButton logOutBtn = new JButton("Log Out");
     JTable table = new JTable();
    
 
@@ -48,7 +51,7 @@ public class RenterListingView implements Component {
     	DefaultTableModel model = new DefaultTableModel(columnNames, 0);
     	
     	for(int i=0; i< input.size(); i++) {
-	    	Object rowData[] = {input.get(i).getListingID(), input.get(i).getPropertyType(), 
+	    	Object rowData[] = {input.get(i).getID(), input.get(i).getPropertyType(), 
 	    						input.get(i).getNumbedRooms(), input.get(i).getNumbathRooms(), 
 	    						input.get(i).getIsFurnished(), input.get(i).getQuadrant()};
 	    	//System.out.println(input.get(i).getPropertyType());
@@ -57,16 +60,28 @@ public class RenterListingView implements Component {
     	table.setModel(model);
     }
 
-    public void returnSearch(ActionListener actionListener) {
-        this.search.addActionListener(actionListener);
+//    public void returnSearch(ActionListener actionListener) {
+//        search.addActionListener(actionListener);
+//    }
+    
+    public void searchButton(ActionListener actionListener) {
+        this.search.addActionListener(actionListener);	
     }
 
+    public void returnMessage(ActionListener actionListener) {
+        this.sendMessageBtn.addActionListener(actionListener);
+    }
+
+    public void returnLogout(ActionListener actionListener) {
+        this.logOutBtn.addActionListener(actionListener);
+    }
+    
     @SuppressWarnings("serial")
     @Override
     public void draw() {
-
         Color foreGroundColor = Color.BLACK;
         Color backgroundColor = Color.lightGray;
+
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
@@ -79,8 +94,21 @@ public class RenterListingView implements Component {
         frame.getContentPane().setBackground(new Color(255, 255, 255));
         frame.getContentPane().setLayout(null);
 
+        JPanel navBarpanel = new JPanel(); //Setting navbar sizes and adding buttons to it
+        navBarpanel.setSize(frame.getWidth(),50);
+        logOutBtn.setBounds(800,0,100,50);
+        navBarpanel.setLayout(new GridLayout());
+        frame.getContentPane().add(logOutBtn);
+
+        JLabel title = new JLabel("View Listings");
+        title.setFont(new Font("SansSerif", Font.BOLD, 20));
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        navBarpanel.add(title);
+
+        frame.getContentPane().add(navBarpanel);
+
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 238, 466, 215);
+        scrollPane.setBounds(10, 238, 600, 300);
         frame.getContentPane().add(scrollPane);
 
         //JTable table = new JTable();
@@ -90,84 +118,88 @@ public class RenterListingView implements Component {
                         "Property ID", "Type", "Bedrooms", "Bathrooms", "Furnished", "Quadrant"
                 }
         ));
-        table.getColumnModel().getColumn(0).setPreferredWidth(65);
-        table.getColumnModel().getColumn(1).setPreferredWidth(90);
-        table.getColumnModel().getColumn(2).setPreferredWidth(63);
-        table.getColumnModel().getColumn(3).setPreferredWidth(66);
-        table.getColumnModel().getColumn(4).setPreferredWidth(55);
-        table.getColumnModel().getColumn(5).setPreferredWidth(52);
+        table.getColumnModel().getColumn(0).setPreferredWidth(100);
+        table.getColumnModel().getColumn(1).setPreferredWidth(100);
+        table.getColumnModel().getColumn(2).setPreferredWidth(100);
+        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        table.getColumnModel().getColumn(4).setPreferredWidth(100);
+        table.getColumnModel().getColumn(5).setPreferredWidth(100);
+        scrollPane.setBounds(150, 225, 600, 300);
         scrollPane.setViewportView(table);
-
-        JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(new Color(255, 255, 255));
-        titlePanel.setBounds(0, 0, 486, 82);
-        frame.getContentPane().add(titlePanel);
-        titlePanel.setLayout(null);
-
-        JLabel Title = new JLabel("Browse Properties");
-        Title.setBounds(135, 20, 100, 100);
-        Title.setForeground(new Color(255, 255, 255));
-        titlePanel.add(Title);
-        Title.setFont(new Font("SansSerif", Font.BOLD, 24));
 
         PropertyType.setModel(new DefaultComboBoxModel(new String[] {"Apartment", "Townhouse", "Duplex", "Condo", "Studio", "Basement"}));
         PropertyType.setBackground(backgroundColor);
-        PropertyType.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        PropertyType.setBounds(10, 192, 73, 21);
+        PropertyType.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        PropertyType.setBounds(100, 100, 100, 40);
         PropertyType.setForeground(foreGroundColor);
         frame.getContentPane().add(PropertyType);
 
         bedrooms.setModel(new DefaultComboBoxModel(new Integer[] {1,2,3,4,5,7,8}));
         bedrooms.setFont(new Font("SansSerif", Font.PLAIN, 12));
         bedrooms.setBackground(backgroundColor);
-        bedrooms.setBounds(108, 192, 67, 21);
+        bedrooms.setBounds(250, 100, 100, 40);
         bedrooms.setForeground(foreGroundColor);
         frame.getContentPane().add(bedrooms);
 
         bathrooms.setModel(new DefaultComboBoxModel(new Integer[] {1,2,3,4,5,6,7,8}));
         bathrooms.setFont(new Font("SansSerif", Font.PLAIN, 12));
         bathrooms.setBackground(backgroundColor);
-        bathrooms.setBounds(196, 192, 60, 21);
+        bathrooms.setBounds(400, 100, 100, 40);
         bathrooms.setForeground(foreGroundColor);
         frame.getContentPane().add(bathrooms);
 
-        quadrant.setModel(new DefaultComboBoxModel(new String[] {"NW", "SW", "NE", "SE"}));
+        quadrant.setModel(new DefaultComboBoxModel(new String[] {"NE", "NW", "SE", "SW"}));
         quadrant.setFont(new Font("SansSerif", Font.PLAIN, 12));
         quadrant.setBackground(backgroundColor);
-        quadrant.setBounds(374, 193, 88, 21);
+        quadrant.setBounds(550, 100, 100, 40);
         quadrant.setForeground(foreGroundColor);
         frame.getContentPane().add(quadrant);
 
         furnished.setModel(new DefaultComboBoxModel(new String[] {"Yes", "No"}));
         furnished.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        furnished.setBounds(280, 193, 88, 21);
+        furnished.setBounds(700, 100, 100, 40);
         furnished.setBackground(backgroundColor);
         furnished.setForeground(foreGroundColor);
         frame.getContentPane().add(furnished);
 
+        message.setBounds(400, 500,150,80);
+        message.setForeground(Color.black);
+        message.setBackground(Color.lightGray);
+        frame.getContentPane().add(message);
+
+        sendMessageBtn.setBounds(600, 750,80,40);
+        sendMessageBtn.setFont(new Font("SansSerif", Font.BOLD, 12));
+        sendMessageBtn.setForeground(Color.black);
+        sendMessageBtn.setBackground(Color.lightGray);
+        frame.getContentPane().add(sendMessageBtn);
+
         JLabel label1 = new JLabel("PropertyType");
-        label1.setBounds(10, 168, 79, 13);
+        label1.setBounds(100, 70, 80, 30);
         frame.getContentPane().add(label1);
 
         JLabel label2 = new JLabel("Bedrooms");
-        label2.setBounds(108, 168, 67, 13);
+        label2.setBounds(250, 70, 80, 30);
         frame.getContentPane().add(label2);
 
         JLabel label3 = new JLabel("Bathrooms");
-        label3.setBounds(200, 168, 73, 13);
+        label3.setBounds(400, 70, 80, 30);
         frame.getContentPane().add(label3);
 
         JLabel label4 = new JLabel("Furnished");
-        label4.setBounds(293, 168, 67, 13);
+        label4.setBounds(550, 70, 80, 30);
         frame.getContentPane().add(label4);
 
         JLabel label5 = new JLabel("Quadrant");
-        label5.setBounds(388, 168, 88, 13);
+        label5.setBounds(700, 70, 80, 30);
         frame.getContentPane().add(label5);
+
+        JLabel label6 = new JLabel("Message Landlord");
+        label6.setBounds(200, 600, 150, 20);
+        frame.getContentPane().add(label6);
 
         search.setBackground(backgroundColor);
         search.setFont(new Font("SansSerif", Font.BOLD, 12));
-        search.setBounds(135, 92, 80, 30);
+        search.setBounds(100, 150, 100, 40);
         search.setForeground(foreGroundColor);
         frame.getContentPane().add(search);
 
@@ -177,9 +209,6 @@ public class RenterListingView implements Component {
         frame.setVisible(true);
     }
     
-    public void searchButton(ActionListener actionListener) {
-        this.search.addActionListener(actionListener);	
-    }
 
     public ArrayList<Listing> getListings() {
         return listings;
@@ -236,11 +265,17 @@ public class RenterListingView implements Component {
     public void setFurnished(boolean furnished) {
         if(furnished == true) {
             this.furnished.setSelectedItem("Yes");
-
         } else {
             this.furnished.setSelectedItem("No");
-
         }
+    }
+
+    public String getMessage() {
+        return (String) message.getText();
+    }
+
+    public void setMessage(String message) {
+        this.message.setText(message);
     }
 
     public static void main(String[] args) {

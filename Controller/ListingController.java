@@ -33,9 +33,8 @@ public class ListingController extends ParentController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			System.out.println("button pressed");
 			listingView.setOutput(db.getListing());
-//			System.out.println("button pressed");
 //			switchView("login");
 			
 		}

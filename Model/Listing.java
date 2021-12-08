@@ -12,7 +12,7 @@ public class Listing {
     private String email; // fk from landlord
     private String status;
     private boolean balance;
-
+    private char role; 
 
 
     public Listing () {}
