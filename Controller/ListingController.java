@@ -2,6 +2,8 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Gui.RenterListingView;
 import Model.Listing;
@@ -34,12 +36,20 @@ public class ListingController extends ParentController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("button pressed");
-			listingView.setOutput(db.getListing());
+			ArrayList<Listing> temp = new ArrayList<Listing>();
+			
+			try {
+				temp = listingModel.filterListings(db.getListing(), listingView.getPropertyType(),
+													listingView.getBedrooms(), listingView.getBathrooms(),
+													listingView.getFurnished(), listingView.getQuadrant());
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			listingView.setOutput(temp);
 //			switchView("login");
 			
 		}
 	}
-	
 	
 	public static void main(String[] args) {
 	System.out.println("Listing controller");

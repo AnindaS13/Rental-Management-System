@@ -19,20 +19,30 @@ public class ReadMessageView implements Component{
     private JButton RegisterBtn= new JButton("Register a Property");
     private JButton ListingsBtn= new JButton("Listings");
     private JButton MessagesBtn= new JButton("Messages");
-    private String  [][] data = {{"1", "I would like this listing."},
-            {"2", "This listing of yours interests me."},
-            {"3", "Can i get in contact with you in regards to this listing."}};
-    private String [] column = {"mID", "Message"};
-    private JTable messageTable = new JTable(data,column);
+    private ArrayList<String> data = new ArrayList<String>();
+//    private String  [][] data = {{"1", "I would like this listing."},
+//            {"2", "This listing of yours interests me."},
+//            {"3", "Can i get in contact with you in regards to this listing."}};
+//    private String [] column = {"mID", "Message"};
+//    private JTable messageTable = new JTable(data,column);
+    private JTable messageTable = new JTable();
     private JScrollPane scrollPane = new JScrollPane();
+    
     public ReadMessageView() {
-
-
         draw();
-
     }
 
-
+    public void setOutput(ArrayList<String> input) {
+    	Object columnNames[] = {"Property ID", "Message"};
+    	DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+    	
+    	for(int i=0; i< input.size(); i++) {
+	    	Object rowData[] = {"", input.get(i)};
+	    	model.addRow(rowData);
+    	}
+    	messageTable.setModel(model);
+    }
+    
     @Override
     public void draw()
     {
@@ -50,7 +60,7 @@ public class ReadMessageView implements Component{
         navBarpanel.setLayout(new GridLayout());
         frame.add(navBarpanel);
 
-        messageTable.setModel(new DefaultTableModel(data,
+        messageTable.setModel(new DefaultTableModel(data.toArray(new Object[][] {}),
                 new String [] {
                         "Property ID", "Message"
                 }
@@ -68,9 +78,9 @@ public class ReadMessageView implements Component{
         frame.setVisible(true);
     }
 
-    public static void main(String[] args){
-        ReadMessageView x = new ReadMessageView();
-    }
+//    public static void main(String[] args){
+//        ReadMessageView x = new ReadMessageView();
+//    }
 
     public void RegisterPerformed(ActionListener a) //For register property navbar redirect
     {

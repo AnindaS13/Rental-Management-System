@@ -8,6 +8,8 @@ import Model.Manager;
 
 public class ParentController {
 	
+	String userEmail;	//to store email when landlord, registered renter or manager login
+	
 	public void switchView (String view) {
 		switch(view) {
 		
@@ -30,6 +32,7 @@ public class ParentController {
 		case "register":
 				System.out.println("listing screen view");
 				Manager m = new Manager();
+				
 				Landlord l = new Landlord(); 
 				RegisterPropertyView r = new RegisterPropertyView();
 				RegisterPropertyController c = new RegisterPropertyController(l, m, r);
