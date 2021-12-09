@@ -126,10 +126,10 @@ public class Listing {
     {
         ArrayList<Listing> filteredlist = new ArrayList<Listing>();
         for (int i = 0; i < listings.size(); i++)
-        {
-            if (listings.get(i).propertyType == propType && listings.get(i).numbedRooms == bedrooms && listings.get(i).numbathRooms == bathrooms 
-            && listings.get(i).isFurnished == furnished && listings.get(i).quadrant == quad)
-            {
+        {	System.out.println(furnished);
+            if (listings.get(i).getPropertyType().equals(propType) && listings.get(i).getNumbedRooms() == bedrooms && listings.get(i).getNumbathRooms() == bathrooms 
+            	&& listings.get(i).getQuadrant().equals(quad)  && listings.get(i).getIsFurnished() == furnished )
+            {	System.out.println("inside if");
                 filteredlist.add(listings.get(i));
             }
         }

@@ -125,7 +125,7 @@ public class RenterListingView implements Component {
         scrollPane.setBounds(150, 225, 600, 300);
         scrollPane.setViewportView(table);
 
-        PropertyType.setModel(new DefaultComboBoxModel(new String[] {"Apartment", "Townhouse", "Duplex", "Condo", "Studio", "Basement"}));
+        PropertyType.setModel(new DefaultComboBoxModel(new String[] {"Appartment", "Attached", "Detached", "Townhouse", "Studio", "Basement"}));
         PropertyType.setBackground(backgroundColor);
         PropertyType.setFont(new Font("SansSerif", Font.PLAIN, 15));
         PropertyType.setBounds(100, 100, 100, 40);
@@ -205,11 +205,11 @@ public class RenterListingView implements Component {
         label3.setBounds(400, 70, 80, 30);
         frame.getContentPane().add(label3);
 
-        JLabel label4 = new JLabel("Furnished");
+        JLabel label4 = new JLabel("Quadrant");
         label4.setBounds(550, 70, 80, 30);
         frame.getContentPane().add(label4);
 
-        JLabel label5 = new JLabel("Quadrant");
+        JLabel label5 = new JLabel("Furnished");
         label5.setBounds(700, 70, 80, 30);
         frame.getContentPane().add(label5);
 
@@ -279,7 +279,12 @@ public class RenterListingView implements Component {
     }
 
     public boolean getFurnished() {
-        return  Boolean.parseBoolean((String) furnished.getSelectedItem()) ;
+    	String temp = (String)furnished.getSelectedItem();
+    	if(temp.equals("Yes")) {
+            return true;
+        } else {
+           return false;
+        }
     }
 
     public void setFurnished(boolean furnished) {
@@ -323,6 +328,6 @@ public class RenterListingView implements Component {
     }
 
     public static void main(String[] args) {
-        LoginView u = new LoginView();
+        RenterListingView u = new RenterListingView();
     }
 }

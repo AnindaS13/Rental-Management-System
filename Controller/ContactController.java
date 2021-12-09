@@ -2,6 +2,7 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import Gui.ReadMessageView;
 import Model.UnregisteredRenter;
@@ -13,13 +14,14 @@ public class ContactController extends ParentController {
 	
 	private UnregisteredRenter uRenter;
 	private RegisteredRenter rRenter;
-	private Landlord landloard; 
+	private Landlord landlord; 
 	private ReadMessageView messages;
+	private DBConnect db = new DBConnect();
 	
 	public ContactController (UnregisteredRenter r1, RegisteredRenter r2, Landlord landlord, ReadMessageView msg) {
 		this.uRenter = r1;
 		this.rRenter = r2; 
-		this.landloard = landlord;
+		this.landlord = landlord;
 		this.messages = msg;
 		
 		messages.RegisterPerformed(new RegisterButton());
@@ -50,7 +52,9 @@ public class ContactController extends ParentController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Message button pressed");	
+			System.out.println("Message button pressed");
+			ArrayList<String> userMsg = landlord.RetreiveMessage(db.getMessages());
+			messages.setOutput(userMsg);
 		}
 	}
 	

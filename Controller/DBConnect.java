@@ -36,7 +36,7 @@ public class DBConnect {
         }
     }
     
-    public ArrayList<Listing> getListing() {
+    public ArrayList<Listing> getListing() throws SQLException {
     	PreparedStatement p=null;
     	ResultSet rs=null;
     	initializeConnection();
@@ -44,15 +44,17 @@ public class DBConnect {
     	
     	try {
     		//Sql query
-	    	String sql = "select * from listing";
+	    	String sql = "select * from listing"
+	    			+ " where status = ?";
 	    	p= connect.prepareStatement(sql);
+	    	p.setString(1, "Active");
 	    	rs = p.executeQuery();
 	    	
 	    	//Retrieving data
 	    	while(rs.next()) {
 	    		int id = rs.getInt("ID");
 	    		String property = rs.getString("propertyType");
-	    		System.out.println(property);
+	    		//System.out.println(property);
 	    		int bed = rs.getInt("bedrooms");
 	    		int bath = rs.getInt("bathrooms");
 	    		boolean furnished = rs.getBoolean("Furnished");
@@ -63,8 +65,7 @@ public class DBConnect {
 	    		boolean bal= rs.getBoolean("balance");
 	    		
 	    		allListing.add(new Listing (id,property, bed, bath, furnished, quad, time, email, status ,bal));
-	    	}
-	    	
+	    	}	
     	}
     	
     	// Catch block to handle exception
@@ -73,8 +74,10 @@ public class DBConnect {
             // Print exception pop-up on screen
             System.out.println(e);
         }
+    	connect.close();
     	return allListing;
     }
+
 
 
 
@@ -100,5 +103,37 @@ public class DBConnect {
 
 		return users;
 	}
+
+    
+    
+    public ArrayList<String> getMessages() {
+    	PreparedStatement p=null;
+    	ResultSet rs=null;
+    	initializeConnection();
+    	ArrayList<String> messages = new ArrayList<String>();
+    	
+    	try {
+    		//Sql query
+	    	String sql = "select * from landlord";
+	    	p= connect.prepareStatement(sql);
+	    	rs = p.executeQuery();
+	    	
+	    	//Retrieving data
+	    	while(rs.next()) {
+	    		String email = rs.getString("lemail");
+	    		String message = rs.getString("message");	    		
+	    		messages.add(email+"\n"+message);
+	    	}	
+    	}
+    	
+    	// Catch block to handle exception
+        catch (SQLException e) {
+ 
+            // Print exception pop-up on screen
+            System.out.println(e);
+        }
+    	return messages;
+    }
+
    
 }
