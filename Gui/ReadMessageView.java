@@ -49,7 +49,10 @@ public class ReadMessageView implements Component{
     
     @Override
     public void draw()
-    {
+    {	
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
         frame.setSize(900,900);
         frame.setTitle("Messages Overview");
 

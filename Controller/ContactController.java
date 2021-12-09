@@ -21,7 +21,7 @@ public class ContactController extends ParentController {
 	public ContactController (Landlord landlord, ReadMessageView msg) {
 //		this.uRenter = r1;
 //		this.rRenter = r2; 
-		super(landlord);
+		this.landlord = landlord;
 //		this.landlord = landlord;
 		this.messages = msg;
 		
@@ -40,7 +40,7 @@ public class ContactController extends ParentController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("register button pressed");	
-			switchView("register");
+			switchView("RegisterProperty");
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class ContactController extends ParentController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Listing button pressed");
-			switchView("landlordListing");
+			switchView("landlordListings");
 		}
 	}
 	
