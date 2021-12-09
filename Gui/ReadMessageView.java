@@ -88,9 +88,9 @@ public class ReadMessageView implements Component{
         frame.setVisible(true);
     }
 
-//    public static void main(String[] args){
-//        ReadMessageView x = new ReadMessageView();
-//    }
+    public static void main(String[] args){
+        ReadMessageView x = new ReadMessageView();
+    }
 
     public void RegisterPerformed(ActionListener a) //For register property navbar redirect
     {
