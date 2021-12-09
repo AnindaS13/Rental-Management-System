@@ -31,6 +31,11 @@ public class EditListStatusLandlordView implements Component{
     private JLabel idForPayLabel = new JLabel("Enter the property ID for which you will pay the fee:");
     private JTextField idInputForPay = new JTextField();
 
+    private Color back = new Color(25, 25, 112);
+    private Color button = new Color(0,0,0);
+    private Color tableBack = new Color(31,97,141);
+    private Color headBack = new Color(21,67,96);
+
     
     public EditListStatusLandlordView() {
     	
@@ -62,7 +67,7 @@ public class EditListStatusLandlordView implements Component{
     @Override
     public void draw()
     {
-        frame.setTitle("Edit Status");  //Giving frame the size set and title
+        frame.setTitle("Edit Status Landlord");  //Giving frame the size set and title
         frame.setResizable(true);
         frame.setSize(900,900);
 
@@ -73,20 +78,42 @@ public class EditListStatusLandlordView implements Component{
         navBarpanel.setSize(frame.getWidth(),50);
         navBarpanel.setLayout(new GridLayout());
 
+        RegisterBtn.setBackground(button);
+        ListingsBtn.setBackground(button);
+        MessagesBtn.setBackground(button);
+        RegisterBtn.setForeground(Color.WHITE);
+        ListingsBtn.setForeground(Color.WHITE);
+        MessagesBtn.setForeground(Color.WHITE);
+
+        submitChange.setForeground(Color.white);
+        submitChange.setBackground(button);
+        payBtn.setBackground(button);
+        payBtn.setForeground(Color.white);
+
         idOfProp.setBounds(50,460,400,20);
         idVal.setBounds(50,480,400,30);
         changedStatus.setBounds(50,530,400,20);
         statusVal.setBounds(50,550,400,30);
         submitChange.setBounds(50, 600,400,30);
 
+        idOfProp.setForeground(Color.white);
+        idForPayLabel.setForeground(Color.white);
+        changedStatus.setForeground(Color.white);
+
         idForPayLabel.setBounds(540,460,300,20);
         idInputForPay.setBounds(540,490,300,30);
         payBtn.setBounds(540,530,300,30);
+
+        table.setBackground(tableBack);
+        table.setForeground(Color.white);
+        table.getTableHeader().setBackground(headBack);
+        table.getTableHeader().setForeground(Color.white);
 
         table.setBounds(30,100,500,300);
         table.setRowHeight(20);
         scrollPane.setViewportView(table);
         scrollPane.setBounds(30, 100, 800, 300);
+        frame.getContentPane().setBackground(back);
         frame.getContentPane().add(scrollPane);
         frame.add(navBarpanel);
         frame.add(payBtn);

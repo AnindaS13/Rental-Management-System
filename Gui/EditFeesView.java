@@ -25,6 +25,10 @@ public class EditFeesView implements Component{
     private JTextField per = new JTextField(10);
     private JButton subChanges = new JButton("Submit");
 
+    private Color back = new Color(25, 25, 112);
+    private Color button = new Color(0,0,0);
+
+
     public EditFeesView()
     {
 
@@ -54,9 +58,23 @@ public class EditFeesView implements Component{
         per.setBounds(500,400,300,50);
         fee.setFont(new Font("Serif", Font.PLAIN, 20));
         per.setFont(new Font("Serif", Font.PLAIN, 20));
+        editFeeLabel.setForeground(Color.white);
+        editPeriodLabel.setForeground(Color.white);
+
+        RenterLandlordBtn.setBackground(button);
+        ListingsBtn.setBackground(button);
+        SumRepBtn.setBackground(button);
+        editFeeBtn.setBackground(button);
+        RenterLandlordBtn.setForeground(Color.WHITE);
+        ListingsBtn.setForeground(Color.WHITE);
+        SumRepBtn.setForeground(Color.WHITE);
+        editFeeBtn.setForeground(Color.WHITE);
+        subChanges.setForeground(Color.white);
+        subChanges.setBackground(button);
 
         subChanges.setBounds(300, 600,300,50);
 
+        frame.getContentPane().setBackground(back);
         frame.add(navBarpanel);
         frame.add(editPeriodLabel);
         frame.add(subChanges);

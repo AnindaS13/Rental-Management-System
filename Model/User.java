@@ -10,10 +10,10 @@ public class User {
     protected String LName;
 
     protected String role; // nn
-
     
 
-    public User()
+
+public User()
     {
         this.email = null;
         this.password = null;
@@ -21,6 +21,7 @@ public class User {
         this.LName = null;
         this.role = null;
     }
+
 
     public User(String email, String password, String FName, String LName, String role)
     {
@@ -66,31 +67,35 @@ public class User {
     public String getEmail() {
         return this.email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
     public String getPassword() {
-    	return this.password;
+        return this.password;
     }
+
     public void setPassword(String password) {
-    	this.password = password;
+        this.password = password;
     }
 
 
     public String getFName() {
-    	return this.FName;
+        return this.FName;
     }
+
     public void setFName(String FName) {
-    	this.FName = FName;
+        this.FName = FName;
     }
 
 
     public String getLName() {
-    	return this.LName;
+        return this.LName;
     }
+
     public void setLName(String LName) {
-    	this.LName = LName;
+        this.LName = LName;
     }
 
     public String getRole() {
@@ -99,17 +104,5 @@ public class User {
     public void setRole(String role) {
     	this.role = role;
     }
-
-
-
-    
-
-
-    
-
-    
-
-
-    
-
 }
+

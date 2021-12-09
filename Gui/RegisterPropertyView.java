@@ -27,6 +27,10 @@ public class RegisterPropertyView implements Component
     private JTextField bedroomnum = new JTextField("Enter in Numeric Form");
     private JTextField bathroomnum = new JTextField("Enter in Numeric Form");
     private JComboBox quadrants = new JComboBox(q);
+    private Color back = new Color(25, 25, 112);
+    private Color button = new Color(0,0,0);
+    private Color tableBack = new Color(31,97,141);
+    private Color headBack = new Color(21,67,96);
 
     public RegisterPropertyView()
     {
@@ -53,31 +57,51 @@ public class RegisterPropertyView implements Component
 
 
     AddPropBtn.setBounds(380, 800, 150, 50);  //Register Prop Button implemented
-    AddPropBtn.setBackground(Color.lightGray);
+
+
+    RegisterBtn.setBackground(button);
+    ListingsBtn.setBackground(button);
+    MessagesBtn.setBackground(button);
+    RegisterBtn.setForeground(Color.WHITE);
+    ListingsBtn.setForeground(Color.WHITE);
+    MessagesBtn.setForeground(Color.WHITE);
+    AddPropBtn.setBackground(button);
+    AddPropBtn.setForeground(Color.white);
+
 
 
     JLabel type =  new JLabel("Type"); //Making the labels for the inputs
     type.setBounds(150, 200, 150, 20);
+    type.setForeground(Color.white);
     JLabel NumBeds = new JLabel("Number of Bedrooms");
     NumBeds.setBounds(110, 450, 150, 20);
+    NumBeds.setForeground(Color.white);
     JLabel furnishStat = new JLabel("Furnished");
     furnishStat.setBounds(640, 200, 150, 20);
+    furnishStat.setForeground(Color.white);
     JLabel NumBath = new JLabel("Number of Bathrooms");
     NumBath.setBounds(600, 450, 150, 20);
+    NumBath.setForeground(Color.white);
     JLabel quad = new JLabel("Quadrant");
     quad.setBounds(420, 600, 150, 50);
+    quad.setForeground(Color.white);
 
 
     typeBox.setBounds(70, 230, 200, 40); //added input for types
-    typeBox.setBackground(Color.lightGray);
+    typeBox.setBackground(tableBack);
+    typeBox.setForeground(Color.white);
     furn.setBounds(560, 230, 200, 40); //added input for furnished status
-    furn.setBackground(Color.lightGray);
+    furn.setBackground(tableBack);
+    furn.setForeground(Color.white);
     bedroomnum.setBounds(70, 480, 200, 40); //added input for bedroom number
-    bedroomnum.setBackground(Color.lightGray);
+    bedroomnum.setBackground(tableBack);
+    bedroomnum.setForeground(Color.white);
     bathroomnum.setBounds(560,480, 200,40); //added input for number of bathrooms
-    bathroomnum.setBackground(Color.lightGray);
+    bathroomnum.setBackground(tableBack);
+    bathroomnum.setForeground(Color.white);
     quadrants.setBounds(340, 640, 200, 40); //added quadrant input
-    quadrants.setBackground(Color.lightGray);
+    quadrants.setBackground(tableBack);
+    quadrants.setForeground(Color.white);
 
     frame.add(AddPropBtn); //adding add property button to frame
     frame.add(type); //adding type label to frame
@@ -89,7 +113,7 @@ public class RegisterPropertyView implements Component
     frame.add(bedroomnum); //added bedroom num input to frame
     frame.add(quad); //adding quadrant label to frame
     frame.add(navBarpanel); //adding navbar to frame to frame
-
+    frame.getContentPane().setBackground(back);
 
     frame.add(typeBox); //adding the type selector input to frame
     frame.add(furn);

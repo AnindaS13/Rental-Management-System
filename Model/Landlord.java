@@ -7,8 +7,9 @@ public class Landlord extends User {
     // inherits email from user, use email as fk
 
     private int messageID; // pk, nn, ai
+    private ArrayList<String> message;
     private ArrayList<String> message = new ArrayList<String>();
-
+  
     public Landlord()
     {
         super();
@@ -18,6 +19,21 @@ public class Landlord extends User {
     {
         super(email, password, fname, lname, role);
         this.messageID = id;
+
+    }
+
+    public ArrayList<String> RetreiveMessage (ArrayList<String>  allMsg)
+    {
+        String email = super.getEmail(); 	// get the email of current user logged in
+        ArrayList<String> result = new ArrayList<String>();
+
+        for(int i=0; i<allMsg.size(); i++) {
+            String [] temp = allMsg.get(i).split("\n"); //Split each String in ArrayList to get email and messages
+            //if(temp[0].equals(email)) {		//check if messages belong to current user
+            result.add(temp[1]);
+            //}
+        }
+        return result;
         this.message.add(message);
     }
 
@@ -46,5 +62,5 @@ public class Landlord extends User {
     {
         return "";
     }
-    
+
 }

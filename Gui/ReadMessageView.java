@@ -27,6 +27,10 @@ public class ReadMessageView implements Component{
 //    private JTable messageTable = new JTable(data,column);
     private JTable messageTable = new JTable();
     private JScrollPane scrollPane = new JScrollPane();
+    private Color back = new Color(25, 25, 112);
+    private Color button = new Color(0,0,0);
+    private Color tableBack = new Color(31,97,141);
+    private Color headBack = new Color(21,67,96);
     
     public ReadMessageView() {
         draw();
@@ -57,6 +61,12 @@ public class ReadMessageView implements Component{
         RegisterBtn.setBounds(0,0,166,50);
         ListingsBtn.setBounds(166,0,167,50);
         MessagesBtn.setBounds(333,0,167,50);
+        RegisterBtn.setBackground(button);
+        ListingsBtn.setBackground(button);
+        MessagesBtn.setBackground(button);
+        RegisterBtn.setForeground(Color.WHITE);
+        ListingsBtn.setForeground(Color.WHITE);
+        MessagesBtn.setForeground(Color.WHITE);
         navBarpanel.setLayout(new GridLayout());
         frame.add(navBarpanel);
 
@@ -72,7 +82,7 @@ public class ReadMessageView implements Component{
         scrollPane.setViewportView(messageTable);
         scrollPane.setBounds(200, 238, 466, 300);
         frame.getContentPane().add(scrollPane);
-
+        frame.getContentPane().setBackground(back);
         frame.setLayout(null);
         frame.setResizable(true);
         frame.setVisible(true);
