@@ -1,16 +1,20 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class User {
 
-    private String email; // pk, nn
-    private String password; // nn
-    private String FName;
-    private String LName;
+    protected String email; // pk, nn
+    protected String password; // nn
+    protected String FName;
+    protected String LName;
 
-    private String role; // nn
+    protected String role; // nn
+    
 
 
-    public User() {
+public User()
+    {
         this.email = null;
         this.password = null;
         this.FName = null;
@@ -18,7 +22,9 @@ public class User {
         this.role = null;
     }
 
-    public User(String email, String password, String FName, String LName, String role) {
+
+    public User(String email, String password, String FName, String LName, String role)
+    {
         this.email = email;
         this.password = password;
         this.FName = FName;
@@ -27,10 +33,37 @@ public class User {
     }
 
 
-    public boolean verifyLogin() {
+    public boolean verifyLogin(ArrayList<User> users, String email, String password)
+    {
+        for (int i = 0; i < users.size(); i++)
+        {
+            if(users.get(i).email.equals(email) && users.get(i).password.equals(password))
+            {	
+            	setEmail(users.get(i).email);
+            	setPassword(users.get(i).password);
+            	setFName(users.get(i).FName);
+            	setLName(users.get(i).LName);
+            	setRole(users.get(i).role);
+                return true;
+            }
+        }
         return false;
     }
-
+    
+    public ArrayList<User> getLandlords(ArrayList<User> users)
+    {
+        ArrayList<User> landlords = new ArrayList<User>();
+        for(int i = 0; i < users.size(); i++)
+        {
+            if(users.get(i).getRole().equals("Landlord"))
+            {
+                landlords.add(users.get(i));
+            }
+        }
+        return landlords;
+    }
+    
+    
     public String getEmail() {
         return this.email;
     }
@@ -66,11 +99,10 @@ public class User {
     }
 
     public String getRole() {
-        return this.role;
+    	return this.role;
     }
-
     public void setRole(String role) {
-        this.role = role;
+    	this.role = role;
     }
 }
 

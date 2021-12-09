@@ -6,13 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-// move code from functions to class level for access (variables and functions that need to be accesed
-// make getters and setters for those variables
-// make actionlisteners too
 
 public class RenterListingView implements Component {
 	private ArrayList<Listing> listings = new ArrayList<Listing>();
@@ -24,24 +19,21 @@ public class RenterListingView implements Component {
     private JComboBox quadrant = new JComboBox();
     private JComboBox furnished = new JComboBox();
     private JButton search = new JButton("Search");
-    private JTextField message = new JTextField("Enter Text",2);
+
+    private JButton subscribe = new JButton("Subscribe");
+    private JButton unsubscribe = new JButton("UnSubscribe");
+    private JTextField message = new JTextField("Enter Message",2);
+    private JTextField propertyID = new JTextField("PropertyID",2);
     private JButton sendMessageBtn = new JButton("Send");
     private JButton logOutBtn = new JButton("Log Out");
+    private JButton notfiyBtn = new JButton("Found Listings");
+
+    private String role = "";
+    private Boolean notify = false;
+
     JTable table = new JTable();
-   
 
     public RenterListingView() {
-//        listings.add(new Listing("Apartment", 4,4, true, "ne", 10, "Landlord"));
-//        listings.add(new Listing("House", 4,4, true, "ne", 10, "Landlord"));
-//        for(int row = 0; row < listings.size(); row++) {
-//                String id = Integer.toString(listings.get(row).getListingID());
-//                String type = listings.get(row).getPropertyType();
-//                String bedrooms =  Integer.toString(listings.get(row).getNumbedRooms());
-//                String bathrooms =  Integer.toString(listings.get(row).getNumbathRooms());
-//                String furnished = Boolean.toString(listings.get(row).getIsFurnished());
-//                String quadrant = listings.get(row).getQuadrant();
-//                values.add(new String[] { id, type, bedrooms,  bathrooms, furnished,   quadrant});
-//        }
         draw();
         //setOutput();
     }
@@ -54,28 +46,34 @@ public class RenterListingView implements Component {
 	    	Object rowData[] = {input.get(i).getID(), input.get(i).getPropertyType(), 
 	    						input.get(i).getNumbedRooms(), input.get(i).getNumbathRooms(), 
 	    						input.get(i).getIsFurnished(), input.get(i).getQuadrant()};
-	    	//System.out.println(input.get(i).getPropertyType());
 	    	model.addRow(rowData);
     	}
     	table.setModel(model);
     }
 
-//    public void returnSearch(ActionListener actionListener) {
-//        search.addActionListener(actionListener);
-//    }
-    
+
     public void searchButton(ActionListener actionListener) {
-        this.search.addActionListener(actionListener);	
+        this.search.addActionListener(actionListener);
+    }
+    public void subscribeButton(ActionListener actionListener) {
+        this.subscribe.addActionListener(actionListener);
     }
 
+    public void unsubscribeButton(ActionListener actionListener) {
+        this.unsubscribe.addActionListener(actionListener);
+    }
     public void returnMessage(ActionListener actionListener) {
         this.sendMessageBtn.addActionListener(actionListener);
+    }
+
+    public void notifyBtn(ActionListener actionListener) {
+        this.notfiyBtn.addActionListener(actionListener);
     }
 
     public void returnLogout(ActionListener actionListener) {
         this.logOutBtn.addActionListener(actionListener);
     }
-    
+
     @SuppressWarnings("serial")
     @Override
     public void draw() {
@@ -127,7 +125,7 @@ public class RenterListingView implements Component {
         scrollPane.setBounds(150, 225, 600, 300);
         scrollPane.setViewportView(table);
 
-        PropertyType.setModel(new DefaultComboBoxModel(new String[] {"Apartment", "Townhouse", "Duplex", "Condo", "Studio", "Basement"}));
+        PropertyType.setModel(new DefaultComboBoxModel(new String[] {"Appartment", "Attached", "Detached", "Townhouse", "Studio", "Basement"}));
         PropertyType.setBackground(backgroundColor);
         PropertyType.setFont(new Font("SansSerif", Font.PLAIN, 15));
         PropertyType.setBounds(100, 100, 100, 40);
@@ -162,16 +160,38 @@ public class RenterListingView implements Component {
         furnished.setForeground(foreGroundColor);
         frame.getContentPane().add(furnished);
 
-        message.setBounds(400, 500,150,80);
+        message.setBounds(400, 600,100,80);
         message.setForeground(Color.black);
         message.setBackground(Color.lightGray);
         frame.getContentPane().add(message);
 
-        sendMessageBtn.setBounds(600, 750,80,40);
+        propertyID.setBounds(250, 600,100,80);
+        propertyID.setForeground(Color.black);
+        propertyID.setBackground(Color.lightGray);
+        frame.getContentPane().add(propertyID);
+
+        sendMessageBtn.setBounds(600, 620,80,40);
         sendMessageBtn.setFont(new Font("SansSerif", Font.BOLD, 12));
         sendMessageBtn.setForeground(Color.black);
         sendMessageBtn.setBackground(Color.lightGray);
         frame.getContentPane().add(sendMessageBtn);
+
+        if(getRole() == "RegisteredRenter") { // checks if renter is logged
+            subscribe.setBackground(backgroundColor);
+            subscribe.setFont(new Font("SansSerif", Font.BOLD, 12));
+            subscribe.setBounds(250, 150, 100, 40);
+            subscribe.setForeground(foreGroundColor);
+            frame.getContentPane().add(subscribe);
+
+            if(getNotify()) {   // if true shows a button that means that listings matching search criteria are found
+                notfiyBtn.setBackground(backgroundColor);
+                notfiyBtn.setFont(new Font("SansSerif", Font.BOLD, 12));
+                notfiyBtn.setBounds(400, 150, 150, 40);
+                notfiyBtn.setForeground(foreGroundColor);
+                frame.getContentPane().add(notfiyBtn);
+
+            }
+        }
 
         JLabel label1 = new JLabel("PropertyType");
         label1.setBounds(100, 70, 80, 30);
@@ -185,16 +205,17 @@ public class RenterListingView implements Component {
         label3.setBounds(400, 70, 80, 30);
         frame.getContentPane().add(label3);
 
-        JLabel label4 = new JLabel("Furnished");
+        JLabel label4 = new JLabel("Quadrant");
         label4.setBounds(550, 70, 80, 30);
         frame.getContentPane().add(label4);
 
-        JLabel label5 = new JLabel("Quadrant");
+        JLabel label5 = new JLabel("Furnished");
         label5.setBounds(700, 70, 80, 30);
         frame.getContentPane().add(label5);
 
         JLabel label6 = new JLabel("Message Landlord");
-        label6.setBounds(200, 600, 150, 20);
+        label6.setFont(new Font("SansSerif", Font.BOLD, 16));
+        label6.setBounds(340, 550, 150, 20);
         frame.getContentPane().add(label6);
 
         search.setBackground(backgroundColor);
@@ -208,7 +229,6 @@ public class RenterListingView implements Component {
         frame.setSize(900,900);
         frame.setVisible(true);
     }
-    
 
     public ArrayList<Listing> getListings() {
         return listings;
@@ -259,7 +279,12 @@ public class RenterListingView implements Component {
     }
 
     public boolean getFurnished() {
-        return  Boolean.parseBoolean((String) furnished.getSelectedItem()) ;
+    	String temp = (String)furnished.getSelectedItem();
+    	if(temp.equals("Yes")) {
+            return true;
+        } else {
+           return false;
+        }
     }
 
     public void setFurnished(boolean furnished) {
@@ -276,6 +301,30 @@ public class RenterListingView implements Component {
 
     public void setMessage(String message) {
         this.message.setText(message);
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getPropertyID() {
+        return Integer.parseInt((String) this.propertyID.getText());
+    }
+
+    public void setPropertyID(int propertyID) {
+        this.propertyID.setText(Integer.toString(propertyID));
+    }
+
+    public Boolean getNotify() {
+        return notify;
+    }
+
+    public void setNotify(Boolean notify) {
+        this.notify = notify;
     }
 
     public static void main(String[] args) {

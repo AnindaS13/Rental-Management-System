@@ -8,7 +8,8 @@ public class Landlord extends User {
 
     private int messageID; // pk, nn, ai
     private ArrayList<String> message;
-
+    private ArrayList<String> message = new ArrayList<String>();
+  
     public Landlord()
     {
         super();
@@ -33,6 +34,23 @@ public class Landlord extends User {
             //}
         }
         return result;
+        this.message.add(message);
+    }
+
+    public ArrayList<String> RetreiveMessage (ArrayList<String>  allMsg)
+    {	
+    	String email = getEmail(); 	// get the email of current user logged in
+    	ArrayList<String> result = new ArrayList<String>();
+    	System.out.println("user logged in: "+ super.getEmail());
+    	System.out.println("Displaying all messages");
+    	for(int i=0; i<allMsg.size(); i++) {
+    		String [] temp = allMsg.get(i).split("\n"); //Split each String in ArrayList to get email and messages
+	    		if(temp[0].equals(email)) {		//check if messages belong to current user
+	    			result.add(temp[1]);
+	    		}
+			System.out.println(temp[1]);
+    	}
+    	return result;
     }
 
     // public Listing addProperty()
