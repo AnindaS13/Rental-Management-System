@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class User {
 
-    private String email; // pk, nn
-    private String password; // nn
-    private String FName; 
-    private String LName;
+    protected String email; // pk, nn
+    protected String password; // nn
+    protected String FName;
+    protected String LName;
 
-    private String role; // nn
+    protected String role; // nn
 
     
 
@@ -43,6 +43,21 @@ public class User {
         }
         return false;
     }
+    
+    public ArrayList<User> getLandlords(ArrayList<User> users)
+    {
+        ArrayList<User> landlords = new ArrayList<User>();
+        for(int i = 0; i < users.size(); i++)
+        {
+            if(users.get(i).getRole().equals("Landlord"))
+            {
+                landlords.add(users.get(i));
+            }
+        }
+        return landlords;
+    }
+    
+    
     public String getEmail() {
         return this.email;
     }

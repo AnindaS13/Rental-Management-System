@@ -144,6 +144,41 @@ public class Listing {
         return filteredlist;
     }
 
+    public int housesRented(ArrayList<Listing> listings)
+    {
+        int count = 0;
+        for (int i = 0; i < listings.size(); i++)
+        {
+            if(listings.get(i).getStatus().equals("Rented"))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int totalListings(ArrayList<Listing> listings)
+    {
+        return listings.size();
+    }
+
+    public ArrayList<ArrayList<Listing>> getLandlordListings(ArrayList<User> landlords, ArrayList<Listing> listings)
+    {
+        ArrayList<ArrayList<Listing>> list = new ArrayList<ArrayList<Listing>>();
+        for(int i = 0; i < landlords.size(); i++)
+        {
+            for(int j = 0; j < listings.size(); j++)
+            {
+                if(landlords.get(i).getEmail().equals(listings.get(j).email))
+                {
+                    list.get(i).add(listings.get(j));
+                }
+            }
+        }
+
+        return list;
+    }
+
 
 
 }
