@@ -7,7 +7,7 @@ public class Landlord extends User {
     // inherits email from user, use email as fk
 
     private int messageID; // pk, nn, ai
-    private ArrayList<String> message; 
+    private ArrayList<String> message = new ArrayList<String>();
 
     public Landlord()
     {
