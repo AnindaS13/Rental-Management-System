@@ -23,14 +23,16 @@ public class Landlord extends User {
 
     public ArrayList<String> RetreiveMessage (ArrayList<String>  allMsg)
     {	
-    	String email = super.getEmail(); 	// get the email of current user logged in
+    	String email = getEmail(); 	// get the email of current user logged in
     	ArrayList<String> result = new ArrayList<String>();
-
+    	System.out.println("user logged in: "+ super.getEmail());
+    	System.out.println("Displaying all messages");
     	for(int i=0; i<allMsg.size(); i++) {
     		String [] temp = allMsg.get(i).split("\n"); //Split each String in ArrayList to get email and messages
-	    		//if(temp[0].equals(email)) {		//check if messages belong to current user
+	    		if(temp[0].equals(email)) {		//check if messages belong to current user
 	    			result.add(temp[1]);
-	    		//}
+	    		}
+			System.out.println(temp[1]);
     	}
     	return result;
     }

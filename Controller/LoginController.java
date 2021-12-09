@@ -16,7 +16,8 @@ public class LoginController extends ParentController{
     DBConnect db = new DBConnect();
 
     public LoginController(User model, LoginView view)
-    {
+    {	
+    	super();
         this.userModel = model;
         this.loginView = view;
 
@@ -28,11 +29,24 @@ public class LoginController extends ParentController{
         db.initializeConnection();
     }
 
-    @Override
-    public void switchView(String view)
-    {
-        super.switchView(view);
+    public void switchView(String role, String email, String password)
+    {	
+    	loginView.clearFrame();
+    	if(role.equals("Landlord")) {
+    		super.setLandlord(role, email, password);
+    		super.switchView("EditProperty");}
+    	else if (role.equals("Manager"))
+    		super.switchView("ManagerEditView");
+    	else if (role.equals("RegisteredRenter"))
+    		super.switchView("RegisteredRenter");
+    	else super.switchView("ListingView");
     }
+      
+
+//    public void setRole(String username, String role)
+//    {
+//    	super.setUserRole(username, role);
+//    }
 
     public class LoginButtonListener implements ActionListener{
 
@@ -43,7 +57,9 @@ public class LoginController extends ParentController{
             if(verify)
             {
                 System.out.println("Login successful");
-                // switchView("login"); // need to set this later after parent controller is fixed
+//                userModel.setEmail(loginView.getUsername());
+//                userModel.setPassword(loginView.getPassword());
+                switchView(userModel.getRole(), loginView.getUsername(),loginView.getPassword()); // need to set this later after parent controller is fixed
             }
             else
             {

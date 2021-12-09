@@ -9,18 +9,21 @@ import Controller.ContactController.MessageButton;
 import Controller.ContactController.RegisterButton;
 import Model.Manager;
 import Model.Landlord;
+import Gui.EditListStatusLandlordView;
 import Gui.RegisterPropertyView;
 
 public class RegisterPropertyController extends ParentController{
 	
-	Landlord landlord;
-	Manager manager;
+//	Landlord landlord;
+//	Manager manager;
 	RegisterPropertyView registerProperty;
+	EditListStatusLandlordView landlordView;
+	EditListStatusLandlordView managerView;
 	
 	DBConnect db = new DBConnect();
 		
 	public RegisterPropertyController (Landlord l, Manager m, RegisterPropertyView rp){
-		this.landlord = l;
+		super(l);
 		this.manager = m;
 		this.registerProperty = rp;
 		
@@ -52,7 +55,9 @@ public class RegisterPropertyController extends ParentController{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Message button pressed");	
+			System.out.println("Message button pressed");
+			System.out.println("user email in register propert is: "+landlord.getEmail());
+			switchView("LandlordMessages");
 		}
 	}
 
@@ -77,6 +82,7 @@ public class RegisterPropertyController extends ParentController{
 	
 	@Override
 	public void switchView(String view) {
+		registerProperty.clearFrame();
 		super.switchView(view);
 	}
 	

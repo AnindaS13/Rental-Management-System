@@ -12,18 +12,23 @@ import Model.Landlord;
 
 public class ContactController extends ParentController {
 	
-	private UnregisteredRenter uRenter;
-	private RegisteredRenter rRenter;
-	private Landlord landlord; 
+//	private UnregisteredRenter uRenter;
+//	private RegisteredRenter rRenter;
+//	private Landlord landlord; 
 	private ReadMessageView messages;
 	private DBConnect db = new DBConnect();
 	
-	public ContactController (UnregisteredRenter r1, RegisteredRenter r2, Landlord landlord, ReadMessageView msg) {
-		this.uRenter = r1;
-		this.rRenter = r2; 
-		this.landlord = landlord;
+	public ContactController (Landlord landlord, ReadMessageView msg) {
+//		this.uRenter = r1;
+//		this.rRenter = r2; 
+		super(landlord);
+//		this.landlord = landlord;
 		this.messages = msg;
 		
+		//getting all messages of the user (landlord)
+		ArrayList<String> userMsg = landlord.RetreiveMessage(db.getMessages());
+		messages.setOutput(userMsg);
+//		
 		messages.RegisterPerformed(new RegisterButton());
 		messages.ListingsPerformed(new ListingButton());
 		messages.MessagesPerformed(new MessageButton());
@@ -44,7 +49,7 @@ public class ContactController extends ParentController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Listing button pressed");
-			switchView("listing");
+			switchView("landlordListing");
 		}
 	}
 	
@@ -53,6 +58,7 @@ public class ContactController extends ParentController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Message button pressed");
+			System.out.println("user email in contact controller is: "+landlord.getEmail());
 			ArrayList<String> userMsg = landlord.RetreiveMessage(db.getMessages());
 			messages.setOutput(userMsg);
 		}
@@ -63,13 +69,13 @@ public class ContactController extends ParentController {
 		super.switchView(view);
 	}
 	
-	public static void main(String[] args) {
-	System.out.println("Contact controller main");
-	UnregisteredRenter R1 = new UnregisteredRenter();
-	RegisteredRenter R2 = new RegisteredRenter();
-	Landlord l = new Landlord(); 
-	ReadMessageView msg = new ReadMessageView();
-	
-	ContactController c = new ContactController(R1, R2, l, msg);
-	}
+//	public static void main(String[] args) {
+//	System.out.println("Contact controller main");
+//	UnregisteredRenter R1 = new UnregisteredRenter();
+//	RegisteredRenter R2 = new RegisteredRenter();
+//	Landlord l = new Landlord(); 
+//	ReadMessageView msg = new ReadMessageView();
+//	
+//	ContactController c = new ContactController(R1, R2, l, msg);
+//	}
 }

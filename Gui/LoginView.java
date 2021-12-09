@@ -100,6 +100,10 @@ public class LoginView implements Component {
     public void setPassword(String password) {
         this.password.setText(password);
     }
+    
+    public void clearFrame() {
+    	frame.getContentPane().removeAll();
+    }
 
     public static void main(String[] args) {
         LoginView u = new LoginView();

@@ -103,7 +103,7 @@ public class RegisterPropertyView implements Component
         RegisterPropertyView x = new RegisterPropertyView();
 
     }
-
+    
 
     public void RegisterPerformed(ActionListener a) //For register property navbar redirect
     {
@@ -146,4 +146,7 @@ public class RegisterPropertyView implements Component
 
     public int getBedNum() {return Integer.parseInt(bedroomnum.getText());}
 
+	public void clearFrame() {
+	frame.getContentPane().removeAll();
+	}
 }

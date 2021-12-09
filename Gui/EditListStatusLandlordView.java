@@ -31,7 +31,11 @@ public class EditListStatusLandlordView implements Component{
     private JLabel idForPayLabel = new JLabel("Enter the property ID for which you will pay the fee:");
     private JTextField idInputForPay = new JTextField();
 
-
+    
+    public EditListStatusLandlordView() {
+    	
+    }
+    
     public EditListStatusLandlordView(ArrayList<Listing> input)
     {
         setTable(input);

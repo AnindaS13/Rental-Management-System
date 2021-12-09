@@ -37,7 +37,12 @@ public class User {
         for (int i = 0; i < users.size(); i++)
         {
             if(users.get(i).email.equals(email) && users.get(i).password.equals(password))
-            {
+            {	
+            	setEmail(users.get(i).email);
+            	setPassword(users.get(i).password);
+            	setFName(users.get(i).FName);
+            	setLName(users.get(i).LName);
+            	setRole(users.get(i).role);
                 return true;
             }
         }
