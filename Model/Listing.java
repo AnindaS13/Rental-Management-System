@@ -21,7 +21,7 @@ public class Listing {
 
     public Listing () {}
 
-    public Listing(int id, String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, String listingTime, String email, String status, boolean balance)
+    public Listing(int id, String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, String listingTime, String address, String email, String status, boolean balance)
     {
         this.ID = id;
         this.propertyType = propertyType;
@@ -30,6 +30,7 @@ public class Listing {
         this.isFurnished = isFurnished;
         this.quadrant = quadrant;
         this.listingTime = listingTime;
+        this.address = address;
         this.email = email;
         this.status = status;
         this.balance = balance;
@@ -91,6 +92,13 @@ public class Listing {
     }
     public void setListingTime(String listingTime) {
         this.listingTime = listingTime;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 

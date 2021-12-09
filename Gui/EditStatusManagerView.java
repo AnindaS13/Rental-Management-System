@@ -87,10 +87,10 @@ public class EditStatusManagerView implements Component{
     public static void main(String []args)
     {
         ArrayList <Listing> in = new ArrayList<Listing>();
-        in.add(new Listing(1, "Apartment", 4, 5, true, "NE", "10:10", "johndoe@gmail.com", "Active", true));
-        in.add(new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "johndoe@gmail.com", "Active", true));
+        in.add(new Listing(1, "Apartment", 4, 5, true, "NE", "10:10", "10 5th Ave",  "johndoe@gmail.com", "Active", true));
+        in.add(new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "20 9th Ave", "johndoe@gmail.com", "Active", true));
         EditStatusManagerView x = new EditStatusManagerView(in);
-        Listing obj = new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "johndoe@gmail.com", "Active", true);
+        Listing obj = new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "206 9th Ave", "johndoe@gmail.com", "Active", true);
         System.out.println(obj.getID());
     }
 
