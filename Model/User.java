@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class User {
 
     private String email; // pk, nn
@@ -30,8 +32,15 @@ public class User {
     }
 
 
-    public boolean verifyLogin()
+    public boolean verifyLogin(ArrayList<User> users, String email, String password)
     {
+        for (int i = 0; i < users.size(); i++)
+        {
+            if(users.get(i).email.equals(email) && users.get(i).password.equals(password))
+            {
+                return true;
+            }
+        }
         return false;
     }
     public String getEmail() {

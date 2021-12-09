@@ -12,6 +12,7 @@ public class Listing {
     private boolean isFurnished;
     private String quadrant;
     private String listingTime;
+    private String address;
     private String email; // fk from landlord
     private String status;
     private boolean balance;
