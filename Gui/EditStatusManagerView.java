@@ -25,6 +25,11 @@ public class EditStatusManagerView implements Component{
     private JButton submitChange = new JButton("Submit");
     private JLabel changedStatus = new JLabel("Enter the new status for the property:");
     private JTextField statusVal = new JTextField();
+    private Color back = new Color(25, 25, 112);
+    private Color button = new Color(0,0,0);
+    private Color tableBack = new Color(31,97,141);
+    private Color headBack = new Color(21,67,96);
+
     public EditStatusManagerView(ArrayList<Listing> input)
     {
         setTable(input);
@@ -69,11 +74,31 @@ public class EditStatusManagerView implements Component{
         statusVal.setBounds(50,680,400,30);
         submitChange.setBounds(50, 730,400,30);
 
+        idOfProp.setForeground(Color.white);
+        changedStatus.setForeground(Color.white);
+
+        RenterLandlordBtn.setBackground(button);
+        ListingsBtn.setBackground(button);
+        SumRepBtn.setBackground(button);
+        editFeeBtn.setBackground(button);
+        RenterLandlordBtn.setForeground(Color.WHITE);
+        ListingsBtn.setForeground(Color.WHITE);
+        SumRepBtn.setForeground(Color.WHITE);
+        editFeeBtn.setForeground(Color.WHITE);
+        submitChange.setBackground(button);
+        submitChange.setForeground(Color.white);
+
+
         table.setBounds(30,200,500,300);
+        table.setBackground(tableBack);
+        table.setForeground(Color.white);
+        table.getTableHeader().setBackground(headBack);
+        table.getTableHeader().setForeground(Color.white);
         table.setRowHeight(20);
         scrollPane.setViewportView(table);
         scrollPane.setBounds(30, 238, 800, 300);
         frame.getContentPane().add(scrollPane);
+        frame.getContentPane().setBackground(back);
         frame.add(navBarpanel);
         frame.add(idOfProp);
         frame.add(statusVal);
