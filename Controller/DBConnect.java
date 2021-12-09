@@ -5,13 +5,14 @@ import java.io.*;
 import java.util.*;
 
 import Model.Listing;
+import Model.User;
 
 public class DBConnect {
 
 
-    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
-    public final String username = "root";
-    public final String password ="calgary1";
+    public final String dburl = "jdbc:mysql://localhost/rentalproperties";
+    public final String username = "ENSF409";
+    public final String password ="ensf409";
 
     private Connection connect;
     private ResultSet results;
@@ -69,10 +70,35 @@ public class DBConnect {
     	// Catch block to handle exception
         catch (SQLException e) {
  
-            // Print exception pop-up on scrreen
+            // Print exception pop-up on screen
             System.out.println(e);
         }
     	return allListing;
     }
+
+
+
+	public ArrayList<User> getUsers()
+	{
+		ArrayList<User> users = new ArrayList<User>();
+		initializeConnection();
+		try{
+			Statement stmt = connect.createStatement();
+			String query = "SELECT * FROM user";
+			results = stmt.executeQuery(query);
+
+			while(results.next())
+			{
+				users.add(new User(results.getString("email"), results.getString("password"),
+						results.getString("FName"), results.getString("LName"), results.getString("Role")));
+			}
+			stmt.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return users;
+	}
    
 }
