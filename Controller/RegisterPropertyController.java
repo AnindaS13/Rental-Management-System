@@ -85,7 +85,8 @@ public class RegisterPropertyController extends ParentController{
 			String temp = landlordView.getpayInput();
 			LocalDate date = LocalDate.now();
 			String listTime = date.toString();
-			db.updateListingDate(temp,listTime);
+			String status = "Active";
+			db.updateListingDate(temp,listTime, status);
 			registerProperty.draw();
 			notifyRenter(temp);
 		}
