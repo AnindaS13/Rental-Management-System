@@ -2,7 +2,10 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import Controller.ContactController.ListingButton;
 import Controller.ContactController.MessageButton;
@@ -84,17 +87,25 @@ public class RegisterPropertyController extends ParentController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Add property button pressed");	
-			//String email = registerProperty.getEmail();
+			// String email = .getEmail();
 			String type = registerProperty.getTypeInput();
 			int bed = registerProperty.getBedNum();
 			int bath = registerProperty.getBathNum();
 			boolean furnish = registerProperty.getFurn();
+			String address = ""; // registerProperty.getAddress();
 			String quad = registerProperty.getQuadrant();
-			String listTime = new SimpleDateFormat("HH.mm").format(new java.util.Date());
+			LocalDate date = LocalDate.now();
+			String listTime = date.toString(); //new SimpleDateFormat("HH.mm").format(new java.util.Date());
 			String status = "Suspended";
 			System.out.println(type+", "+bed+", "+bath+", "+furnish+", "+
 								quad+", "+listTime+", "+status);
 			//Add this data to database.
+			try {
+				db.addListing(landlord.getEmail(), type, bed, bath, furnish, address, quad, listTime, status);
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+
 		}
 	}
 	

@@ -10,9 +10,9 @@ import Model.User;
 public class DBConnect {
 
 
-    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
-    public final String username = "root";
-    public final String password ="calgary1";
+    public final String dburl = "jdbc:mysql://localhost/rentalproperties";
+    public final String username = "ENSF409";
+    public final String password ="ensf409";
 
     private Connection connect;
     private ResultSet results;
@@ -161,6 +161,41 @@ public class DBConnect {
 
 		return list;
 	}
+
+
+	public void addListing(String email, String type, int bed, int bath, boolean furnish, String address, String quad, String date, String status) throws SQLException
+	{
+
+		initializeConnection();
+
+		try {
+
+			Statement s = connect.createStatement();
+			String query = "INSERT INTO listing (email, propertyType, bedrooms, bathrooms, Furnished, quadrant, address, listingTime, status, balance) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+			PreparedStatement stmt = connect.prepareStatement(query);
+
+			stmt.setString(1, email);
+			stmt.setString(2, type);
+			stmt.setInt(3, bed);
+			stmt.setInt(4, bath);
+			stmt.setBoolean(5, furnish);
+			stmt.setString(6, quad);
+			stmt.setString(7, address);
+			stmt.setString(8, date);
+			stmt.setString(9, status);
+			stmt.setBoolean(10, false);
+
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+
+		System.out.println("Added new listing");
+	}
+
 
    
 }
