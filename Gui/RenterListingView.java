@@ -39,7 +39,7 @@ public class RenterListingView implements Component {
     JTable table = new JTable();
 
     public RenterListingView() {
-        draw();
+        //draw();
         //setOutput();
     }
     
@@ -81,6 +81,7 @@ public class RenterListingView implements Component {
     @SuppressWarnings("serial")
     @Override
     public void draw() {
+    	System.out.println("role set to "+this.role);
         Color foreGroundColor = Color.BLACK;
         Color backgroundColor = Color.lightGray;
 

@@ -136,5 +136,60 @@ public class DBConnect {
     	return messages;
     }
 
+
+	public ArrayList<Listing> getAllListings()
+	{
+		ArrayList<Listing> list= new ArrayList<Listing>();
+		initializeConnection();
+		try{
+			Statement stmt = connect.createStatement();
+			String query = "SELECT * FROM listing";
+			results = stmt.executeQuery(query);
+
+			while(results.next())
+			{
+				list.add(new Listing(results.getInt("ID"), results.getString("propertyType"), results.getInt("bedrooms"),
+						results.getInt("bathrooms"), results.getBoolean("Furnished"), results.getString("quadrant"),
+						results.getString("listingTime"), results.getString("address"), results.getString("email"),
+						results.getString("status"), results.getBoolean("balance")));
+			}
+			stmt.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	public ArrayList<Listing> saveSearch(String email, String proptype, int bedrooms,
+											int bathrooms, boolean furnished, String quadrant)
+	{
+		ArrayList<Listing> list= new ArrayList<Listing>();
+		initializeConnection();
+		try{
+			Statement stmt = connect.createStatement();
+			String query = " insert into registeredrenter (r_email, propertyType, bedrooms"
+							+ ", bathrooms, Furnished, quadrant)"
+			        + " values (?, ?, ?, ?, ?, ?)";
+			
+			 // sql insert preparedstatement
+		      PreparedStatement preparedStmt = connect.prepareStatement(query);
+		      preparedStmt.setString (1, email);
+		      preparedStmt.setString (2, proptype);
+		      preparedStmt.setInt   (3, bedrooms);
+		      preparedStmt.setInt (4, bathrooms);
+		      preparedStmt.setBoolean  (5, furnished);
+		      preparedStmt.setString (6, quadrant);
+		      
+		      preparedStmt.execute();
+		      stmt.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return list;
+	}
    
 }

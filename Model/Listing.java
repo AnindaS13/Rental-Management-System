@@ -162,21 +162,39 @@ public class Listing {
         return listings.size();
     }
 
+
+
     public ArrayList<ArrayList<Listing>> getLandlordListings(ArrayList<User> landlords, ArrayList<Listing> listings)
     {
         ArrayList<ArrayList<Listing>> list = new ArrayList<ArrayList<Listing>>();
         for(int i = 0; i < landlords.size(); i++)
         {
+            ArrayList<Listing> miniList = new ArrayList<Listing>();
             for(int j = 0; j < listings.size(); j++)
             {
-                if(landlords.get(i).getEmail().equals(listings.get(j).email))
+               if(landlords.get(i).getEmail().equals(listings.get(j).email))
                 {
-                    list.get(i).add(listings.get(j));
+                    miniList.add(listings.get(j));
                 }
             }
+            list.add(miniList);
         }
 
         return list;
+    }
+
+
+    public int housesActive(ArrayList<Listing> listings)
+    {
+        int count = 0;
+        for (int i = 0; i < listings.size(); i++)
+        {
+            if(listings.get(i).getStatus().equals("Active"))
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
 

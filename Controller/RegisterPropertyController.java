@@ -41,6 +41,12 @@ public class RegisterPropertyController extends ParentController{
 		landlordView.ListingsPerformed(new ListingButton());
 		landlordView.MessagesPerformed(new MessageButton());
 	//	landlordView.AddPropPerformed(new AddPropertyButton());
+				
+		managerView.renterLandlordPerformed(new managerRenterLandlordList());
+		managerView.ListingsPerformed(new managerEditStatus());
+		managerView.SummaryReportPerformed(new managerSummary());
+		managerView.EditFeesPerformed(new managerEditFee());
+		managerView.updateStatus (new managerUpdateStatus());
 	}
 	
 	
@@ -96,12 +102,59 @@ public class RegisterPropertyController extends ParentController{
 		super.switchView(view);
 	}
 	
-	public void setView(boolean v1, boolean v2) {
+	public class managerRenterLandlordList implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("renter landlord list");
+			switchView("RenterLandlordList");
+		}
+	}
+	
+	public class managerEditStatus implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Edit listing pressed");
+			switchView("ManagerEditView");
+		}
+	}
+	
+	public class managerSummary implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("SummaryReport pressed");
+			switchView("SummaryReportView");
+		}
+	}
+	
+	public class managerEditFee implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("editfeeclicked");
+			switchView("EditFee");
+		}
+	}
+	
+	public class managerUpdateStatus implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+	}
+	
+	public void setView(boolean v1, boolean v2, boolean v3) {
 		if(v1) {
 			registerProperty.draw();
 		}
 		if(v2) {
 			landlordView.draw();
+		}
+		if(v3) {
+			managerView.draw();
 		}
 	}
 	

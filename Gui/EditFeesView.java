@@ -31,7 +31,6 @@ public class EditFeesView implements Component{
 
     public EditFeesView()
     {
-
         draw();
     }
 

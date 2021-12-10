@@ -1,11 +1,14 @@
 package Controller;
 
+import Gui.DisplayUsersManagerView;
+import Gui.EditFeesView;
 import Gui.EditListStatusLandlordView;
 import Gui.EditStatusManagerView;
 import Gui.LoginView;
 import Gui.ReadMessageView;
 import Gui.RegisterPropertyView;
 import Gui.RenterListingView;
+import Gui.SummaryReportView;
 import Model.Landlord;
 import Model.Listing;
 import Model.Manager;
@@ -17,7 +20,15 @@ public class ParentController {
 	protected Landlord landlord = new Landlord();//to store email when landlord, registered renter or manager login
 	protected Manager manager = new Manager();
 	protected RegisteredRenter Rrenter = new RegisteredRenter();
+
+	private ContactController contactC;
+    private RegisterPropertyController registerPropC;
+	private SummaryReportController summaryRepC;
+	private ListingController listingC;
+	private PaymentController paymentC;
+	private SubscriptionController subscriptionC;
 	
+		
 	public ParentController() {
 		
 	}
@@ -32,57 +43,72 @@ public class ParentController {
 		switch(view) {
 		
 		case "login": 
-				System.out.println("P- In login");
 				 LoginView login = new LoginView();
 				 User user = new User();
-				 LoginController Lcontrol= new LoginController (user, login);
-				//controller for login
+				 LoginController loginC= new LoginController (user, login);
 				break;
 				
+//************************** Landlord cases **********************************	
 		case "RegisterProperty":
-				System.out.println("P- In Register Property");
 				EditListStatusLandlordView landlordEdit= new EditListStatusLandlordView();
 			    EditStatusManagerView managerEdit= new EditStatusManagerView ();
 			    RegisterPropertyView r = new RegisterPropertyView();
 			    Listing model = new Listing();
-			    RegisterPropertyController controller = new RegisterPropertyController (landlord, manager, landlordEdit, managerEdit, r);
-			    controller.setView(true, false);
+			    registerPropC = new RegisterPropertyController (landlord, manager, landlordEdit, managerEdit, r);
+			    registerPropC.setView(true, false, false);
 				break;
 		
 		case "landlordListings":
-				System.out.println("P- In Register Property");
 				EditListStatusLandlordView landlordEdit2= new EditListStatusLandlordView();
 			    EditStatusManagerView managerEdit2= new EditStatusManagerView ();
 			    RegisterPropertyView r2 = new RegisterPropertyView();
 			    Listing model2 = new Listing();
-			    RegisterPropertyController controller2 = new RegisterPropertyController (landlord, manager, landlordEdit2, managerEdit2, r2);
-			    controller2.setView(false,true);
+			    registerPropC = new RegisterPropertyController (landlord, manager, landlordEdit2, managerEdit2, r2);
+			    registerPropC.setView(false, true, false);
 				break;
 			
 		case "LandlordMessages":
 				ReadMessageView msg = new ReadMessageView();
 				System.out.println("P- passing landlord with email "+ landlord.getEmail());
-				ContactController c2 = new ContactController(landlord, msg);
+				contactC = new ContactController(landlord, msg);
+				break;	
+				
+//************************** Manager cases **********************************	
+		case "ManagerEditView":
+				EditListStatusLandlordView landlordEdit3= new EditListStatusLandlordView();
+			    EditStatusManagerView managerEdit3= new EditStatusManagerView ();
+			    RegisterPropertyView r3 = new RegisterPropertyView();
+			    Listing model3 = new Listing();
+			    registerPropC = new RegisterPropertyController (landlord, manager, landlordEdit3, managerEdit3, r3);
+			    registerPropC.setView(false, false, true);
 				break;
 		
-//		case "landlordListing":
-//				System.out.println("listing screen view");
-//			    EditListStatusLandlordView landlordEdit= new EditListStatusLandlordView();
-//			    EditStatusManagerView managerEdit= new EditStatusManagerView ();
-//			    RegisterPropertyView r2 = new RegisterPropertyView();
-//			    Listing model = new Listing();
-//			    RegisterPropertyController controller = new RegisterPropertyController (landlord, manager, landlordEdit, managerEdit, r2);
-////			    controller.connectDB();
-//				break;
-				
-		case "listing":
-//				System.out.println("listing screen view");
-//			    RenterListingView u = new RenterListingView();
-//			    Listing model = new Listing();
-//			    ListingController controller = new ListingController (model, u);
-//			    controller.connectDB();
+		case "EditFee":
+				EditFeesView feeView = new EditFeesView();
+				paymentC = new PaymentController (manager, feeView); 
 				break;
-								
+				
+		case "SummaryReportView":
+				Listing listings = new Listing();
+				SummaryReportView report = new SummaryReportView();
+				DisplayUsersManagerView users = new DisplayUsersManagerView();
+				summaryRepC = new SummaryReportController(listings, manager, report, users);
+				summaryRepC.setView(true, false);
+				break;	
+				
+		case "RenterLandlordList":
+				Listing listings2 = new Listing();
+				SummaryReportView report2 = new SummaryReportView();
+				DisplayUsersManagerView users2 = new DisplayUsersManagerView();
+				summaryRepC = new SummaryReportController(listings2, manager, report2, users2);
+				summaryRepC.setView(false, true);
+				break;	
+
+	//**************************Registered renter **********************************
+		case "RegisteredRenter":
+				RenterListingView registeredRenter = new RenterListingView();
+				Listing l = new Listing();
+				subscriptionC = new SubscriptionController(Rrenter, registeredRenter, l);
 		}
 	}
 	
@@ -92,15 +118,6 @@ public class ParentController {
 		landlord.setRole(role);
 		System.out.println("setting user email to: "+ email);
 	}
-	
-//	public void setUserRole(String username, String role) {
-//		this.userEmail = username;
-//		this.role = role;
-//	}
-//	
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
 	
     public static void main(String[] args) {
     	Landlord landlord = new Landlord();

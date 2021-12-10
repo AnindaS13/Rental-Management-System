@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import Model.Listing;
 
 import Model.User;
 
@@ -41,6 +40,8 @@ public class SummaryReportView implements Component{
     private Color back = new Color(25, 25, 112);
 
 
+    public SummaryReportView() {}
+    
     public SummaryReportView(ArrayList<ArrayList<Listing>> listings, ArrayList<User> landlords )
     {
 //        setLandlords(landlords);
@@ -68,12 +69,11 @@ public class SummaryReportView implements Component{
 
     @Override
     public void draw() {
-
-
+    	
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
-
+        
         frame.setTitle("Edit Status");  //Giving frame the size set and title
         frame.setResizable(true);
         frame.setSize(900,900);
@@ -184,7 +184,11 @@ public class SummaryReportView implements Component{
         this.editFeeBtn.addActionListener(a);
     }
 
-
+    public void renterLandlordPerformed(ActionListener a) //For register property navbar redirect
+    {
+        this.RenterLandlordBtn.addActionListener(a);
+    }
+    
     public int getTotalNumHousesListed() {
         return totalNumHousesListed;
     }
@@ -248,11 +252,6 @@ public class SummaryReportView implements Component{
 
     public void setListings(ArrayList<ArrayList<Listing>> listings) {
         this.listings = listings;
-    }
-
-    public void renterLandlordPerformed(ActionListener a) //For register property navbar redirect
-    {
-        this.RenterLandlordBtn.addActionListener(a);
     }
 
     public int getTimePeriod() {
