@@ -10,6 +10,7 @@ import Controller.ContactController.RegisterButton;
 import Model.Manager;
 import Model.Landlord;
 import Gui.EditListStatusLandlordView;
+import Gui.EditStatusManagerView;
 import Gui.RegisterPropertyView;
 
 public class RegisterPropertyController extends ParentController{
@@ -18,19 +19,29 @@ public class RegisterPropertyController extends ParentController{
 //	Manager manager;
 	RegisterPropertyView registerProperty;
 	EditListStatusLandlordView landlordView;
-	EditListStatusLandlordView managerView;
+	EditStatusManagerView managerView;
 	
 	DBConnect db = new DBConnect();
 		
-	public RegisterPropertyController (Landlord l, Manager m, RegisterPropertyView rp){
-		super(l);
+	public RegisterPropertyController (Landlord l, Manager m, EditListStatusLandlordView lp, 
+										EditStatusManagerView mp, RegisterPropertyView regisP){
+		super();
 		this.manager = m;
-		this.registerProperty = rp;
+		this.landlord = l;
+		this.registerProperty = regisP;
+		this.landlordView = lp;
+		this.managerView = mp;
+		registerProperty.draw();
 		
 		registerProperty.RegisterPerformed(new RegisterButton());
 		registerProperty.ListingsPerformed(new ListingButton());
 		registerProperty.MessagesPerformed(new MessageButton());
 		registerProperty.AddPropPerformed(new AddPropertyButton());
+		
+		landlordView.RegisterPerformed(new RegisterButton());
+		landlordView.ListingsPerformed(new ListingButton());
+		landlordView.MessagesPerformed(new MessageButton());
+	//	landlordView.AddPropPerformed(new AddPropertyButton());
 	}
 	
 	
@@ -38,7 +49,8 @@ public class RegisterPropertyController extends ParentController{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("register button pressed");	
+			System.out.println("register button pressed");
+			registerProperty.draw();
 		}
 	}
 	
@@ -47,7 +59,7 @@ public class RegisterPropertyController extends ParentController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Listing button pressed");
-			switchView("listing");
+			landlordView.draw();
 		}
 	}
 	
@@ -82,18 +94,26 @@ public class RegisterPropertyController extends ParentController{
 	
 	@Override
 	public void switchView(String view) {
-		registerProperty.clearFrame();
 		super.switchView(view);
 	}
 	
-	public static void main(String[] args) {
-	System.out.println("Register property controller main");
-	Manager m = new Manager();
-	Landlord l = new Landlord(); 
-	RegisterPropertyView r = new RegisterPropertyView();
-	
-	RegisterPropertyController c = new RegisterPropertyController(l, m, r);
+	public void setView(boolean v1, boolean v2) {
+		if(v1) {
+			registerProperty.draw();
+		}
+		if(v2) {
+			landlordView.draw();
+		}
 	}
+	
+//	public static void main(String[] args) {
+//	System.out.println("Register property controller main");
+//	Manager m = new Manager();
+//	Landlord l = new Landlord(); 
+//	RegisterPropertyView r = new RegisterPropertyView();
+//	
+//	RegisterPropertyController c = new RegisterPropertyController(l, m, r);
+//	}
 }
 
 

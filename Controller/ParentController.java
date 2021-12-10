@@ -1,6 +1,7 @@
 package Controller;
 
 import Gui.EditListStatusLandlordView;
+import Gui.EditStatusManagerView;
 import Gui.LoginView;
 import Gui.ReadMessageView;
 import Gui.RegisterPropertyView;
@@ -17,12 +18,8 @@ public class ParentController {
 	protected Manager manager = new Manager();
 	protected RegisteredRenter Rrenter = new RegisteredRenter();
 	
-	public ParentController(Landlord l) {
-		this.landlord = l;
-	}
-	
 	public ParentController() {
-		//this.landlord = l;
+		
 	}
 	
 	public ParentController(Landlord l, Manager m, RegisteredRenter r ) {
@@ -42,27 +39,41 @@ public class ParentController {
 				//controller for login
 				break;
 				
-		case "EditProperty":
-				System.out.println("P- In Edit Property");
-				Manager m = new Manager();
-				RegisterPropertyView r = new RegisterPropertyView();
-				RegisterPropertyController c = new RegisterPropertyController(landlord, m, r);
+		case "RegisterProperty":
+				System.out.println("P- In Register Property");
+				EditListStatusLandlordView landlordEdit= new EditListStatusLandlordView();
+			    EditStatusManagerView managerEdit= new EditStatusManagerView ();
+			    RegisterPropertyView r = new RegisterPropertyView();
+			    Listing model = new Listing();
+			    RegisterPropertyController controller = new RegisterPropertyController (landlord, manager, landlordEdit, managerEdit, r);
+			    controller.setView(true, false);
 				break;
 		
+		case "landlordListings":
+				System.out.println("P- In Register Property");
+				EditListStatusLandlordView landlordEdit2= new EditListStatusLandlordView();
+			    EditStatusManagerView managerEdit2= new EditStatusManagerView ();
+			    RegisterPropertyView r2 = new RegisterPropertyView();
+			    Listing model2 = new Listing();
+			    RegisterPropertyController controller2 = new RegisterPropertyController (landlord, manager, landlordEdit2, managerEdit2, r2);
+			    controller2.setView(false,true);
+				break;
+			
 		case "LandlordMessages":
 				ReadMessageView msg = new ReadMessageView();
 				System.out.println("P- passing landlord with email "+ landlord.getEmail());
 				ContactController c2 = new ContactController(landlord, msg);
 				break;
 		
-		case "landlordListing":
-				System.out.println("listing screen view");
-			    EditListStatusLandlordView landlordEdit= new EditListStatusLandlordView();
-			    EditListStatusLandlordView managerEdit= new EditListStatusLandlordView();
-			    Listing model = new Listing();
-//			    RegisterPropertyController controller = new RegisterPropertyController (landlord, manager);
-//			    controller.connectDB();
-				break;
+//		case "landlordListing":
+//				System.out.println("listing screen view");
+//			    EditListStatusLandlordView landlordEdit= new EditListStatusLandlordView();
+//			    EditStatusManagerView managerEdit= new EditStatusManagerView ();
+//			    RegisterPropertyView r2 = new RegisterPropertyView();
+//			    Listing model = new Listing();
+//			    RegisterPropertyController controller = new RegisterPropertyController (landlord, manager, landlordEdit, managerEdit, r2);
+////			    controller.connectDB();
+//				break;
 				
 		case "listing":
 //				System.out.println("listing screen view");

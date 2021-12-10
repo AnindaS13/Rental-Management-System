@@ -34,13 +34,13 @@ public class RegisterPropertyView implements Component
 
     public RegisterPropertyView()
     {
-        draw();
+       // draw();
     }
 
     @Override
     public void draw()
     {
-
+    	frame.getContentPane().removeAll();
     frame.setTitle("Register Properties");  //Giving frame the size set and title
     frame.setResizable(true);
     frame.setSize(900,900);
@@ -169,7 +169,4 @@ public class RegisterPropertyView implements Component
 
     public int getBedNum() {return Integer.parseInt(bedroomnum.getText());}
 
-	public void clearFrame() {
-	frame.getContentPane().removeAll();
-	}
 }

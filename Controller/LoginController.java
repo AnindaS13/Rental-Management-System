@@ -34,7 +34,7 @@ public class LoginController extends ParentController{
     	loginView.clearFrame();
     	if(role.equals("Landlord")) {
     		super.setLandlord(role, email, password);
-    		super.switchView("EditProperty");}
+    		super.switchView("RegisterProperty");}
     	else if (role.equals("Manager"))
     		super.switchView("ManagerEditView");
     	else if (role.equals("RegisteredRenter"))
