@@ -123,9 +123,11 @@ public class DBConnect {
 		    		Integer bath = rs.getInt("bathrooms");
 		    		Boolean furnished = rs.getBoolean("Furnished");
 		    		String quad = rs.getString("quadrant");
+		    		String notify = rs.getString("notify");
+		    		String email = rs.getString("r_email");
 		    		
 		    		temp.add(id.toString()+"\n"+property+"\n"+bed.toString()+"\n"+
-    							bath.toString()+"\n"+furnished.toString()+"\n"+quad);
+    							bath.toString()+"\n"+furnished.toString()+"\n"+quad+"\n"+notify+"\n"+email);
 		    	}	
 	    	}
 	    	

@@ -347,6 +347,7 @@ public class RenterListingView implements Component {
     }
 
     public void setNotify(Boolean notify) {
+    	System.out.println("setting notify to "+notify);
         this.notify = notify;
     }
 

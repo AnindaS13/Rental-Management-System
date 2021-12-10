@@ -113,13 +113,14 @@ public class ParentController {
 				RenterListingView registeredRenter = new RenterListingView();
 				Listing l = new Listing();
 				subscriptionC = new SubscriptionController(Rrenter, registeredRenter, l);
-				
+				break;
 				
 		case "UnregisteredRenter":
 				Listing listingsR = new Listing();
 				RenterListingView renterV= new RenterListingView();
 				System.out.println("in unregisteredrenter case");
 				ListingController lc = new ListingController (listingsR, renterV);
+				break;
 		}
 	}
 	
