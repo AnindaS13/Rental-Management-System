@@ -26,6 +26,9 @@ public class RegisterPropertyView implements Component
     private JComboBox furn = new JComboBox(furnst);
     private JTextField bedroomnum = new JTextField("Enter in Numeric Form");
     private JTextField bathroomnum = new JTextField("Enter in Numeric Form");
+
+    private JTextField address = new JTextField("Enter in Address Form");
+
     private JComboBox quadrants = new JComboBox(q);
     private Color back = new Color(25, 25, 112);
     private Color button = new Color(0,0,0);
@@ -34,13 +37,16 @@ public class RegisterPropertyView implements Component
 
     public RegisterPropertyView()
     {
-       // draw();
+        // draw();
     }
 
     @Override
     public void draw()
     {
-    	frame.getContentPane().removeAll();
+
+    frame.getContentPane().removeAll();
+    frame.getContentPane().revalidate();
+    frame.getContentPane().repaint();
     frame.setTitle("Register Properties");  //Giving frame the size set and title
     frame.setResizable(true);
     frame.setSize(900,900);
@@ -55,9 +61,7 @@ public class RegisterPropertyView implements Component
     MessagesBtn.setBounds(333,0,167,50);
     navBarpanel.setLayout(new GridLayout());
 
-
     AddPropBtn.setBounds(380, 800, 150, 50);  //Register Prop Button implemented
-
 
     RegisterBtn.setBackground(button);
     ListingsBtn.setBackground(button);
@@ -67,7 +71,6 @@ public class RegisterPropertyView implements Component
     MessagesBtn.setForeground(Color.WHITE);
     AddPropBtn.setBackground(button);
     AddPropBtn.setForeground(Color.white);
-
 
     JLabel type =  new JLabel("Type"); //Making the labels for the inputs
     type.setBounds(150, 200, 150, 20);
@@ -82,9 +85,12 @@ public class RegisterPropertyView implements Component
     NumBath.setBounds(600, 450, 150, 20);
     NumBath.setForeground(Color.white);
     JLabel quad = new JLabel("Quadrant");
-    quad.setBounds(420, 600, 150, 50);
+    quad.setBounds(110, 600, 150, 50);
     quad.setForeground(Color.white);
 
+    JLabel addressLabel = new JLabel("Address");
+    addressLabel.setBounds(600, 600, 150, 20);
+    addressLabel.setForeground(Color.white);
 
     typeBox.setBounds(70, 230, 200, 40); //added input for types
     typeBox.setBackground(tableBack);
@@ -98,9 +104,15 @@ public class RegisterPropertyView implements Component
     bathroomnum.setBounds(560,480, 200,40); //added input for number of bathrooms
     bathroomnum.setBackground(tableBack);
     bathroomnum.setForeground(Color.white);
-    quadrants.setBounds(340, 640, 200, 40); //added quadrant input
+
+    address.setBounds(560, 630, 200, 40); //added input for bedroom number
+    address.setBackground(tableBack);
+    address.setForeground(Color.white);
+
+    quadrants.setBounds(70, 640, 200, 40); //added quadrant input
     quadrants.setBackground(tableBack);
     quadrants.setForeground(Color.white);
+    frame.add(address);
 
     frame.add(AddPropBtn); //adding add property button to frame
     frame.add(type); //adding type label to frame
@@ -113,6 +125,7 @@ public class RegisterPropertyView implements Component
     frame.add(quad); //adding quadrant label to frame
     frame.add(navBarpanel); //adding navbar to frame to frame
     frame.getContentPane().setBackground(back);
+    frame.getContentPane().add(addressLabel);
 
     frame.add(typeBox); //adding the type selector input to frame
     frame.add(furn);
@@ -121,12 +134,9 @@ public class RegisterPropertyView implements Component
     frame.setVisible(true);
     }
 
-
     public static void main(String[] args) {
         RegisterPropertyView x = new RegisterPropertyView();
-
     }
-    
 
     public void RegisterPerformed(ActionListener a) //For register property navbar redirect
     {
@@ -168,5 +178,13 @@ public class RegisterPropertyView implements Component
     	}
 
     public int getBedNum() {return Integer.parseInt(bedroomnum.getText());}
+
+    public String getAddress() {
+        return (String) this.address.getText();
+    }
+
+    public void setAddress(String address) {
+        this.address.setText(address);
+    }
 
 }

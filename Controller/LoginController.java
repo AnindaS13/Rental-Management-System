@@ -24,7 +24,6 @@ public class LoginController extends ParentController{
         loginView.loginButton(new LoginButtonListener());
     }
 
-
     public void connectDB() {
         db.initializeConnection();
     }
@@ -41,7 +40,6 @@ public class LoginController extends ParentController{
     		super.switchView("RegisteredRenter");
     	else super.switchView("ListingView");
     }
-      
 
 //    public void setRole(String username, String role)
 //    {
@@ -68,7 +66,6 @@ public class LoginController extends ParentController{
             // loginView.setOutput(db.getListing());
         }
     }
-
 
     public static void main(String[] args)
     {

@@ -2,7 +2,6 @@ package Gui;
 import Model.Listing;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import Model.Listing;
+
 import Model.User;
 
 public class SummaryReportView implements Component{
@@ -21,6 +21,9 @@ public class SummaryReportView implements Component{
     private JTextField numHousesListedField = new JTextField("listed");
     private JTextField numHousesRentedField = new JTextField("rented");
     private JTextField numActiveListingsField = new JTextField("active");
+
+    private JComboBox timePeriodField = new JComboBox();
+
     private ArrayList<User> landlords;
     private ArrayList<ArrayList<Listing>> listings;
 
@@ -28,11 +31,15 @@ public class SummaryReportView implements Component{
     private int totalNumHousesRented;
     private int totalNumActiveListings;
 
+    private int timePeriod;
+
     private JButton RenterLandlordBtn = new JButton("Renter/Landlord List");
     private JButton ListingsBtn= new JButton("Listings");
     private JButton SumRepBtn = new JButton("Summary Report");
     private JButton editFeeBtn = new JButton("Edit Fees");
     private Color button = new Color(0,0,0);
+    private Color back = new Color(25, 25, 112);
+
 
     public SummaryReportView(ArrayList<ArrayList<Listing>> listings, ArrayList<User> landlords )
     {
@@ -44,20 +51,15 @@ public class SummaryReportView implements Component{
         setTable(listings, landlords);
         draw();
     }
-    // add status
-    // add period
-    // split period by period
-    // drop down for period
-    // address to editListingView
-    // renterListingView
+
     public void setTable(ArrayList<ArrayList<Listing>> listings, ArrayList<User> landlords)
     {
-        Object columnNames[] = { "Property ID", "Landlord", "Address", "Status"};
+        Object columnNames[] = { "Property ID", "Landlord", "Address", "Status", "Period"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
         for(int i=0; i < landlords.size(); i++) {
             for(int j = 0; j < listings.get(i).size(); j++) {
-                Object rowData[] = { listings.get(i).get(j).getListingID(), landlords.get(i).getFName() + " " + landlords.get(i).getLName(), "Address",listings.get(i).get(j).getStatus() };
+                Object rowData[] = { listings.get(i).get(j).getListingID(), landlords.get(i).getFName() + " " + landlords.get(i).getLName(), listings.get(i).get(j).getAddress(),listings.get(i).get(j).getStatus(), listings.get(i).get(j).getListingTime() };
                 model.addRow(rowData);
             }
         }
@@ -66,6 +68,12 @@ public class SummaryReportView implements Component{
 
     @Override
     public void draw() {
+
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+
         frame.setTitle("Edit Status");  //Giving frame the size set and title
         frame.setResizable(true);
         frame.setSize(900,900);
@@ -81,7 +89,17 @@ public class SummaryReportView implements Component{
         JLabel totalHousesRented = new JLabel("Total Number of Houses Rented:");
         JLabel totalHouseListedLabel = new JLabel("Total Number of Houses Listed:");
         JLabel totalActiveListingsLabel = new JLabel("Total Number of active listings");
+        JLabel selectTimePeriodLabel = new JLabel("Choose Time Period(Days)");
 
+        selectTimePeriodLabel.setForeground(Color.WHITE);
+        selectTimePeriodLabel.setForeground(Color.WHITE);
+        selectTimePeriodLabel.setBounds(50,85,200,20);
+        frame.getContentPane().add(selectTimePeriodLabel);
+
+
+        totalHousesRented.setForeground(Color.WHITE);
+        totalHouseListedLabel.setForeground(Color.white);
+        totalActiveListingsLabel.setForeground(Color.white);
         totalHouseListedLabel.setBounds(50,460,400,20);
         numHousesListedField.setBounds(50,480,400,30);
         totalHousesRented.setBounds(50,530,400,20);
@@ -89,6 +107,13 @@ public class SummaryReportView implements Component{
 
         totalActiveListingsLabel.setBounds(540,460,300,20);
         numActiveListingsField.setBounds(540,490,300,30);
+
+        timePeriodField.setModel(new DefaultComboBoxModel(new String[] {"60", "120", "180"}));
+        timePeriodField.setBackground(button);
+        timePeriodField.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        timePeriodField.setBounds(240, 80, 130, 40);
+        timePeriodField.setForeground(Color.WHITE);
+        frame.getContentPane().add(timePeriodField);
 
         numActiveListingsField.setEditable(false);
         numHousesListedField.setEditable(false);
@@ -106,7 +131,7 @@ public class SummaryReportView implements Component{
         table.setBounds(30,100,500,300);
         table.setRowHeight(20);
         scrollPane.setViewportView(table);
-        scrollPane.setBounds(30, 100, 800, 300);
+        scrollPane.setBounds(30, 150, 800, 300);
         frame.getContentPane().add(scrollPane);
         frame.add(navBarpanel);
         frame.add(numActiveListingsField);
@@ -114,6 +139,8 @@ public class SummaryReportView implements Component{
         frame.add(totalHouseListedLabel);
         frame.add(numHousesRentedField);
         frame.add(numHousesListedField);
+        frame.getContentPane().setBackground(back);
+
         frame.add(totalHousesRented);
         frame.setLayout(null);
         frame.setVisible(true);
@@ -156,7 +183,6 @@ public class SummaryReportView implements Component{
     {
         this.editFeeBtn.addActionListener(a);
     }
-
 
 
     public int getTotalNumHousesListed() {
@@ -229,6 +255,20 @@ public class SummaryReportView implements Component{
         this.RenterLandlordBtn.addActionListener(a);
     }
 
+    public int getTimePeriod() {
+        return timePeriod;
+    }
 
+    public void setTimePeriod(int timePeriod) {
+        this.timePeriod = timePeriod;
+    }
+
+    public int getTimePeriodField() {
+        return Integer.parseInt((String) timePeriodField.getSelectedItem());
+    }
+
+    public void setTimePeriodField(int timePeriodField) {
+        this.timePeriodField.setSelectedItem(timePeriodField);
+    }
 
 }

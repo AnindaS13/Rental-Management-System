@@ -41,6 +41,12 @@ public class DisplayUsersManagerView implements Component{
     @Override
     public void draw()
     {
+
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+
         frame.setTitle("List of Landlords and Renters");  //Giving frame the size set and title
         frame.setResizable(true);
         frame.setSize(900,900);

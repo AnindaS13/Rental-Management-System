@@ -14,7 +14,6 @@ import Gui.EditStatusManagerView;
 import Gui.RegisterPropertyView;
 
 public class RegisterPropertyController extends ParentController{
-	
 //	Landlord landlord;
 //	Manager manager;
 	RegisterPropertyView registerProperty;

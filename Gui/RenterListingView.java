@@ -27,6 +27,11 @@ public class RenterListingView implements Component {
     private JButton sendMessageBtn = new JButton("Send");
     private JButton logOutBtn = new JButton("Log Out");
     private JButton notfiyBtn = new JButton("Found Listings");
+    private Color back = new Color(25, 25, 112);
+    private Color tableBack = new Color(31,97,141);
+    private Color headBack = new Color(21,67,96);
+    private Color button = new Color(0,0,0);
+
 
     private String role = "";
     private Boolean notify = false;
@@ -50,7 +55,6 @@ public class RenterListingView implements Component {
     	}
     	table.setModel(model);
     }
-
 
     public void searchButton(ActionListener actionListener) {
         this.search.addActionListener(actionListener);
@@ -95,13 +99,18 @@ public class RenterListingView implements Component {
         JPanel navBarpanel = new JPanel(); //Setting navbar sizes and adding buttons to it
         navBarpanel.setSize(frame.getWidth(),50);
         logOutBtn.setBounds(800,0,100,50);
+        logOutBtn.setBackground(tableBack);
+        logOutBtn.setForeground(Color.white);
         navBarpanel.setLayout(new GridLayout());
         frame.getContentPane().add(logOutBtn);
 
         JLabel title = new JLabel("View Listings");
+        title.setBackground(Color.black);
+        title.setForeground(Color.white);
         title.setFont(new Font("SansSerif", Font.BOLD, 20));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         navBarpanel.add(title);
+        navBarpanel.setBackground(Color.black);
 
         frame.getContentPane().add(navBarpanel);
 
@@ -126,68 +135,68 @@ public class RenterListingView implements Component {
         scrollPane.setViewportView(table);
 
         PropertyType.setModel(new DefaultComboBoxModel(new String[] {"Appartment", "Attached", "Detached", "Townhouse", "Studio", "Basement"}));
-        PropertyType.setBackground(backgroundColor);
+        PropertyType.setBackground(tableBack);
         PropertyType.setFont(new Font("SansSerif", Font.PLAIN, 15));
         PropertyType.setBounds(100, 100, 100, 40);
-        PropertyType.setForeground(foreGroundColor);
+        PropertyType.setForeground(Color.white);
         frame.getContentPane().add(PropertyType);
 
         bedrooms.setModel(new DefaultComboBoxModel(new Integer[] {1,2,3,4,5,7,8}));
         bedrooms.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        bedrooms.setBackground(backgroundColor);
+        bedrooms.setBackground(tableBack);
         bedrooms.setBounds(250, 100, 100, 40);
-        bedrooms.setForeground(foreGroundColor);
+        bedrooms.setForeground(Color.white);
         frame.getContentPane().add(bedrooms);
 
         bathrooms.setModel(new DefaultComboBoxModel(new Integer[] {1,2,3,4,5,6,7,8}));
         bathrooms.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        bathrooms.setBackground(backgroundColor);
+        bathrooms.setBackground(tableBack);
         bathrooms.setBounds(400, 100, 100, 40);
-        bathrooms.setForeground(foreGroundColor);
+        bathrooms.setForeground(Color.white);
         frame.getContentPane().add(bathrooms);
 
         quadrant.setModel(new DefaultComboBoxModel(new String[] {"NE", "NW", "SE", "SW"}));
         quadrant.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        quadrant.setBackground(backgroundColor);
+        quadrant.setBackground(tableBack);
         quadrant.setBounds(550, 100, 100, 40);
-        quadrant.setForeground(foreGroundColor);
+        quadrant.setForeground(Color.white);
         frame.getContentPane().add(quadrant);
 
         furnished.setModel(new DefaultComboBoxModel(new String[] {"Yes", "No"}));
         furnished.setFont(new Font("SansSerif", Font.PLAIN, 12));
         furnished.setBounds(700, 100, 100, 40);
-        furnished.setBackground(backgroundColor);
-        furnished.setForeground(foreGroundColor);
+        furnished.setBackground(tableBack);
+        furnished.setForeground(Color.white);
         frame.getContentPane().add(furnished);
 
         message.setBounds(400, 600,100,80);
-        message.setForeground(Color.black);
-        message.setBackground(Color.lightGray);
+        message.setForeground(Color.white);
+        message.setBackground(tableBack);
         frame.getContentPane().add(message);
 
         propertyID.setBounds(250, 600,100,80);
-        propertyID.setForeground(Color.black);
-        propertyID.setBackground(Color.lightGray);
+        propertyID.setForeground(Color.white);
+        propertyID.setBackground(tableBack);
         frame.getContentPane().add(propertyID);
 
         sendMessageBtn.setBounds(600, 620,80,40);
         sendMessageBtn.setFont(new Font("SansSerif", Font.BOLD, 12));
-        sendMessageBtn.setForeground(Color.black);
-        sendMessageBtn.setBackground(Color.lightGray);
+        sendMessageBtn.setForeground(Color.white);
+        sendMessageBtn.setBackground(button);
         frame.getContentPane().add(sendMessageBtn);
 
         if(getRole() == "RegisteredRenter") { // checks if renter is logged
-            subscribe.setBackground(backgroundColor);
+            subscribe.setBackground(button);
             subscribe.setFont(new Font("SansSerif", Font.BOLD, 12));
             subscribe.setBounds(250, 150, 100, 40);
-            subscribe.setForeground(foreGroundColor);
+            subscribe.setForeground(Color.white);
             frame.getContentPane().add(subscribe);
 
             if(getNotify()) {   // if true shows a button that means that listings matching search criteria are found
-                notfiyBtn.setBackground(backgroundColor);
+                notfiyBtn.setBackground(button);
                 notfiyBtn.setFont(new Font("SansSerif", Font.BOLD, 12));
                 notfiyBtn.setBounds(400, 150, 150, 40);
-                notfiyBtn.setForeground(foreGroundColor);
+                notfiyBtn.setForeground(Color.white);
                 frame.getContentPane().add(notfiyBtn);
 
             }
@@ -195,34 +204,47 @@ public class RenterListingView implements Component {
 
         JLabel label1 = new JLabel("PropertyType");
         label1.setBounds(100, 70, 80, 30);
+        label1.setForeground(Color.white);
         frame.getContentPane().add(label1);
 
         JLabel label2 = new JLabel("Bedrooms");
         label2.setBounds(250, 70, 80, 30);
+        label2.setForeground(Color.white);
+
         frame.getContentPane().add(label2);
 
         JLabel label3 = new JLabel("Bathrooms");
         label3.setBounds(400, 70, 80, 30);
+        label3.setForeground(Color.white);
+
         frame.getContentPane().add(label3);
 
         JLabel label4 = new JLabel("Quadrant");
         label4.setBounds(550, 70, 80, 30);
+        label4.setForeground(Color.white);
+
         frame.getContentPane().add(label4);
 
         JLabel label5 = new JLabel("Furnished");
         label5.setBounds(700, 70, 80, 30);
+        label5.setForeground(Color.white);
+
         frame.getContentPane().add(label5);
 
         JLabel label6 = new JLabel("Message Landlord");
         label6.setFont(new Font("SansSerif", Font.BOLD, 16));
+        label6.setForeground(Color.white);
+
         label6.setBounds(340, 550, 150, 20);
         frame.getContentPane().add(label6);
 
-        search.setBackground(backgroundColor);
+        search.setBackground(button);
         search.setFont(new Font("SansSerif", Font.BOLD, 12));
         search.setBounds(100, 150, 100, 40);
-        search.setForeground(foreGroundColor);
+        search.setForeground(Color.white);
         frame.getContentPane().add(search);
+        frame.getContentPane().setBackground(back);
+
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(dim.width/2-250, dim.height/2-250);
