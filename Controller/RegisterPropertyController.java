@@ -34,6 +34,8 @@ public class RegisterPropertyController extends ParentController{
 		this.landlordView = lp;
 		this.managerView = mp;
 		registerProperty.draw();
+		// displaying all landlords listings
+		landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
 		
 		registerProperty.RegisterPerformed(new RegisterButton());
 		registerProperty.ListingsPerformed(new ListingButton());
@@ -73,7 +75,8 @@ public class RegisterPropertyController extends ParentController{
 			String id = landlordView.getIDForStatusUpdateInput();
 			String status = landlordView.getStatus();
 			db.updateStatus(id, status);
-			registerProperty.draw();
+			landlordView.draw();
+			landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
 		}
 	}
 
@@ -87,7 +90,8 @@ public class RegisterPropertyController extends ParentController{
 			String listTime = date.toString();
 			String status = "Active";
 			db.updateListingDate(temp,listTime, status);
-			registerProperty.draw();
+			landlordView.draw();
+			landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
 			notifyRenter(temp);
 		}
 	}
