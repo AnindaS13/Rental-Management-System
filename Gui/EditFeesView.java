@@ -31,13 +31,15 @@ public class EditFeesView implements Component{
 
     public EditFeesView()
     {
-
         draw();
     }
 
     @Override
     public void draw()
-    {
+    {	
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
         frame.setTitle("Edit Fee and Period");  //Giving frame the size set and title
         frame.setResizable(true);
         frame.setSize(900,900);

@@ -38,7 +38,7 @@ public class EditStatusManagerView implements Component{
     public EditStatusManagerView(ArrayList<Listing> input)
     {
         setTable(input);
-        //draw();
+        draw();
     }
 	
     public void clearFrame() {
@@ -65,6 +65,9 @@ public class EditStatusManagerView implements Component{
     @Override
     public void draw()
     {	
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
     	frame.getContentPane().removeAll();
         frame.setTitle("Listings and Edit Manager");  //Giving frame the size set and title
         frame.setResizable(true);
@@ -116,7 +119,7 @@ public class EditStatusManagerView implements Component{
         frame.add(changedStatus);
         frame.add(submitChange);
         frame.setLayout(null);
-       //frame.setVisible(true);
+        frame.setVisible(true);
     }
 
     public static void main(String []args)
@@ -127,6 +130,7 @@ public class EditStatusManagerView implements Component{
         EditStatusManagerView x = new EditStatusManagerView(in);
         Listing obj = new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "206 9th Ave", "johndoe@gmail.com", "Active", true);
         System.out.println(obj.getID());
+        //x.draw();
     }
     
     public void renterLandlordPerformed(ActionListener a) //For register property navbar redirect

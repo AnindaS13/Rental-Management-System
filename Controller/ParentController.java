@@ -1,5 +1,6 @@
 package Controller;
 
+import Gui.EditFeesView;
 import Gui.EditListStatusLandlordView;
 import Gui.EditStatusManagerView;
 import Gui.LoginView;
@@ -22,9 +23,9 @@ public class ParentController {
     private RegisterPropertyController registerPropC;
 	private SummaryReportController summaryRepC;
 	private ListingController listingC;
+	private PaymentController paymentC;
 	
-	
-	
+		
 	public ParentController() {
 		
 	}
@@ -78,6 +79,11 @@ public class ParentController {
 			    Listing model3 = new Listing();
 			    registerPropC = new RegisterPropertyController (landlord, manager, landlordEdit3, managerEdit3, r3);
 			    registerPropC.setView(false, false, true);
+				break;
+		
+		case "EditFee":
+				EditFeesView feeView = new EditFeesView();
+				paymentC = new PaymentController (manager, feeView); 
 				break;
 				
 		}
