@@ -2,6 +2,7 @@ package Gui;
 
 import Model.Landlord;
 import Model.RegisteredRenter;
+import Model.User;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -33,7 +34,7 @@ public class DisplayUsersManagerView implements Component{
     
     public DisplayUsersManagerView() {}
     
-    public DisplayUsersManagerView(ArrayList<Landlord> landinput, ArrayList<RegisteredRenter> rentinput)
+    public DisplayUsersManagerView(ArrayList<User> landinput, ArrayList<User> rentinput)
     {
         setLandlordTable(landinput);
         setRenterTable(rentinput);
@@ -107,7 +108,7 @@ public class DisplayUsersManagerView implements Component{
         frame.setVisible(true);
     }
 
-    public void setLandlordTable(ArrayList<Landlord> landinput)
+    public void setLandlordTable(ArrayList<User> landinput)
     {
         Object columnNames[] = {"Email", "First Name", "Last Name"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
@@ -119,7 +120,7 @@ public class DisplayUsersManagerView implements Component{
         landlordTable.setModel(model);
     }
 
-    public void setRenterTable(ArrayList<RegisteredRenter> rentinput)
+    public void setRenterTable(ArrayList<User> rentinput)
     {
         Object columnNames[] = {"Email", "First Name", "Last Name"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);

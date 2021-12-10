@@ -93,14 +93,15 @@ public class RegisterPropertyController extends ParentController{
 			boolean furnish = registerProperty.getFurn();
 			String address = registerProperty.getAddress();
 			String quad = registerProperty.getQuadrant();
-			LocalDate date = LocalDate.now();
-			String listTime = date.toString(); //new SimpleDateFormat("HH.mm").format(new java.util.Date());
-			String status = "Suspended";
+			String date = "";
+			// LocalDate date = LocalDate.now();
+			// String listTime = date.toString(); //new SimpleDateFormat("HH.mm").format(new java.util.Date());
+			String status = "Registered";
 			System.out.println(type+", "+bed+", "+bath+", "+furnish+", "+
-								quad+", "+listTime+", "+status);
+								quad+", "+ date +", "+status);
 			//Add this data to database.
 			try {
-				db.addListing(landlord.getEmail(), type, bed, bath, furnish, address, quad, listTime, status);
+				db.addListing(landlord.getEmail(), type, bed, bath, furnish, address, quad, date, status);
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
