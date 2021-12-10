@@ -30,6 +30,7 @@ public class EditListStatusLandlordView implements Component{
     private JButton payBtn = new JButton("Pay");
     private JLabel idForPayLabel = new JLabel("Enter the property ID for which you will pay the fee:");
     private JTextField idInputForPay = new JTextField();
+    private JComboBox IDList = new JComboBox();
 
     private Color back = new Color(25, 25, 112);
     private Color button = new Color(0,0,0);
@@ -58,6 +59,7 @@ public class EditListStatusLandlordView implements Component{
                     input.get(i).getIsFurnished(), input.get(i).getQuadrant(), input.get(i).getStatus(),
             input.get(i).getBalance()};
             model.addRow(rowData);
+            IDList.addItem(input.get(i).getListingID());
         }
         table.setModel(model);
         System.out.println("here");
@@ -104,7 +106,7 @@ public class EditListStatusLandlordView implements Component{
         changedStatus.setForeground(Color.white);
 
         idForPayLabel.setBounds(540,460,300,20);
-        idInputForPay.setBounds(540,490,300,30);
+        IDList.setBounds(540,490,300,30);
         payBtn.setBounds(540,530,300,30);
 
         table.setBackground(tableBack);
@@ -120,7 +122,7 @@ public class EditListStatusLandlordView implements Component{
         frame.getContentPane().add(scrollPane);
         frame.add(navBarpanel);
         frame.add(payBtn);
-        frame.add(idInputForPay);
+        frame.add(IDList);
         frame.add(idForPayLabel);
         frame.add(idOfProp);
         frame.add(statusVal);
@@ -169,6 +171,11 @@ public class EditListStatusLandlordView implements Component{
     public void paySubmission(ActionListener a) //For submitting your fee payment
     {
         this.payBtn.addActionListener(a);
+    }
+
+    public String getpayInput()
+    {
+        return Integer.toString((int)IDList.getSelectedItem());
     }
 
 

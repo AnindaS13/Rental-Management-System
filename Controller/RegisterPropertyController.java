@@ -43,6 +43,7 @@ public class RegisterPropertyController extends ParentController{
 		landlordView.RegisterPerformed(new RegisterButton());
 		landlordView.ListingsPerformed(new ListingButton());
 		landlordView.MessagesPerformed(new MessageButton());
+		landlordView.paySubmission(new PayButton());
 	//	landlordView.AddPropPerformed(new AddPropertyButton());
 				
 		managerView.renterLandlordPerformed(new managerRenterLandlordList());
@@ -61,6 +62,20 @@ public class RegisterPropertyController extends ParentController{
 			registerProperty.draw();
 		}
 	}
+
+	public class PayButton implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Pay button pressed");
+			String temp = landlordView.getpayInput();
+			LocalDate date = LocalDate.now();
+			String listTime = date.toString();
+			db.updateListingDate(temp,listTime);
+			registerProperty.draw();
+		}
+	}
+
 	
 	public class ListingButton implements ActionListener{
 

@@ -9,9 +9,9 @@ import Model.User;
 
 public class DBConnect {
 
-    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
+    public final String dburl = "jdbc:mysql://localhost/newRental";
     public final String username = "root";
-    public final String password ="calgary1";
+    public final String password ="";
 
     private Connection connect;
     private ResultSet results;
@@ -104,7 +104,7 @@ public class DBConnect {
 		return users;
 	}
 
-    
+
     
     public ArrayList<String> getMessages() {
     	PreparedStatement p=null;
@@ -161,7 +161,24 @@ public class DBConnect {
 
 		return list;
 	}
+	public void updateListingDate(String pID, String date)
+	{
+		try {
+			Statement s = connect.createStatement();
+			String query = "UPDATE listing SET listingTime =? where ID="+pID;
 
+			PreparedStatement stmt = connect.prepareStatement(query);
+
+			stmt.setString(1,date);
+			stmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+
+	}
 
 	public void addListing(String email, String type, int bed, int bath, boolean furnish, String address, String quad, String date, String status) throws SQLException
 	{
