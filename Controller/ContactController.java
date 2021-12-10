@@ -24,7 +24,7 @@ public class ContactController extends ParentController {
 		this.landlord = landlord;
 //		this.landlord = landlord;
 		this.messages = msg;
-		
+
 		//getting all messages of the user (landlord)
 		ArrayList<String> userMsg = landlord.RetreiveMessage(db.getMessages());
 		messages.setOutput(userMsg);
@@ -68,6 +68,7 @@ public class ContactController extends ParentController {
 	public void switchView(String view) {
 		super.switchView(view);
 	}
+	
 	
 //	public static void main(String[] args) {
 //	System.out.println("Contact controller main");

@@ -50,6 +50,7 @@ public class ReadMessageView implements Component{
     @Override
     public void draw()
     {	
+    	
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();

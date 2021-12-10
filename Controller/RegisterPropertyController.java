@@ -97,12 +97,15 @@ public class RegisterPropertyController extends ParentController{
 		super.switchView(view);
 	}
 	
-	public void setView(boolean v1, boolean v2) {
+	public void setView(boolean v1, boolean v2, boolean v3) {
 		if(v1) {
 			registerProperty.draw();
 		}
 		if(v2) {
 			landlordView.draw();
+		}
+		if(v3) {
+			managerView.draw();
 		}
 	}
 	

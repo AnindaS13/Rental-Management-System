@@ -24,7 +24,6 @@ public class LoginController extends ParentController{
         loginView.loginButton(new LoginButtonListener());
     }
 
-
     public void connectDB() {
         db.initializeConnection();
     }
@@ -35,8 +34,12 @@ public class LoginController extends ParentController{
     	if(role.equals("Landlord")) {
     		super.setLandlord(role, email, password);
     		super.switchView("RegisterProperty");}
-    	else if (role.equals("Manager"))
+    	else if (role.equals("Manager")) {
+    		super.manager.setEmail(email);
+    		super.manager.setRole(role);
+    		super.manager.setPassword(password);
     		super.switchView("ManagerEditView");
+    	}
     	else if (role.equals("RegisteredRenter"))
     		super.switchView("RegisteredRenter");
     	else super.switchView("ListingView");

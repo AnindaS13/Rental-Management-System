@@ -46,10 +46,6 @@ public class EditListStatusLandlordView implements Component{
         setTable(input);
         //draw();
     }
-    
-//    public void clearFrame() {
-//    	frame.getContentPane().removeAll();
-//    }
 
     public void setTable(ArrayList<Listing> input)
     {
