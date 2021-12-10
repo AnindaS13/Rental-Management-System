@@ -162,5 +162,34 @@ public class DBConnect {
 		return list;
 	}
 
+	public ArrayList<Listing> saveSearch(String email, String proptype, int bedrooms,
+											int bathrooms, boolean furnished, String quadrant)
+	{
+		ArrayList<Listing> list= new ArrayList<Listing>();
+		initializeConnection();
+		try{
+			Statement stmt = connect.createStatement();
+			String query = " insert into registeredrenter (r_email, propertyType, bedrooms"
+							+ ", bathrooms, Furnished, quadrant)"
+			        + " values (?, ?, ?, ?, ?, ?)";
+			
+			 // sql insert preparedstatement
+		      PreparedStatement preparedStmt = connect.prepareStatement(query);
+		      preparedStmt.setString (1, email);
+		      preparedStmt.setString (2, proptype);
+		      preparedStmt.setInt   (3, bedrooms);
+		      preparedStmt.setInt (4, bathrooms);
+		      preparedStmt.setBoolean  (5, furnished);
+		      preparedStmt.setString (6, quadrant);
+		      
+		      preparedStmt.execute();
+		      stmt.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return list;
+	}
    
 }

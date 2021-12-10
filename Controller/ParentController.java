@@ -46,7 +46,6 @@ public class ParentController {
 				 LoginView login = new LoginView();
 				 User user = new User();
 				 LoginController loginC= new LoginController (user, login);
-				//controller for login
 				break;
 				
 //************************** Landlord cases **********************************	
@@ -108,7 +107,8 @@ public class ParentController {
 	//**************************Registered renter **********************************
 		case "RegisteredRenter":
 				RenterListingView registeredRenter = new RenterListingView();
-				subscriptionC = new SubscriptionController(Rrenter, registeredRenter);
+				Listing l = new Listing();
+				subscriptionC = new SubscriptionController(Rrenter, registeredRenter, l);
 		}
 	}
 	
