@@ -1,13 +1,10 @@
 package Gui;
 
 import Model.Listing;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,11 +61,13 @@ public class EditStatusManagerView implements Component{
 
     @Override
     public void draw()
-    {	
+    {
+
+
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
-    	frame.getContentPane().removeAll();
+
         frame.setTitle("Listings and Edit Manager");  //Giving frame the size set and title
         frame.setResizable(true);
         frame.setSize(900,900);
@@ -100,7 +99,6 @@ public class EditStatusManagerView implements Component{
         editFeeBtn.setForeground(Color.WHITE);
         submitChange.setBackground(button);
         submitChange.setForeground(Color.white);
-
 
         table.setBounds(30,200,500,300);
         table.setBackground(tableBack);
@@ -148,13 +146,15 @@ public class EditStatusManagerView implements Component{
         this.SumRepBtn.addActionListener(a);
     }
 
+    public void EditFeesPerformed (ActionListener a)
+    {
+        this.editFeeBtn.addActionListener(a);
+    }
+
+
     public void updateStatus(ActionListener a)
     {
         this.submitChange.addActionListener(a);
     }
 
-    public void EditFeesPerformed (ActionListener a)
-    {
-        this.editFeeBtn.addActionListener(a);
-    }
 }

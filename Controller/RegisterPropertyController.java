@@ -17,7 +17,6 @@ import Gui.EditStatusManagerView;
 import Gui.RegisterPropertyView;
 
 public class RegisterPropertyController extends ParentController{
-	
 //	Landlord landlord;
 //	Manager manager;
 	RegisterPropertyView registerProperty;
@@ -92,7 +91,7 @@ public class RegisterPropertyController extends ParentController{
 			int bed = registerProperty.getBedNum();
 			int bath = registerProperty.getBathNum();
 			boolean furnish = registerProperty.getFurn();
-			String address = ""; // registerProperty.getAddress();
+			String address = registerProperty.getAddress();
 			String quad = registerProperty.getQuadrant();
 			LocalDate date = LocalDate.now();
 			String listTime = date.toString(); //new SimpleDateFormat("HH.mm").format(new java.util.Date());

@@ -13,7 +13,9 @@ import Model.Landlord;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class SummaryReportController extends ParentController{
@@ -66,7 +68,7 @@ public class SummaryReportController extends ParentController{
         public void actionPerformed(ActionEvent e) {
         	setView(true, false);
         	System.out.println("SR- Summary Report button pressed");
-//
+
 //            int totalListing = listigModel.totalListings(db.getAllListings());
 //            System.out.println("Total Listings: " + totalListing);
 //            reportView.setNumHousesListedField(totalListing);
@@ -84,6 +86,32 @@ public class SummaryReportController extends ParentController{
 //            System.out.println("User length: " + landlords.size());
 //
 //            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
+//
+//            // now filter listings based on time period
+//
+//            LocalDate currDate = LocalDate.now();
+//            Date cdate = new Date(currDate.getDayOfYear(), currDate.getMonthValue(), currDate.getYear());
+//            LocalDate lastDate = currDate.minusDays(60); // (long) reportView.getTimePeriod());
+//            Date ldate = new Date(lastDate.getDayOfYear(), lastDate.getMonthValue(), lastDate.getYear());
+//
+//            for(int i = 0; i < landlords.size(); i++)
+//            {
+//                for(int j = 0; j < listings.get(i).size(); j++)
+//                {
+//                    String year = listings.get(i).get(j).getListingTime().substring(0, 4);
+//                    String month = listings.get(i).get(j).getListingTime().substring(5, 7);
+//                    String day = listings.get(i).get(j).getListingTime().substring(8, 10);
+//                    Date listDate = new Date(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
+//
+//                    if(listDate.before(ldate))
+//                    {
+//                        listings.get(i).remove(j);
+//                    }
+//
+//                }
+//            }
+//
+//            // do setters
 //            reportView.setLandlords(landlords);
 //            reportView.setListings(listings);
 //            System.out.println("Listing length: " + listings.size());
@@ -138,11 +166,13 @@ public class SummaryReportController extends ParentController{
 //        System.out.println("Summary Report controller");
 //        Listing list= new Listing();
 //        User user = new User();
+//        Manager m = new Manager();
 //        ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
+//        DisplayUsersManagerView x = new DisplayUsersManagerView();
 //        ArrayList<User> u = new ArrayList<>();
 //        SummaryReportView reportview = new SummaryReportView(listings, u);
 //
-//        SummaryReportController controller = new SummaryReportController (list, user, reportview);
+//        SummaryReportController controller = new SummaryReportController (list, m, reportview, x);
 //        controller.connectDB();
 //    }
 

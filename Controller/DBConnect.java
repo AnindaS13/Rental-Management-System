@@ -9,7 +9,6 @@ import Model.User;
 
 public class DBConnect {
 
-
     public final String dburl = "jdbc:mysql://localhost/rentalproperties";
     public final String username = "ENSF409";
     public final String password ="ensf409";
@@ -196,6 +195,37 @@ public class DBConnect {
 		System.out.println("Added new listing");
 	}
 
+
+
+	public ArrayList<Listing> saveSearch(String email, String proptype, int bedrooms,
+											int bathrooms, boolean furnished, String quadrant)
+	{
+		ArrayList<Listing> list= new ArrayList<Listing>();
+		initializeConnection();
+		try{
+			Statement stmt = connect.createStatement();
+			String query = " insert into registeredrenter (r_email, propertyType, bedrooms"
+							+ ", bathrooms, Furnished, quadrant)"
+			        + " values (?, ?, ?, ?, ?, ?)";
+			
+			 // sql insert preparedstatement
+		      PreparedStatement preparedStmt = connect.prepareStatement(query);
+		      preparedStmt.setString (1, email);
+		      preparedStmt.setString (2, proptype);
+		      preparedStmt.setInt   (3, bedrooms);
+		      preparedStmt.setInt (4, bathrooms);
+		      preparedStmt.setBoolean  (5, furnished);
+		      preparedStmt.setString (6, quadrant);
+		      
+		      preparedStmt.execute();
+		      stmt.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 
    
 }

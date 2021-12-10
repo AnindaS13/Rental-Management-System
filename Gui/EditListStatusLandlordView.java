@@ -44,7 +44,7 @@ public class EditListStatusLandlordView implements Component{
     public EditListStatusLandlordView(ArrayList<Listing> input)
     {
         setTable(input);
-        //draw();
+        // draw();
     }
 
     public void setTable(ArrayList<Listing> input)
@@ -136,15 +136,15 @@ public class EditListStatusLandlordView implements Component{
     	draw();
     }
 
-//    public static void main(String []args)
-//    {
-//        ArrayList <Listing> in = new ArrayList<Listing>();
-//        in.add(new Listing(1, "Apartment", 4, 5, true, "NE", "10:10", "106 5th Ave", "johndoe@gmail.com", "Active", true));
-//        in.add(new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "202 3rd Ave", "johndoe@gmail.com", "Active", true));
-//        EditListStatusLandlordView x = new EditListStatusLandlordView(in);
-//        Listing obj = new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "90 6th Ave", "johndoe@gmail.com", "Active", true);
-//        System.out.println(obj.getID());
-//    }
+    // public static void main(String []args)
+    // {
+    //     ArrayList <Listing> in = new ArrayList<Listing>();
+    //     in.add(new Listing(1, "Apartment", 4, 5, true, "NE", "10:10", "106 5th Ave", "johndoe@gmail.com", "Active", true));
+    //     in.add(new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "202 3rd Ave", "johndoe@gmail.com", "Active", true));
+    //     EditListStatusLandlordView x = new EditListStatusLandlordView(in);
+    //     Listing obj = new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "90 6th Ave", "johndoe@gmail.com", "Active", true);
+    //     System.out.println(obj.getID());
+    // }
 
     public void RegisterPerformed(ActionListener a) //For register property navbar redirect
     {
