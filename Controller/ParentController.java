@@ -26,6 +26,7 @@ public class ParentController {
 	private SummaryReportController summaryRepC;
 	private ListingController listingC;
 	private PaymentController paymentC;
+	private SubscriptionController subscriptionC;
 	
 		
 	public ParentController() {
@@ -103,6 +104,11 @@ public class ParentController {
 				summaryRepC = new SummaryReportController(listings2, manager, report2, users2);
 				summaryRepC.setView(false, true);
 				break;	
+
+	//**************************Registered renter **********************************
+		case "RegisteredRenter":
+				RenterListingView registeredRenter = new RenterListingView();
+				subscriptionC = new SubscriptionController(Rrenter, registeredRenter);
 		}
 	}
 	

@@ -40,8 +40,12 @@ public class LoginController extends ParentController{
     		super.manager.setPassword(password);
     		super.switchView("ManagerEditView");
     	}
-    	else if (role.equals("RegisteredRenter"))
+    	else if (role.equals("RegisteredRenter")){
+    		super.Rrenter.setEmail(email);
+    		super.Rrenter.setPassword(password);
+    		super.Rrenter.setRole(role);
     		super.switchView("RegisteredRenter");
+    	}
     	else super.switchView("ListingView");
     }
       
