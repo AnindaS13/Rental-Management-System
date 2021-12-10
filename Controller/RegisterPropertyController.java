@@ -68,6 +68,7 @@ public class RegisterPropertyController extends ParentController{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Listing button pressed");
 			landlordView.draw();
+			landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
 		}
 	}
 	

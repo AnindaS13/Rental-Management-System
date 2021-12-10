@@ -43,6 +43,18 @@ public class Landlord extends User {
     // {
     //     return;
     // }
+    
+    public ArrayList<Listing> LandlordListings (ArrayList<Listing> allListings){
+    	
+    	String email = getEmail(); 	// get the email of current user logged in
+    	ArrayList<Listing> result = new ArrayList<Listing>();
+    	for(int i=0; i<allListings.size(); i++) {
+    		if(allListings.get(i).email().equals(email)) {
+    			result.add(allListings.get(i));
+    		}
+    	}
+    	return result;
+    }
 
     public String editStatus()
     {
