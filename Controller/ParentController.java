@@ -1,6 +1,7 @@
 package Controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Gui.DisplayUsersManagerView;
 import Gui.EditFeesView;
@@ -132,15 +133,20 @@ public class ParentController {
 	public void notifyRenter(String propId) {
 	DBConnect db = new DBConnect();
 	//need to get all subscritons not listings.
-
+	ArrayList<Integer> temp = new ArrayList<Integer>();
 	try {
-		Rrenter.subscriptionNotice(db.getAllsubscribedSearches(), db.getListing(), propId);
+		temp = Rrenter.subscriptionNotice(db.getAllsubscribedSearches(), db.getListing(), propId);
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
 	
-	//update database for notify field.
-
+	if(temp != null) {
+		//update database for notify field.
+		for (int i=0; i<temp.size(); i++) {
+			DBConnect d = new DBConnect();
+			d.updatenotify(temp.get(0), "Y");
+			}
+		}
 	}
 	
     public static void main(String[] args) {
