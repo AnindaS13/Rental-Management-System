@@ -136,5 +136,31 @@ public class DBConnect {
     	return messages;
     }
 
+
+	public ArrayList<Listing> getAllListings()
+	{
+		ArrayList<Listing> list= new ArrayList<Listing>();
+		initializeConnection();
+		try{
+			Statement stmt = connect.createStatement();
+			String query = "SELECT * FROM listing";
+			results = stmt.executeQuery(query);
+
+			while(results.next())
+			{
+				list.add(new Listing(results.getInt("ID"), results.getString("propertyType"), results.getInt("bedrooms"),
+						results.getInt("bathrooms"), results.getBoolean("Furnished"), results.getString("quadrant"),
+						results.getString("listingTime"), results.getString("address"), results.getString("email"),
+						results.getString("status"), results.getBoolean("balance")));
+			}
+			stmt.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
    
 }
