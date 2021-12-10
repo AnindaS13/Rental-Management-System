@@ -25,7 +25,8 @@ public class PaymentController extends ParentController {
 	
 	public class renterLandlordList implements ActionListener{
         @Override
-        public void actionPerformed(ActionEvent e) {	
+        public void actionPerformed(ActionEvent e) {
+        	switchView("RenterLandlordList");
         }
     }
 	
@@ -39,7 +40,7 @@ public class PaymentController extends ParentController {
 	public class summaryReport implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-        	
+        	switchView("SummaryReportView");
         }
     }
 	
@@ -53,6 +54,7 @@ public class PaymentController extends ParentController {
 	public class updteStatus implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+        	switchView("ManagerEditView");
         }
     }
 	

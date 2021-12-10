@@ -107,7 +107,8 @@ public class RegisterPropertyController extends ParentController{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			System.out.println("renter landlord list");
+			switchView("RenterLandlordList");
 		}
 	}
 	
@@ -124,7 +125,8 @@ public class RegisterPropertyController extends ParentController{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			System.out.println("SummaryReport pressed");
+			switchView("SummaryReportView");
 		}
 	}
 	

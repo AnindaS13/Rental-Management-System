@@ -1,9 +1,11 @@
 package Controller;
 
+import Gui.DisplayUsersManagerView;
 // import Gui.SummaryReportView;
 import Gui.EditStatusManagerView;
 import Gui.SummaryReportView;
 import Model.Listing;
+import Model.Manager;
 import Model.User;
 
 import Model.Landlord;
@@ -17,23 +19,34 @@ import java.util.ArrayList;
 public class SummaryReportController extends ParentController{
 
     Listing listigModel;
-    User userModel;
+    Manager manager;
+    SummaryReportView reportView;
+    DisplayUsersManagerView allUsers;
 
-    ArrayList<User> landlords = new ArrayList<>();
-    ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
+//    ArrayList<User> landlords = new ArrayList<>();
+//    ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
 
-    SummaryReportView reportView = new SummaryReportView(listings, landlords);
+//    SummaryReportView reportView = new SummaryReportView(listings, landlords);
 
     DBConnect db = new DBConnect();
 
 
-    public SummaryReportController(Listing listingmodel, User usermodel, SummaryReportView view)
+    public SummaryReportController(Listing listingmodel, Manager manager, SummaryReportView view, DisplayUsersManagerView view2)
     {
         this.listigModel = listingmodel;
-        this.userModel = usermodel;
-
+        this.manager = manager;
+        this.allUsers = view2;
         this.reportView = view;
+        
         reportView.SummaryReportPerformed(new ReportButtonListener());
+        reportView.EditFeesPerformed(new EditFee());
+        reportView.renterLandlordPerformed(new RenterLandlords());
+        reportView.ListingsPerformed(new Listings());
+        
+        allUsers.SummaryReportPerformed(new ReportButtonListener());
+        allUsers.EditFeesPerformed(new EditFee());
+        allUsers.renterLandlordPerformed(new RenterLandlords());
+        allUsers.ListingsPerformed(new Listings());
     }
 
 
@@ -51,58 +64,87 @@ public class SummaryReportController extends ParentController{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Summary Report button pressed");
-
-
-            int totalListing = listigModel.totalListings(db.getAllListings());
-            System.out.println("Total Listings: " + totalListing);
-            reportView.setNumHousesListedField(totalListing);
-
-            int houseRented = listigModel.housesRented(db.getAllListings());
-            reportView.setNumHousesRentedField(houseRented);
-            System.out.println("Total Houses Rented: " + houseRented);
-
-            int houseActive = listigModel.housesActive(db.getAllListings());
-            reportView.setNumActiveListingsField(houseActive);
-            System.out.println("Total Houses Active: " + houseActive);
-
-            // landlord and listing arraylists
-            ArrayList<User> landlords = userModel.getLandlords(db.getUsers());
-            System.out.println("User length: " + landlords.size());
-
-            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
-            reportView.setLandlords(landlords);
-            reportView.setListings(listings);
-            System.out.println("Listing length: " + listings.size());
-            System.out.println("First Index length: " + listings.get(0).get(1).getID());
-
-
-            reportView.setTable(listings, landlords);
-
+        	setView(true, false);
+        	System.out.println("SR- Summary Report button pressed");
+//
+//            int totalListing = listigModel.totalListings(db.getAllListings());
+//            System.out.println("Total Listings: " + totalListing);
+//            reportView.setNumHousesListedField(totalListing);
+//
+//            int houseRented = listigModel.housesRented(db.getAllListings());
+//            reportView.setNumHousesRentedField(houseRented);
+//            System.out.println("Total Houses Rented: " + houseRented);
+//
+//            int houseActive = listigModel.housesActive(db.getAllListings());
+//            reportView.setNumActiveListingsField(houseActive);
+//            System.out.println("Total Houses Active: " + houseActive);
+//
+//            // landlord and listing arraylists
+//            ArrayList<User> landlords = manager.getLandlords(db.getUsers());
+//            System.out.println("User length: " + landlords.size());
+//
+//            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
+//            reportView.setLandlords(landlords);
+//            reportView.setListings(listings);
+//            System.out.println("Listing length: " + listings.size());
+//            System.out.println("First Index length: " + listings.get(0).get(1).getID());
+//
+//            reportView.setTable(listings, landlords);
+            
 
             // switchView("login"); // need to set this later after parent controller is fixed
         }
     }
+    
+    
+    public class Listings implements ActionListener{
 
-
-    public static void main(String[] args)
-    {
-        System.out.println("Summary Report controller");
-        Listing list= new Listing();
-        User user = new User();
-        ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
-        ArrayList<User> u = new ArrayList<>();
-        SummaryReportView reportview = new SummaryReportView(listings, u);
-
-        SummaryReportController controller = new SummaryReportController (list, user, reportview);
-        controller.connectDB();
-
-
-//
-
-
-
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	System.out.println("SR- Edit listing pressed");
+        	switchView("ManagerEditView");
+        }
     }
+    
+    public class EditFee implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	System.out.println("SR- edit fee clicked");
+        	switchView("EditFee");
+        }
+    }
+    
+    public class RenterLandlords implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	System.out.println("SR- renter landlord list clicked");
+        	setView(false,true);
+        }
+    }
+    
+    public void setView(boolean v1, boolean v2) {
+    	if (v1) {
+    		reportView.draw();
+    	}
+		if(v2) {
+			allUsers.draw();
+		}	
+    }
+
+//    public static void main(String[] args)
+//    {
+//        System.out.println("Summary Report controller");
+//        Listing list= new Listing();
+//        User user = new User();
+//        ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
+//        ArrayList<User> u = new ArrayList<>();
+//        SummaryReportView reportview = new SummaryReportView(listings, u);
+//
+//        SummaryReportController controller = new SummaryReportController (list, user, reportview);
+//        controller.connectDB();
+//    }
 
 
 }

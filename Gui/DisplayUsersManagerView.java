@@ -4,6 +4,7 @@ import Model.Landlord;
 import Model.RegisteredRenter;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -29,18 +30,24 @@ public class DisplayUsersManagerView implements Component{
     private Color button = new Color(0,0,0);
     private Color tableBack = new Color(31,97,141);
     private Color headBack = new Color(21,67,96);
-
+    
+    public DisplayUsersManagerView() {}
+    
     public DisplayUsersManagerView(ArrayList<Landlord> landinput, ArrayList<RegisteredRenter> rentinput)
     {
         setLandlordTable(landinput);
         setRenterTable(rentinput);
-        draw();
+        //draw();
     }
 
 
     @Override
     public void draw()
-    {
+    {	
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+        
         frame.setTitle("List of Landlords and Renters");  //Giving frame the size set and title
         frame.setResizable(true);
         frame.setSize(900,900);
@@ -121,18 +128,39 @@ public class DisplayUsersManagerView implements Component{
         }
         renterTable.setModel(model);
     }
-
-    public static void main(String []args)
+    
+    public void ListingsPerformed(ActionListener a) // For Listings navbar redirect
     {
-        ArrayList<Landlord> x = new ArrayList<Landlord>();
-        x.add(new Landlord("bob@gmail.com", "123456", "Bob", "Miller","Landlord", 123, "Hi"));
-        x.add(new Landlord("jane@gmail.com", "23232", "Jane", "Doe","Landlord", 323, "Eee"));
-        ArrayList<RegisteredRenter> r = new ArrayList<RegisteredRenter>();
-        r.add(new RegisteredRenter("john@gmail.com", "434343", "John", "Doe", "Renter", "apt", 3,5,true, "NE"));
-        r.add(new RegisteredRenter("ralph@gmail.com", "76745", "Ralph", "Griffin", "Renter", "apt", 3,5,true, "SW"));
-
-        DisplayUsersManagerView item = new DisplayUsersManagerView(x,r);
+        this.ListingsBtn.addActionListener(a);
     }
+
+    public void SummaryReportPerformed(ActionListener a) //For messages navbar redirect
+    {
+        this.SumRepBtn.addActionListener(a);
+    }
+
+
+    public void EditFeesPerformed (ActionListener a)
+    {
+        this.editFeeBtn.addActionListener(a);
+    }
+
+    public void renterLandlordPerformed(ActionListener a) //For register property navbar redirect
+    {
+        this.RenterLandlordBtn.addActionListener(a);
+    }
+
+//    public static void main(String []args)
+//    {
+//        ArrayList<Landlord> x = new ArrayList<Landlord>();
+//        x.add(new Landlord("bob@gmail.com", "123456", "Bob", "Miller","Landlord", 123, "Hi"));
+//        x.add(new Landlord("jane@gmail.com", "23232", "Jane", "Doe","Landlord", 323, "Eee"));
+//        ArrayList<RegisteredRenter> r = new ArrayList<RegisteredRenter>();
+//        r.add(new RegisteredRenter("john@gmail.com", "434343", "John", "Doe", "Renter", "apt", 3,5,true, "NE"));
+//        r.add(new RegisteredRenter("ralph@gmail.com", "76745", "Ralph", "Griffin", "Renter", "apt", 3,5,true, "SW"));
+//
+//        DisplayUsersManagerView item = new DisplayUsersManagerView(x,r);
+//    }
 
 
 }

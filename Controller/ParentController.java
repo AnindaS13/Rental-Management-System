@@ -1,5 +1,6 @@
 package Controller;
 
+import Gui.DisplayUsersManagerView;
 import Gui.EditFeesView;
 import Gui.EditListStatusLandlordView;
 import Gui.EditStatusManagerView;
@@ -7,6 +8,7 @@ import Gui.LoginView;
 import Gui.ReadMessageView;
 import Gui.RegisterPropertyView;
 import Gui.RenterListingView;
+import Gui.SummaryReportView;
 import Model.Landlord;
 import Model.Listing;
 import Model.Manager;
@@ -86,6 +88,21 @@ public class ParentController {
 				paymentC = new PaymentController (manager, feeView); 
 				break;
 				
+		case "SummaryReportView":
+				Listing listings = new Listing();
+				SummaryReportView report = new SummaryReportView();
+				DisplayUsersManagerView users = new DisplayUsersManagerView();
+				summaryRepC = new SummaryReportController(listings, manager, report, users);
+				summaryRepC.setView(true, false);
+				break;	
+				
+		case "RenterLandlordList":
+				Listing listings2 = new Listing();
+				SummaryReportView report2 = new SummaryReportView();
+				DisplayUsersManagerView users2 = new DisplayUsersManagerView();
+				summaryRepC = new SummaryReportController(listings2, manager, report2, users2);
+				summaryRepC.setView(false, true);
+				break;	
 		}
 	}
 	
