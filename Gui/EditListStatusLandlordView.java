@@ -62,6 +62,7 @@ public class EditListStatusLandlordView implements Component{
                     input.get(i).getIsFurnished(), input.get(i).getQuadrant(), input.get(i).getStatus(),
             input.get(i).getBalance()};
             model.addRow(rowData);
+
             IDList.addItem(input.get(i).getListingID());
             IDListTwo.addItem(input.get(i).getListingID());
         }

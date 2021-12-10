@@ -202,8 +202,10 @@ public class DBConnect {
 	{
 		try {
 			Statement s = connect.createStatement();
+			boolean bal = true;
 			String query = "UPDATE listing SET listingTime =? where ID="+pID;
 			String querytwo = "UPDATE listing SET status =? where ID="+pID;
+			String querythree = "UPDATE listing SET balance =? where ID="+pID;
 			PreparedStatement stmt = connect.prepareStatement(query);
 
 			stmt.setString(1,date);
@@ -215,6 +217,11 @@ public class DBConnect {
 			stmttwo.setString(1,status);
 			stmttwo.execute();
 			stmttwo.close();
+
+			PreparedStatement stmtthree = connect.prepareStatement(querythree);
+			stmtthree.setBoolean(1,bal);
+			stmtthree.execute();
+			stmtthree.close();
 		}
 		catch(SQLException e)
 		{

@@ -76,7 +76,10 @@ public class ReadMessageView implements Component{
                 ));
         messageTable.getColumnModel().getColumn(0).setPreferredWidth(100);
         messageTable.setRowHeight(100);
-        messageTable.setBackground(Color.LIGHT_GRAY);
+        messageTable.setBackground(tableBack);
+        messageTable.setForeground(Color.white);
+        messageTable.getTableHeader().setBackground(headBack);
+        messageTable.getTableHeader().setForeground(Color.white);
         scrollPane.setViewportView(messageTable);
         scrollPane.setBounds(200, 238, 466, 300);
         frame.getContentPane().add(scrollPane);
