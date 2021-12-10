@@ -148,6 +148,15 @@ public class SummaryReportController extends ParentController{
         @Override
         public void actionPerformed(ActionEvent e) {
         	System.out.println("SR- renter landlord list clicked");
+            User u = new User();
+            ArrayList<User> users = db.getUsers();
+            ArrayList<User> landlords = u.getLandlords(users);
+            ArrayList<User> registeredRenters = u.getRegisteredRenters(users);
+            System.out.println(landlords.size());
+            System.out.println(registeredRenters.size());
+            allUsers.setLandlordTable(landlords);
+            allUsers.setRenterTable(registeredRenters);
+
         	setView(false,true);
         }
     }

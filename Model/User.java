@@ -62,6 +62,19 @@ public User()
         }
         return landlords;
     }
+
+    public ArrayList<User> getRegisteredRenters(ArrayList<User> users)
+    {
+        ArrayList<User> renters = new ArrayList<User>();
+        for(int i = 0; i < users.size(); i++)
+        {
+            if(users.get(i).getRole().equals("RegisteredRenter"))
+            {
+                renters.add(users.get(i));
+            }
+        }
+        return renters;
+    }
     
     
     public String getEmail() {
