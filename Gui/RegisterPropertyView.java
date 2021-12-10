@@ -69,7 +69,6 @@ public class RegisterPropertyView implements Component
     AddPropBtn.setForeground(Color.white);
 
 
-
     JLabel type =  new JLabel("Type"); //Making the labels for the inputs
     type.setBounds(150, 200, 150, 20);
     type.setForeground(Color.white);

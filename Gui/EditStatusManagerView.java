@@ -1,13 +1,10 @@
 package Gui;
 
 import Model.Listing;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -88,7 +85,6 @@ public class EditStatusManagerView implements Component{
         submitChange.setBackground(button);
         submitChange.setForeground(Color.white);
 
-
         table.setBounds(30,200,500,300);
         table.setBackground(tableBack);
         table.setForeground(Color.white);
@@ -134,13 +130,15 @@ public class EditStatusManagerView implements Component{
         this.SumRepBtn.addActionListener(a);
     }
 
+    public void EditFeesPerformed (ActionListener a)
+    {
+        this.editFeeBtn.addActionListener(a);
+    }
+
+
     public void updateStatus(ActionListener a)
     {
         this.submitChange.addActionListener(a);
     }
 
-    public void EditFeesPerformed (ActionListener a)
-    {
-        this.editFeeBtn.addActionListener(a);
-    }
 }
