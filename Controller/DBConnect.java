@@ -9,9 +9,9 @@ import Model.User;
 
 public class DBConnect {
 
-    public final String dburl = "jdbc:mysql://localhost/newRental";
+    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
     public final String username = "root";
-    public final String password ="";
+    public final String password ="calgary1";
 
     private Connection connect;
     private ResultSet results;
@@ -104,6 +104,42 @@ public class DBConnect {
 		return users;
 	}
 
+	
+	 public ArrayList<String> getAllsubscribedSearches() throws SQLException {
+	    	PreparedStatement p=null;
+	    	ResultSet rs=null;
+	    	initializeConnection();
+	    	ArrayList<String> temp = new ArrayList<String>();
+	    	
+	    	try {
+	    		//Sql query
+		    	String sql = "select * from registeredrenter";
+		    	p= connect.prepareStatement(sql);
+		    	rs = p.executeQuery();
+		    	
+		    	//Retrieving data
+		    	while(rs.next()) {
+		    		Integer id = rs.getInt("SID");
+		    		String property = rs.getString("propertyType");
+		    		Integer bed = rs.getInt("bedrooms");
+		    		Integer bath = rs.getInt("bathrooms");
+		    		Boolean furnished = rs.getBoolean("Furnished");
+		    		String quad = rs.getString("quadrant");
+		    		
+		    		temp.add(id.toString()+"\n"+property+"\n"+bed.toString()+"\n"+
+    							bath.toString()+"\n"+furnished.toString()+"\n"+quad);
+		    	}	
+	    	}
+	    	
+	    	// Catch block to handle exception
+	        catch (SQLException e) {
+	 
+	            // Print exception pop-up on screen
+	            System.out.println(e);
+	        }
+	    	connect.close();
+	    	return temp;
+	    }
 
     
     public ArrayList<String> getMessages() {
@@ -137,6 +173,8 @@ public class DBConnect {
     }
 
 
+    
+    
 	public ArrayList<Listing> getAllListings()
 	{
 		ArrayList<Listing> list= new ArrayList<Listing>();

@@ -121,7 +121,7 @@ public class RegisterPropertyController extends ParentController{
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
-
+			notifyRenter(landlord.getEmail(),type,bed,bath,furnish, quad);
 		}
 	}
 	

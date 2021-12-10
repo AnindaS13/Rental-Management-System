@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class RegisteredRenter extends User {
 
     // email ask fk from user
@@ -34,9 +36,13 @@ public class RegisteredRenter extends User {
 
     }
 
-    public String searchForListing(String propr, int bedrooms, int bathrooms, boolean isFurnished, String quadrant) {
-        return "";
-    }
+    public void subscriptionNotice(ArrayList<String> searches, String email, String type, int bed, int bath,
+			boolean furnish, String quad) {
+    	//System.out.println("printing saved searches");
+    	for (int i=0; i<searches.size(); i++) {
+    	//	System.out.println(searches.get(i));
+    	}
+    }	
 
 
     public void extractEmail(String email) {

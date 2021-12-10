@@ -1,5 +1,7 @@
 package Controller;
 
+import java.sql.SQLException;
+
 import Gui.DisplayUsersManagerView;
 import Gui.EditFeesView;
 import Gui.EditListStatusLandlordView;
@@ -125,6 +127,21 @@ public class ParentController {
 		landlord.setPassword(password);
 		landlord.setRole(role);
 		System.out.println("setting user email to: "+ email);
+	}
+	
+	public void notifyRenter(String email, String type, int bed, int bath, boolean furnish, 
+			String quad) {
+	DBConnect db = new DBConnect();
+	
+	//need to get all subscritons not listings.
+	try {
+		Rrenter.subscriptionNotice(db.getAllsubscribedSearches(), email, type, bed, bath, furnish,  quad);
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	//update database for notify field.
+
 	}
 	
     public static void main(String[] args) {
