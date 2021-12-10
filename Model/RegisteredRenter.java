@@ -36,12 +36,31 @@ public class RegisteredRenter extends User {
 
     }
 
-    public void subscriptionNotice(ArrayList<String> searches, String email, String type, int bed, int bath,
-			boolean furnish, String quad) {
-    	//System.out.println("printing saved searches");
-    	for (int i=0; i<searches.size(); i++) {
-    	//	System.out.println(searches.get(i));
+    public ArrayList<Integer> subscriptionNotice(ArrayList<String> searches, ArrayList<Listing> activeListings, String propId) {
+    	
+    	ArrayList<Integer> temp = new ArrayList<Integer>();
+    	Listing listing = new Listing();
+    	
+    	//find the active listing with propID
+    	for (int j=0; j<activeListings.size(); j++) {
+    		if(activeListings.get(j).getID() == Integer.parseInt(propId)) {
+    			listing = activeListings.get(j);
+    			break;
+    		}
     	}
+    	
+    	if(listing != null) {
+    	for (int i=0; i<searches.size(); i++) {
+
+    		String [] t = searches.get(i).split("\n");
+	
+    		if(t[1].equals(listing.getPropertyType()) && t[2].equals(String.valueOf(listing.getNumbedRooms())) && 
+    		t[3].equals(String.valueOf(listing.getNumbathRooms())) && t[4].equals(String.valueOf(listing.getIsFurnished())) && t[5].equals(listing.getQuadrant()))  {
+    			temp.add(Integer.parseInt(t[0]));
+    			}
+    		}
+    	}
+    	return temp;
     }	
 
 

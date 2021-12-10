@@ -164,8 +164,11 @@ public class RegisterPropertyView implements Component
     }
 
     public boolean getFurn()
-    {
-        return Boolean.parseBoolean((String)furn.getSelectedItem());
+    {	
+    	if(((String)furn.getSelectedItem()).equals("Yes")){
+    			return true;
+    	}
+    	else return false;
     }
     
     public String getQuadrant()

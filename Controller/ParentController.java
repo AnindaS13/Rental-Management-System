@@ -129,13 +129,12 @@ public class ParentController {
 		System.out.println("setting user email to: "+ email);
 	}
 	
-	public void notifyRenter(String email, String type, int bed, int bath, boolean furnish, 
-			String quad) {
+	public void notifyRenter(String propId) {
 	DBConnect db = new DBConnect();
-	
 	//need to get all subscritons not listings.
+
 	try {
-		Rrenter.subscriptionNotice(db.getAllsubscribedSearches(), email, type, bed, bath, furnish,  quad);
+		Rrenter.subscriptionNotice(db.getAllsubscribedSearches(), db.getListing(), propId);
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
