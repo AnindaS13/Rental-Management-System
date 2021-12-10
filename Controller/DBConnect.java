@@ -180,6 +180,24 @@ public class DBConnect {
 
 	}
 
+	public void updateStatus(String id, String status)
+	{
+		try {
+			Statement s = connect.createStatement();
+			String query = "UPDATE listing SET status =? where ID="+id;
+
+			PreparedStatement stmt = connect.prepareStatement(query);
+
+			stmt.setString(1,status);
+			stmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
 	public void addListing(String email, String type, int bed, int bath, boolean furnish, String address, String quad, String date, String status) throws SQLException
 	{
 
