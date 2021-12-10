@@ -88,6 +88,7 @@ public class RegisterPropertyController extends ParentController{
 			String status = "Active";
 			db.updateListingDate(temp,listTime, status);
 			registerProperty.draw();
+			notifyRenter(temp);
 		}
 	}
 
@@ -136,7 +137,6 @@ public class RegisterPropertyController extends ParentController{
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
-			notifyRenter(landlord.getEmail(),type,bed,bath,furnish, quad);
 		}
 	}
 	

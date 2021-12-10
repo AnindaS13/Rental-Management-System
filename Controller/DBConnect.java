@@ -79,8 +79,6 @@ public class DBConnect {
     }
 
 
-
-
 	public ArrayList<User> getUsers()
 	{
 		ArrayList<User> users = new ArrayList<User>();
@@ -199,7 +197,8 @@ public class DBConnect {
 
 		return list;
 	}
-	public void updateListingDate(String pID, String date, String status)
+
+  public void updateListingDate(String pID, String date, String status)
 	{
 		try {
 			Statement s = connect.createStatement();
@@ -222,6 +221,25 @@ public class DBConnect {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void updatenotify(Integer id, String status)
+	{	
+			initializeConnection();
+			try {
+				Statement s = connect.createStatement();
+				String query = "UPDATE registeredrenter SET notify =? where SID=?";
+	
+				PreparedStatement stmt = connect.prepareStatement(query);
+				stmt.setString(1,status);
+				stmt.setInt(2, id);
+				stmt.execute();
+				stmt.close();
+			}
+			catch(SQLException e)
+			{
+				e.printStackTrace();
+			}
 	}
 
 	public void updateStatus(String id, String status)
