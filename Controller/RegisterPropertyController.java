@@ -44,6 +44,7 @@ public class RegisterPropertyController extends ParentController{
 		landlordView.ListingsPerformed(new ListingButton());
 		landlordView.MessagesPerformed(new MessageButton());
 		landlordView.paySubmission(new PayButton());
+		landlordView.updateStatus(new UpdateStatusButton());
 	//	landlordView.AddPropPerformed(new AddPropertyButton());
 				
 		managerView.renterLandlordPerformed(new managerRenterLandlordList());
@@ -59,6 +60,19 @@ public class RegisterPropertyController extends ParentController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("register button pressed");
+			registerProperty.draw();
+		}
+	}
+
+	public class UpdateStatusButton implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println("Update status pressed");
+			String id = landlordView.getIDForStatusUpdateInput();
+			String status = landlordView.getStatus();
+			db.updateStatus(id, status);
 			registerProperty.draw();
 		}
 	}
