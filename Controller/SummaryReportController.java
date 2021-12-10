@@ -1,6 +1,8 @@
 package Controller;
 
 // import Gui.SummaryReportView;
+import Gui.EditStatusManagerView;
+import Gui.SummaryReportView;
 import Model.Listing;
 import Model.User;
 
@@ -16,17 +18,22 @@ public class SummaryReportController extends ParentController{
 
     Listing listigModel;
     User userModel;
-    // SummaryReportView reportView;
-    DBConnect db;
+
+    ArrayList<User> landlords = new ArrayList<>();
+    ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
+
+    SummaryReportView reportView = new SummaryReportView(listings, landlords);
+
+    DBConnect db = new DBConnect();
 
 
-    public SummaryReportController(Listing listingmodel, User usermodel) // SummaryReportView view)
+    public SummaryReportController(Listing listingmodel, User usermodel, SummaryReportView view)
     {
         this.listigModel = listingmodel;
         this.userModel = usermodel;
 
-        // this.reportView = view;
-        // reportView.SummaryReportButton(new ReportButtonListener());
+        this.reportView = view;
+        reportView.SummaryReportPerformed(new ReportButtonListener());
     }
 
 
@@ -44,31 +51,34 @@ public class SummaryReportController extends ParentController{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(" Summary Report button pressed");
+            System.out.println("Summary Report button pressed");
 
-            try {
-                int totalListing = listigModel.totalListings(db.getListing());
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
 
-            try {
-                int houseRented = listigModel.housesRented(db.getListing());
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            int totalListing = listigModel.totalListings(db.getAllListings());
+            System.out.println("Total Listings: " + totalListing);
+            reportView.setNumHousesListedField(totalListing);
 
+            int houseRented = listigModel.housesRented(db.getAllListings());
+            reportView.setNumHousesRentedField(houseRented);
+            System.out.println("Total Houses Rented: " + houseRented);
+
+            int houseActive = listigModel.housesActive(db.getAllListings());
+            reportView.setNumActiveListingsField(houseActive);
+            System.out.println("Total Houses Active: " + houseActive);
+
+            // landlord and listing arraylists
             ArrayList<User> landlords = userModel.getLandlords(db.getUsers());
-            try {
-                ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getListing());
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            System.out.println("User length: " + landlords.size());
 
-            // view.setTotalListed(totalListing);
-            // view.setHouseRented(houseRented);
-            // view.setLandlord(landlords);
-            // view.setListings(listings);
+            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
+            reportView.setLandlords(landlords);
+            reportView.setListings(listings);
+            System.out.println("Listing length: " + listings.size());
+            System.out.println("First Index length: " + listings.get(0).get(1).getID());
+
+
+            reportView.setTable(listings, landlords);
+
 
             // switchView("login"); // need to set this later after parent controller is fixed
         }
@@ -80,32 +90,15 @@ public class SummaryReportController extends ParentController{
         System.out.println("Summary Report controller");
         Listing list= new Listing();
         User user = new User();
+        ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
+        ArrayList<User> u = new ArrayList<>();
+        SummaryReportView reportview = new SummaryReportView(listings, u);
 
-//        SummaryReportController controller = new SummaryReportController (list, user);
-//        controller.connectDB();
+        SummaryReportController controller = new SummaryReportController (list, user, reportview);
+        controller.connectDB();
+
+
 //
-//        try {
-//            int totalListing = list.totalListings(controller.db.getListing());
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        try {
-//            int houseRented = list.housesRented(controller.db.getListing());
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        ArrayList<User> landlords = user.getLandlords(controller.db.getUsers());
-//        try {
-//            ArrayList<ArrayList<Listing>> listings = list.getLandlordListings(landlords, controller.db.getListing());
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-
-
-
-        // SummaryReportView view = new SummaryReportView();
 
 
 
