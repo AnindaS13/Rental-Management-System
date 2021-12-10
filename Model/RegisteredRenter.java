@@ -27,7 +27,7 @@ public class RegisteredRenter extends User {
     }
 
     public void subscribe() {
-
+    	
     }
 
     public void unsubscribe() {

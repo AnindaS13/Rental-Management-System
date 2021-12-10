@@ -20,11 +20,6 @@ public class ReadMessageView implements Component{
     private JButton ListingsBtn= new JButton("Listings");
     private JButton MessagesBtn= new JButton("Messages");
     private ArrayList<String> data = new ArrayList<String>();
-//    private String  [][] data = {{"1", "I would like this listing."},
-//            {"2", "This listing of yours interests me."},
-//            {"3", "Can i get in contact with you in regards to this listing."}};
-//    private String [] column = {"mID", "Message"};
-//    private JTable messageTable = new JTable(data,column);
     private JTable messageTable = new JTable();
     private JScrollPane scrollPane = new JScrollPane();
     private Color back = new Color(25, 25, 112);

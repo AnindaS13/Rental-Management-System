@@ -22,6 +22,7 @@ public class LoginController extends ParentController{
         this.loginView = view;
 
         loginView.loginButton(new LoginButtonListener());
+        loginView.guestLoginButton(new guestLogin());
     }
 
     public void connectDB() {
@@ -46,7 +47,7 @@ public class LoginController extends ParentController{
     		super.Rrenter.setRole(role);
     		super.switchView("RegisteredRenter");
     	}
-    	else super.switchView("ListingView");
+    	else super.switchView("UnregisteredRenter");
     }
 
 //    public void setRole(String username, String role)
@@ -74,15 +75,23 @@ public class LoginController extends ParentController{
             // loginView.setOutput(db.getListing());
         }
     }
+    
+    public class guestLogin implements ActionListener{
 
-    public static void main(String[] args)
-    {
-        System.out.println("Login controller");
-        User u = new User();
-        LoginView l = new LoginView();
-        LoginController controller = new LoginController (u, l);
-        controller.connectDB();
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	switchView("","","");
+        }
     }
+
+//    public static void main(String[] args)
+//    {
+//        System.out.println("Login controller");
+//        User u = new User();
+//        LoginView l = new LoginView();
+//        LoginController controller = new LoginController (u, l);
+//        controller.connectDB();
+//    }
 
 
 }

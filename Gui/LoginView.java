@@ -27,22 +27,12 @@ public class LoginView implements Component {
         draw();
     }
 
-    public void searchButton(ActionListener actionListener) { // should be deleted but deleting affects the controller
-        this.search.addActionListener(actionListener);
-    }
-    public void subscribeButton(ActionListener actionListener) { // should be deleted but deleting affects the controller
-        this.subscribe.addActionListener(actionListener);
-    }
-
-    public void unsubscribeButton(ActionListener actionListener) { // should be deleted but deleting affects the controller
-        this.unsubscribe.addActionListener(actionListener);
-    }
-
     public void loginButton(ActionListener actionListener) {
         this.loginButton.addActionListener(actionListener);
     }
 
-    public void guestLoginButton(ActionListener actionListener) {this.guestLoginButton.addActionListener(actionListener);}
+    public void guestLoginButton(ActionListener actionListener) 
+    	{this.guestLoginButton.addActionListener(actionListener);}
     
     @SuppressWarnings("serial")
     @Override

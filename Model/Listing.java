@@ -134,7 +134,7 @@ public class Listing {
     {
         ArrayList<Listing> filteredlist = new ArrayList<Listing>();
         for (int i = 0; i < listings.size(); i++)
-        {	System.out.println(furnished);
+        {	//System.out.println(furnished);
             if (listings.get(i).getPropertyType().equals(propType) && listings.get(i).getNumbedRooms() == bedrooms && listings.get(i).getNumbathRooms() == bathrooms 
             	&& listings.get(i).getQuadrant().equals(quad)  && listings.get(i).getIsFurnished() == furnished )
             {	
