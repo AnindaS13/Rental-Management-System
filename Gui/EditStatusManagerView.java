@@ -46,7 +46,7 @@ public class EditStatusManagerView implements Component{
     {
         Object columnNames[] = { "Property ID", "Type", "Bedrooms", "Bathrooms", "Furnished", "Quadrant", "Status", "Balance"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
+        table.setModel(model);
         for(int i=0; i< input.size(); i++) {
             Object rowData[] = {input.get(i).getListingID(), input.get(i).getPropertyType(),
                     input.get(i).getNumbedRooms(), input.get(i).getNumbathRooms(),
@@ -55,8 +55,6 @@ public class EditStatusManagerView implements Component{
             model.addRow(rowData);
         }
         table.setModel(model);
-        System.out.println("here");
-        System.out.println("here");
     }
 
     @Override

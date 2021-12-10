@@ -144,7 +144,7 @@ public class RegisterPropertyController extends ParentController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Edit listing pressed");
-			switchView("ManagerEditView");
+			managerView.setTable(db.getAllListings());
 		}
 	}
 	
@@ -184,6 +184,10 @@ public class RegisterPropertyController extends ParentController{
 		if(v3) {
 			managerView.draw();
 		}
+	}
+	
+	public void listingsForManager() {
+		managerView.setTable(db.getAllListings());
 	}
 	
 //	public static void main(String[] args) {

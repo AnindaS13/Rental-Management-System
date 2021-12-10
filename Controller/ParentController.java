@@ -81,6 +81,7 @@ public class ParentController {
 			    Listing model3 = new Listing();
 			    registerPropC = new RegisterPropertyController (landlord, manager, landlordEdit3, managerEdit3, r3);
 			    registerPropC.setView(false, false, true);
+			    registerPropC.listingsForManager();
 				break;
 		
 		case "EditFee":
