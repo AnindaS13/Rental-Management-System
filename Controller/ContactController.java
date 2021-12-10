@@ -58,7 +58,7 @@ public class ContactController extends ParentController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Message button pressed");
-			System.out.println("user email in contact controller is: "+landlord.getEmail());
+			//System.out.println("user email in contact controller is: "+landlord.getEmail());
 			ArrayList<String> userMsg = landlord.RetreiveMessage(db.getMessages());
 			messages.setOutput(userMsg);
 		}

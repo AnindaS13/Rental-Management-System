@@ -32,11 +32,11 @@ public class ReadMessageView implements Component{
     }
 
     public void setOutput(ArrayList<String> input) {
-    	Object columnNames[] = {"Property ID", "Message"};
+    	Object columnNames[] = {"Message"};
     	DefaultTableModel model = new DefaultTableModel(columnNames, 0);
     	
     	for(int i=0; i< input.size(); i++) {
-	    	Object rowData[] = {"", input.get(i)};
+	    	Object rowData[] = {input.get(i)};
 	    	model.addRow(rowData);
     	}
     	messageTable.setModel(model);
@@ -71,11 +71,10 @@ public class ReadMessageView implements Component{
 
         messageTable.setModel(new DefaultTableModel(data.toArray(new Object[][] {}),
                 new String [] {
-                        "Property ID", "Message"
+                        "Message"
                 }
                 ));
         messageTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-        messageTable.getColumnModel().getColumn(1).setPreferredWidth(100);
         messageTable.setRowHeight(100);
         messageTable.setBackground(Color.LIGHT_GRAY);
         scrollPane.setViewportView(messageTable);

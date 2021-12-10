@@ -27,6 +27,7 @@ public class SubscriptionController {
 		
 		listingView.searchButton(new search());
 		listingView.subscribeButton(new subscribe());
+		listingView.returnMessage(new sendMessage());
 	}
 	
 	public class search implements ActionListener{
@@ -53,6 +54,16 @@ public class SubscriptionController {
 		public void actionPerformed(ActionEvent e) {
 			db.saveSearch(registeredRenter.getEmail(), listingView.getPropertyType(), listingView.getBedrooms(),
 						listingView.getBathrooms(), listingView.getFurnished(), listingView.getQuadrant());
+		}
+	}
+	
+	public class sendMessage implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("SC- send message pressed");
+			String email =listingModel.landLordIdFromListing(db.getAllListings(), listingView.getPropertyID());
+			db.saveMessages(email, listingView.getMessage(), listingView.getPropertyID());
 		}
 	}
 }

@@ -197,6 +197,17 @@ public class Listing {
         return count;
     }
 
-
-
+    public String landLordIdFromListing (ArrayList<Listing> listings, int propID)
+    {
+        String temp = null;
+        for (int i = 0; i < listings.size(); i++)
+        {	//System.out.println(furnished);
+            if (listings.get(i).getID() == propID)
+            {	
+                temp =listings.get(i).email();
+                break;
+            }
+        }
+        return temp;
+    }
 }

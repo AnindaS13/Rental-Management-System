@@ -9,9 +9,9 @@ import Model.User;
 
 public class DBConnect {
 
-    public final String dburl = "jdbc:mysql://localhost/rentalproperties";
-    public final String username = "ENSF409";
-    public final String password ="ensf409";
+    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
+    public final String username = "root";
+    public final String password ="calgary1";
 
     private Connection connect;
     private ResultSet results;
@@ -121,8 +121,9 @@ public class DBConnect {
 	    	//Retrieving data
 	    	while(rs.next()) {
 	    		String email = rs.getString("lemail");
-	    		String message = rs.getString("message");	    		
-	    		messages.add(email+"\n"+message);
+	    		String message = rs.getString("message");	    
+	    		Integer propId = rs.getInt("PropertyID");
+	    		messages.add(email+"\n"+message+"\n"+propId.toString());
 	    	}	
     	}
     	
@@ -228,4 +229,28 @@ public class DBConnect {
 	}
 
    
+	public ArrayList<Listing> saveMessages(String email, String message, int propID)
+	{
+		ArrayList<Listing> list= new ArrayList<Listing>();
+		initializeConnection();
+		try{
+			Statement stmt = connect.createStatement();
+			String query = " insert into landlord (lemail, message, propertyID)"
+					+ " values (?, ?, ?)";
+
+			// sql insert preparedstatement
+			PreparedStatement preparedStmt = connect.prepareStatement(query);
+			preparedStmt.setString (1, email);
+			preparedStmt.setString (2, message);
+			preparedStmt.setInt   (3, propID);
+
+			preparedStmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 }

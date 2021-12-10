@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Controller.SubscriptionController.sendMessage;
 import Gui.RenterListingView;
 import Model.Listing;
 
@@ -20,6 +21,7 @@ public class ListingController extends ParentController {
 		this.listingView = view;
 		this.listingView.draw();
 		listingView.searchButton(new ButtonListener());	
+		listingView.returnMessage(new sendMessage());
 	}
 	
 	public void connectDB() {
@@ -48,6 +50,16 @@ public class ListingController extends ParentController {
 			listingView.setOutput(temp);
 //			switchView("login");
 			
+		}
+	}
+	
+	public class sendMessage implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("SC- send message pressed");
+			String email =listingModel.landLordIdFromListing(db.getAllListings(), listingView.getPropertyID());
+			db.saveMessages(email, listingView.getMessage(), listingView.getPropertyID());
 		}
 	}
 	
