@@ -9,6 +9,8 @@ import Gui.RenterListingView;
 import Model.Listing;
 import Model.RegisteredRenter;
 
+//controller for registered renters to subscribe to searches
+// it has listing view
 public class SubscriptionController {
 	
 	Listing listingModel;
@@ -23,15 +25,19 @@ public class SubscriptionController {
 		this.listingModel = l;
 		
 		listingView.setRole("RegisteredRenter");
+		
+		//checking for notification for this user based on subscribed searches
 		checkNotifications();
 		listingView.draw();
 		
+		//actionlisteners for listingview
 		listingView.searchButton(new search());
 		listingView.subscribeButton(new subscribe());
 		listingView.returnMessage(new sendMessage());
 		listingView.notifyBtn(new notificationBtn());
 	}
 	
+	//implementation of actionlistener
 	public class search implements ActionListener{
 
 		@Override
@@ -78,6 +84,8 @@ public class SubscriptionController {
 		}
 	}
 	
+	
+	//checking if there are listing listed matching the subscribed searches and shows notification as needed.
 	public void checkNotifications() {
 		
 		ArrayList<String> notifications = new ArrayList<String>();
