@@ -135,7 +135,7 @@ public class RenterListingView implements Component {
         scrollPane.setBounds(150, 225, 600, 300);
         scrollPane.setViewportView(table);
 
-        PropertyType.setModel(new DefaultComboBoxModel(new String[] {"Appartment", "Attached", "Detached", "Townhouse", "Studio", "Basement"}));
+        PropertyType.setModel(new DefaultComboBoxModel(new String[] {"Apartment", "Attached", "Detached", "Townhouse", "Studio", "Basement"}));
         PropertyType.setBackground(tableBack);
         PropertyType.setFont(new Font("SansSerif", Font.PLAIN, 15));
         PropertyType.setBounds(100, 100, 100, 40);

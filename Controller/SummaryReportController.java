@@ -71,55 +71,55 @@ public class SummaryReportController extends ParentController{
         	setView(true, false);
         	System.out.println("SR- Summary Report button pressed");
 
-//            int totalListing = listigModel.totalListings(db.getAllListings());
-//            System.out.println("Total Listings: " + totalListing);
-//            reportView.setNumHousesListedField(totalListing);
-//
-//            int houseRented = listigModel.housesRented(db.getAllListings());
-//            reportView.setNumHousesRentedField(houseRented);
-//            System.out.println("Total Houses Rented: " + houseRented);
-//
-//            int houseActive = listigModel.housesActive(db.getAllListings());
-//            reportView.setNumActiveListingsField(houseActive);
-//            System.out.println("Total Houses Active: " + houseActive);
-//
-//            // landlord and listing arraylists
-//            ArrayList<User> landlords = manager.getLandlords(db.getUsers());
-//            System.out.println("User length: " + landlords.size());
-//
-//            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
-//
-//            // now filter listings based on time period
-//
-//            LocalDate currDate = LocalDate.now();
-//            Date cdate = new Date(currDate.getDayOfYear(), currDate.getMonthValue(), currDate.getYear());
-//            LocalDate lastDate = currDate.minusDays(60); // (long) reportView.getTimePeriod());
-//            Date ldate = new Date(lastDate.getDayOfYear(), lastDate.getMonthValue(), lastDate.getYear());
-//
-//            for(int i = 0; i < landlords.size(); i++)
-//            {
-//                for(int j = 0; j < listings.get(i).size(); j++)
-//                {
-//                    String year = listings.get(i).get(j).getListingTime().substring(0, 4);
-//                    String month = listings.get(i).get(j).getListingTime().substring(5, 7);
-//                    String day = listings.get(i).get(j).getListingTime().substring(8, 10);
-//                    Date listDate = new Date(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
-//
-//                    if(listDate.before(ldate))
-//                    {
-//                        listings.get(i).remove(j);
-//                    }
-//
-//                }
-//            }
-//
-//            // do setters
-//            reportView.setLandlords(landlords);
-//            reportView.setListings(listings);
-//            System.out.println("Listing length: " + listings.size());
-//            System.out.println("First Index length: " + listings.get(0).get(1).getID());
-//
-//            reportView.setTable(listings, landlords);
+            int totalListing = listigModel.totalListings(db.getAllListings());
+            System.out.println("Total Listings: " + totalListing);
+            reportView.setNumHousesListedField(totalListing);
+
+            int houseRented = listigModel.housesRented(db.getAllListings());
+            reportView.setNumHousesRentedField(houseRented);
+            System.out.println("Total Houses Rented: " + houseRented);
+
+            int houseActive = listigModel.housesActive(db.getAllListings());
+            reportView.setNumActiveListingsField(houseActive);
+            System.out.println("Total Houses Active: " + houseActive);
+
+            // landlord and listing arraylists
+            ArrayList<User> landlords = manager.getLandlords(db.getUsers());
+            System.out.println("User length: " + landlords.size());
+
+            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
+
+            // now filter listings based on time period
+
+            LocalDate currDate = LocalDate.now();
+            Date cdate = new Date(currDate.getDayOfYear(), currDate.getMonthValue(), currDate.getYear());
+            LocalDate lastDate = currDate.minusDays(60); // (long) reportView.getTimePeriod());
+            Date ldate = new Date(lastDate.getDayOfYear(), lastDate.getMonthValue(), lastDate.getYear());
+
+            for(int i = 0; i < landlords.size(); i++)
+            {
+                for(int j = 0; j < listings.get(i).size(); j++)
+                {
+                    String year = listings.get(i).get(j).getListingTime().substring(0, 4);
+                    String month = listings.get(i).get(j).getListingTime().substring(5, 7);
+                    String day = listings.get(i).get(j).getListingTime().substring(8, 10);
+                    Date listDate = new Date(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
+
+                    if(listDate.before(ldate))
+                    {
+                        listings.get(i).remove(j);
+                    }
+
+                }
+            }
+
+            // do setters
+            reportView.setLandlords(landlords);
+            reportView.setListings(listings);
+            System.out.println("Listing length: " + listings.size());
+            System.out.println("First Index length: " + listings.get(0).get(1).getID());
+
+            reportView.setTable(listings, landlords);
             
 
             // switchView("login"); // need to set this later after parent controller is fixed
