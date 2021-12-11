@@ -9,9 +9,9 @@ import Model.User;
 
 public class DBConnect {
 
-    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
-    public final String username = "root";
-    public final String password ="calgary1";
+    public final String dburl = "jdbc:mysql://localhost/rentalproperties";
+    public final String username = "ENSF409";
+    public final String password ="ensf409";
 
     private Connection connect;
     private ResultSet results;
@@ -276,6 +276,27 @@ public class DBConnect {
 		}
 	}
 
+
+	public void managerUpdateStatus(String id, String status)
+	{
+		try {
+			Statement s = connect.createStatement();
+			String query = "UPDATE listing SET status =? where ID="+id;
+
+			PreparedStatement stmt = connect.prepareStatement(query);
+
+			stmt.setString(1,status);
+			stmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			System.out.println("Not a valid ID");
+		}
+	}
+
+
 	//add new property information when landlords register property
 	public void addListing(String email, String type, int bed, int bath, boolean furnish, String address, String quad, String date, String status) throws SQLException
 	{
@@ -308,6 +329,31 @@ public class DBConnect {
 		}
 
 		System.out.println("Added new listing");
+	}
+
+	public void addFee(int feeAmount, int feePeriod) throws SQLException
+	{
+
+		initializeConnection();
+
+		try {
+
+			Statement s = connect.createStatement();
+			String query = "INSERT INTO editfees (FeeAmount, Days) VALUES (?,?)";
+
+			PreparedStatement stmt = connect.prepareStatement(query);
+
+			stmt.setInt(1, feeAmount);
+			stmt.setInt(2, feePeriod);
+
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+
+		System.out.println("Added new fee");
 	}
 
 
