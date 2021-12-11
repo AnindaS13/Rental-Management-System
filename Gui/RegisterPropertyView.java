@@ -13,9 +13,15 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Register property view is for the landlords
+ * and this view is where they register their properties
+ * and fill in the appropriate information for them.
+ * These properties get added to the database after.
+ */
 public class RegisterPropertyView implements Component
 {
-    private String types [] = {"Apartment", "Detached Home", "Attached Home", "Townhouse"};
+    private String types [] = {"Apartment", "Detached Home", "Attached Home", "Townhouse"}; //Below are most of the components for the java gui being created
     private String furnst [] = {"Yes", "No"};
     private String q[] = {"NE", "SW", "SE", "NW"};
     private JButton RegisterBtn= new JButton("Register a Property");
@@ -41,7 +47,7 @@ public class RegisterPropertyView implements Component
     }
 
     @Override
-    public void draw()
+    public void draw() //This method is responsible for adding all the gui components to the frame
     {
 
     frame.getContentPane().removeAll();
@@ -134,10 +140,10 @@ public class RegisterPropertyView implements Component
     frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        RegisterPropertyView x = new RegisterPropertyView();
-    }
-
+ 
+    /**
+     * Below are action listeners for the navbar and also the button to submit a new property to be registered
+     */
     public void RegisterPerformed(ActionListener a) //For register property navbar redirect
     {
         this.RegisterBtn.addActionListener(a);
@@ -158,6 +164,9 @@ public class RegisterPropertyView implements Component
         this.AddPropBtn.addActionListener(a);
     }
 
+    /**
+     * below are gettrs/setters for the database and controller to get the info from inputs to add in
+     */
     public String getTypeInput()
     {
         return (String)typeBox.getSelectedItem();

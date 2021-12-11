@@ -8,8 +8,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * This class is responsible for the edit status manager view.
+ * This view contains a table which contains all the properties in the database that are registered
+ * and displays them to the manager. The manager can edit the status of the listings as they see fit.
+ */
 public class EditStatusManagerView implements Component{
-    private ArrayList<Listing> listings = new ArrayList<Listing>();
+    private ArrayList<Listing> listings = new ArrayList<Listing>();  //Most of these variables are for the GUI components being added to the frame
     List<String[]> values = new ArrayList<String[]>();
     private JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane();
@@ -34,7 +39,7 @@ public class EditStatusManagerView implements Component{
     {
     }
 
-    public EditStatusManagerView(ArrayList<Listing> input)
+    public EditStatusManagerView(ArrayList<Listing> input) //The constructor gets an arraylist of all registered properties to pass it to et a table with it for the view
     {
         setTable(input);
         draw();
@@ -44,7 +49,7 @@ public class EditStatusManagerView implements Component{
     	frame.getContentPane().removeAll();
     }
     
-    public void setTable(ArrayList<Listing> input)
+    public void setTable(ArrayList<Listing> input) //This function is setting the table with the value of the arraylist of all properties
     {
         Object columnNames[] = { "Property ID", "Type", "Bedrooms", "Bathrooms", "Furnished", "Quadrant", "Status", "Balance"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
@@ -60,7 +65,7 @@ public class EditStatusManagerView implements Component{
     }
 
     @Override
-    public void draw()
+    public void draw() //This function is adding all the GUI compoenents to the frame
     {
 
 
@@ -122,17 +127,10 @@ public class EditStatusManagerView implements Component{
         frame.setVisible(true);
     }
 
-    public static void main(String []args)
-    {
-        ArrayList <Listing> in = new ArrayList<Listing>();
-        in.add(new Listing(1, "Apartment", 4, 5, true, "NE", "10:10", "10 5th Ave",  "johndoe@gmail.com", "Active", true));
-        in.add(new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "20 9th Ave", "johndoe@gmail.com", "Active", true));
-        EditStatusManagerView x = new EditStatusManagerView(in);
-        Listing obj = new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "206 9th Ave", "johndoe@gmail.com", "Active", true);
-        System.out.println(obj.getID());
-        //x.draw();
-    }
-    
+
+    /**
+     * Below are a few action listeners for the navbars and for the submit changes button for the status change
+     */
     public void renterLandlordPerformed(ActionListener a) //For register property navbar redirect
     {
         this.RenterLandlordBtn.addActionListener(a);
@@ -159,6 +157,9 @@ public class EditStatusManagerView implements Component{
         this.submitChange.addActionListener(a);
     }
 
+    /**
+     * Below are some getters used by the controller and DB to get the values in the input fields and used them to update
+     */
     public String getEnteredStatus()
     {
         return (String)StatusList.getSelectedItem();
