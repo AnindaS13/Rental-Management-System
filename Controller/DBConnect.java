@@ -11,7 +11,7 @@ public class DBConnect {
 
     public final String dburl = "jdbc:mysql://localhost/newRental";
     public final String username = "root";
-    public final String password ="As.51299001";
+    public final String password ="";
 
     private Connection connect;
     private ResultSet results;
