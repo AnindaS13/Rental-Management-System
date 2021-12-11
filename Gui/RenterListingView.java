@@ -103,7 +103,7 @@ public class RenterListingView implements Component {
         logOutBtn.setBackground(tableBack);
         logOutBtn.setForeground(Color.white);
         navBarpanel.setLayout(new GridLayout());
-        frame.getContentPane().add(logOutBtn);
+//        frame.getContentPane().add(logOutBtn);
 
         JLabel title = new JLabel("View Listings");
         title.setBackground(Color.black);
