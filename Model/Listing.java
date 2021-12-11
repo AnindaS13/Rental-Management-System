@@ -1,5 +1,6 @@
 package Model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Listing {
@@ -209,5 +210,26 @@ public class Listing {
             }
         }
         return temp;
+    }
+
+
+    public ArrayList<ArrayList<Listing>> filterTime (ArrayList<ArrayList<Listing>> allList, LocalDate date)
+    {
+        ArrayList<ArrayList<Listing>> filteredlist = new ArrayList<>();
+
+        for(int i = 0; i < allList.size(); i++)
+        {
+            filteredlist.add(new ArrayList<Listing>());
+            for(int j = 0; j < allList.get(i).size(); j++)
+            {
+                LocalDate listDate = LocalDate.parse(allList.get(i).get(j).getListingTime());
+
+                if(listDate.isAfter(date) || listDate.isEqual(date)) {
+                    filteredlist.get(i).add(allList.get(i).get(j));
+                }
+            }
+        }
+
+        return filteredlist;
     }
 }
