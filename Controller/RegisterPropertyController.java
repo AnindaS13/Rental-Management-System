@@ -34,6 +34,8 @@ public class RegisterPropertyController extends ParentController{
 		this.landlordView = lp;
 		this.managerView = mp;
 		registerProperty.draw();
+		// displaying all landlords listings
+		landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
 		
 		registerProperty.RegisterPerformed(new RegisterButton());
 		registerProperty.ListingsPerformed(new ListingButton());
@@ -43,6 +45,8 @@ public class RegisterPropertyController extends ParentController{
 		landlordView.RegisterPerformed(new RegisterButton());
 		landlordView.ListingsPerformed(new ListingButton());
 		landlordView.MessagesPerformed(new MessageButton());
+		landlordView.paySubmission(new PayButton());
+		landlordView.updateStatus(new UpdateStatusButton());
 	//	landlordView.AddPropPerformed(new AddPropertyButton());
 				
 		managerView.renterLandlordPerformed(new managerRenterLandlordList());
@@ -61,6 +65,37 @@ public class RegisterPropertyController extends ParentController{
 			registerProperty.draw();
 		}
 	}
+
+	public class UpdateStatusButton implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println("Update status pressed");
+			String id = landlordView.getIDForStatusUpdateInput();
+			String status = landlordView.getStatus();
+			db.updateStatus(id, status);
+			landlordView.draw();
+			landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
+		}
+	}
+
+	public class PayButton implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Pay button pressed");
+			String temp = landlordView.getpayInput();
+			LocalDate date = LocalDate.now();
+			String listTime = date.toString();
+			String status = "Active";
+			db.updateListingDate(temp,listTime, status);
+			landlordView.draw();
+			landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
+			notifyRenter(temp);
+		}
+	}
+
 	
 	public class ListingButton implements ActionListener{
 
@@ -106,7 +141,6 @@ public class RegisterPropertyController extends ParentController{
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
-
 		}
 	}
 	
@@ -129,7 +163,7 @@ public class RegisterPropertyController extends ParentController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Edit listing pressed");
-			switchView("ManagerEditView");
+			managerView.setTable(db.getAllListings());
 		}
 	}
 	
@@ -169,6 +203,10 @@ public class RegisterPropertyController extends ParentController{
 		if(v3) {
 			managerView.draw();
 		}
+	}
+	
+	public void listingsForManager() {
+		managerView.setTable(db.getAllListings());
 	}
 	
 //	public static void main(String[] args) {

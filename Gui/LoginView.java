@@ -19,9 +19,13 @@ public class LoginView implements Component {
 
     private JTextField username =new JTextField();
     private JPasswordField password =new JPasswordField();
-    JButton loginButton=new JButton("LOGIN");
+    JButton loginButton=new JButton("Login");
     JButton guestLoginButton =new JButton("Guest Login");
     private JButton login = new JButton("Login");
+    private Color back = new Color(25, 25, 112);
+    private Color button = new Color(0,0,0);
+
+    private JLabel title = new JLabel("Rental Property Management System");
 
     public LoginView() {
         draw();
@@ -37,8 +41,7 @@ public class LoginView implements Component {
     @SuppressWarnings("serial")
     @Override
     public void draw() {
-        Color foreGroundColor = Color.BLACK;
-        Color backgroundColor = Color.lightGray;
+
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
@@ -54,12 +57,26 @@ public class LoginView implements Component {
         JLabel userLabel=new JLabel("Username");
         JLabel passwordLabel=new JLabel("Password");
 
-        userLabel.setBounds(50 + 0,400 + 0,100,30);
-        passwordLabel.setBounds(50 + 0,450 + 0,100,30);
-        username.setBounds(150 + 0,400 + 0,150,30);
-        password.setBounds(150 + 0,450 + 0,150,30);
-        loginButton.setBounds(50 + 0,550 + 0,100,30);
-        guestLoginButton.setBounds(200 + 0,550 + 0,150,30);
+        userLabel.setBounds(400,300,100,30);
+        userLabel.setForeground(Color.white);
+        userLabel.setFont(new Font("Calibri", Font.PLAIN,  20));
+        passwordLabel.setBounds(400,450,100,30);
+        passwordLabel.setForeground(Color.white);
+        passwordLabel.setFont(new Font("Calibri", Font.PLAIN,  20));
+        username.setBounds(350,350,200,35);
+        username.setFont(new Font("Calibri", Font.PLAIN,  18));
+        password.setBounds(350,500,200,35);
+        password.setFont(new Font("Calibri", Font.PLAIN,  18));
+        loginButton.setBounds(230,640,150,60);
+        loginButton.setBackground(button);
+        loginButton.setForeground(Color.white);
+        guestLoginButton.setBounds(560,640,150,60);
+        guestLoginButton.setForeground(Color.WHITE);
+        guestLoginButton.setBackground(button);
+        title.setForeground(Color.white);
+        title.setFont(new Font("Calibri", Font.PLAIN,  40));
+        title.setBounds(150,50,800,50);
+        container.add(title);
         container.add(userLabel);
         container.add(passwordLabel);
         container.add(username);
@@ -70,7 +87,7 @@ public class LoginView implements Component {
 //            invalidLogin.setBounds(50 + 0,100 + 0,100,30);
 //
 //        }
-
+        frame.getContentPane().setBackground(back);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(dim.width/2-250, dim.height/2-250);
         frame.setSize(900,900);

@@ -21,15 +21,18 @@ public class EditListStatusLandlordView implements Component{
     private JButton RegisterBtn= new JButton("Register a Property");
     private JButton ListingsBtn= new JButton("Listings");
     private JButton MessagesBtn= new JButton("Messages");
-    private JTextField idVal= new JTextField();
     private JLabel idOfProp = new JLabel("Enter the the ID of the property you wish to edit the status for:");
     private JButton submitChange = new JButton("Submit");
     private JLabel changedStatus = new JLabel("Enter the new status for the property:");
-    private JTextField statusVal = new JTextField();
+
 
     private JButton payBtn = new JButton("Pay");
     private JLabel idForPayLabel = new JLabel("Enter the property ID for which you will pay the fee:");
     private JTextField idInputForPay = new JTextField();
+    private JComboBox IDList = new JComboBox();
+    private JComboBox IDListTwo = new JComboBox();
+    private String[] statuses = {"Active", "Canceled", "Suspended", "Rented"};
+    private JComboBox StatusList = new JComboBox(statuses);
 
     private Color back = new Color(25, 25, 112);
     private Color button = new Color(0,0,0);
@@ -51,13 +54,17 @@ public class EditListStatusLandlordView implements Component{
     {
         Object columnNames[] = { "Property ID", "Type", "Bedrooms", "Bathrooms", "Furnished", "Quadrant", "Status", "Balance"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
+        IDList.removeAllItems();
+        IDListTwo.removeAllItems();
         for(int i=0; i< input.size(); i++) {
             Object rowData[] = {input.get(i).getListingID(), input.get(i).getPropertyType(),
                     input.get(i).getNumbedRooms(), input.get(i).getNumbathRooms(),
                     input.get(i).getIsFurnished(), input.get(i).getQuadrant(), input.get(i).getStatus(),
             input.get(i).getBalance()};
             model.addRow(rowData);
+
+            IDList.addItem(input.get(i).getListingID());
+            IDListTwo.addItem(input.get(i).getListingID());
         }
         table.setModel(model);
         System.out.println("here");
@@ -94,9 +101,9 @@ public class EditListStatusLandlordView implements Component{
         payBtn.setForeground(Color.white);
 
         idOfProp.setBounds(50,460,400,20);
-        idVal.setBounds(50,480,400,30);
+        IDListTwo.setBounds(50,480,400,30);
         changedStatus.setBounds(50,530,400,20);
-        statusVal.setBounds(50,550,400,30);
+        StatusList.setBounds(50,550,400,30);
         submitChange.setBounds(50, 600,400,30);
 
         idOfProp.setForeground(Color.white);
@@ -104,7 +111,7 @@ public class EditListStatusLandlordView implements Component{
         changedStatus.setForeground(Color.white);
 
         idForPayLabel.setBounds(540,460,300,20);
-        idInputForPay.setBounds(540,490,300,30);
+        IDList.setBounds(540,490,300,30);
         payBtn.setBounds(540,530,300,30);
 
         table.setBackground(tableBack);
@@ -120,11 +127,11 @@ public class EditListStatusLandlordView implements Component{
         frame.getContentPane().add(scrollPane);
         frame.add(navBarpanel);
         frame.add(payBtn);
-        frame.add(idInputForPay);
+        frame.add(IDList);
         frame.add(idForPayLabel);
         frame.add(idOfProp);
-        frame.add(statusVal);
-        frame.add(idVal);
+        frame.add(StatusList);
+        frame.add(IDListTwo);
         frame.add(changedStatus);
         frame.add(submitChange);
         frame.setLayout(null);
@@ -171,5 +178,18 @@ public class EditListStatusLandlordView implements Component{
         this.payBtn.addActionListener(a);
     }
 
+    public String getpayInput()
+    {
+        return Integer.toString((int)IDList.getSelectedItem());
+    }
 
+    public String getIDForStatusUpdateInput()
+    {
+        return Integer.toString((int)IDListTwo.getSelectedItem());
+    }
+
+    public String getStatus()
+    {
+        return (String)StatusList.getSelectedItem();
+    }
 }

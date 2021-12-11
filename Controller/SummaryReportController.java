@@ -44,6 +44,9 @@ public class SummaryReportController extends ParentController{
         
         // reportView.SummaryReportPerformed(new ReportButtonListener());
         reportView.TimePeriodPerformed(new ReportButtonListener());
+        fillUsertable();
+        
+        reportView.SummaryReportPerformed(new ReportButtonListener());
         reportView.EditFeesPerformed(new EditFee());
         reportView.renterLandlordPerformed(new RenterLandlords());
         reportView.ListingsPerformed(new Listings());
@@ -142,6 +145,56 @@ public class SummaryReportController extends ParentController{
     }
 
     public class timePeriodButton implements ActionListener {
+            int totalListing = listigModel.totalListings(db.getAllListings());
+            System.out.println("Total Listings: " + totalListing);
+            reportView.setNumHousesListedField(totalListing);
+
+            int houseRented = listigModel.housesRented(db.getAllListings());
+            reportView.setNumHousesRentedField(houseRented);
+            System.out.println("Total Houses Rented: " + houseRented);
+
+            int houseActive = listigModel.housesActive(db.getAllListings());
+            reportView.setNumActiveListingsField(houseActive);
+            System.out.println("Total Houses Active: " + houseActive);
+
+            // landlord and listing arraylists
+            ArrayList<User> landlords = manager.getLandlords(db.getUsers());
+            System.out.println("User length: " + landlords.size());
+
+            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
+
+            // now filter listings based on time period
+
+            LocalDate currDate = LocalDate.now();
+            Date cdate = new Date(currDate.getDayOfYear(), currDate.getMonthValue(), currDate.getYear());
+            LocalDate lastDate = currDate.minusDays(60); // (long) reportView.getTimePeriod());
+            Date ldate = new Date(lastDate.getDayOfYear(), lastDate.getMonthValue(), lastDate.getYear());
+
+            for(int i = 0; i < landlords.size(); i++)
+            {
+                for(int j = 0; j < listings.get(i).size(); j++)
+                {
+                    String year = listings.get(i).get(j).getListingTime().substring(0, 4);
+                    String month = listings.get(i).get(j).getListingTime().substring(5, 7);
+                    String day = listings.get(i).get(j).getListingTime().substring(8, 10);
+                    Date listDate = new Date(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
+
+                    if(listDate.before(ldate))
+                    {
+                        listings.get(i).remove(j);
+                    }
+
+                }
+            }
+
+            // do setters
+            reportView.setLandlords(landlords);
+            reportView.setListings(listings);
+            System.out.println("Listing length: " + listings.size());
+            System.out.println("First Index length: " + listings.get(0).get(1).getID());
+
+            reportView.setTable(listings, landlords);
+            
 
         @Override
         public void actionPerformed(ActionEvent e)
@@ -240,16 +293,8 @@ public class SummaryReportController extends ParentController{
         @Override
         public void actionPerformed(ActionEvent e) {
         	System.out.println("SR- renter landlord list clicked");
-            User u = new User();
-            ArrayList<User> users = db.getUsers();
-            ArrayList<User> landlords = u.getLandlords(users);
-            ArrayList<User> registeredRenters = u.getRegisteredRenters(users);
-            System.out.println(landlords.size());
-            System.out.println(registeredRenters.size());
-            allUsers.setLandlordTable(landlords);
-            allUsers.setRenterTable(registeredRenters);
-
-        	setView(false,true);
+        	
+        	fillUsertable(); 
         }
     }
     
@@ -261,7 +306,6 @@ public class SummaryReportController extends ParentController{
 			allUsers.draw();
 		}	
     }
-
 
     public class FeeSubmitButton implements ActionListener{
 
@@ -282,10 +326,17 @@ public class SummaryReportController extends ParentController{
         }
     }
 
-
-
-
-
+    public void fillUsertable() {
+	    User u = new User();
+	    ArrayList<User> users = db.getUsers();
+	    ArrayList<User> landlords = u.getLandlords(users);
+	    ArrayList<User> registeredRenters = u.getRegisteredRenters(users);
+	    System.out.println(landlords.size());
+	    System.out.println(registeredRenters.size());
+	    allUsers.setLandlordTable(landlords);
+	    allUsers.setRenterTable(registeredRenters);
+    }
+    
 //    public static void main(String[] args)
 //    {
 //        System.out.println("Summary Report controller");
