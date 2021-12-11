@@ -9,7 +9,7 @@ import Controller.SubscriptionController.sendMessage;
 import Gui.RenterListingView;
 import Model.Listing;
 
-
+//this controller is displays listing for unregistered renters
 public class ListingController extends ParentController {
 	
 	Listing listingModel;
@@ -33,6 +33,7 @@ public class ListingController extends ParentController {
 		super.switchView(view);
 	}
 	
+	// action listener for search button
 	public class ButtonListener implements ActionListener{
 
 		@Override
@@ -53,6 +54,7 @@ public class ListingController extends ParentController {
 		}
 	}
 	
+	//action listener for send message button
 	public class sendMessage implements ActionListener{
 
 		@Override
@@ -63,14 +65,5 @@ public class ListingController extends ParentController {
 		}
 	}
 	
-//	public static void main(String[] args) {
-//	System.out.println("Listing controller");
-//    RenterListingView u = new RenterListingView();
-//    Listing model = new Listing();
-//    ListingController controller = new ListingController (model, u);
-//    controller.connectDB();
-//    
-// //   u.setVisible(true);
-//	}
 }
 

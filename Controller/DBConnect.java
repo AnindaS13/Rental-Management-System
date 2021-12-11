@@ -9,9 +9,9 @@ import Model.User;
 
 public class DBConnect {
 
-    public final String dburl = "jdbc:mysql://localhost/newRental";
-    public final String username = "root";
-    public final String password ="";
+    public final String dburl = "jdbc:mysql://localhost/rentalproperties";
+    public final String username = "ENSF409";
+    public final String password ="ensf409";
 
     private Connection connect;
     private ResultSet results;
@@ -35,6 +35,7 @@ public class DBConnect {
         }
     }
     
+    // Method to get all active listing from database
     public ArrayList<Listing> getListing() throws SQLException {
     	PreparedStatement p=null;
     	ResultSet rs=null;
@@ -78,7 +79,7 @@ public class DBConnect {
     	return allListing;
     }
 
-
+    // Method to get all users (registered renters and landlord) from database
 	public ArrayList<User> getUsers()
 	{
 		ArrayList<User> users = new ArrayList<User>();
@@ -102,7 +103,7 @@ public class DBConnect {
 		return users;
 	}
 
-	
+    // Method to get all searches that registered renters has subscribed to from database
 	 public ArrayList<String> getAllsubscribedSearches() throws SQLException {
 	    	PreparedStatement p=null;
 	    	ResultSet rs=null;
@@ -123,9 +124,11 @@ public class DBConnect {
 		    		Integer bath = rs.getInt("bathrooms");
 		    		Boolean furnished = rs.getBoolean("Furnished");
 		    		String quad = rs.getString("quadrant");
+		    		String notify = rs.getString("notify");
+		    		String email = rs.getString("r_email");
 		    		
 		    		temp.add(id.toString()+"\n"+property+"\n"+bed.toString()+"\n"+
-    							bath.toString()+"\n"+furnished.toString()+"\n"+quad);
+    							bath.toString()+"\n"+furnished.toString()+"\n"+quad+"\n"+notify+"\n"+email);
 		    	}	
 	    	}
 	    	
@@ -139,7 +142,7 @@ public class DBConnect {
 	    	return temp;
 	    }
 
-    
+	    // Method to get all messages for landlords.
     public ArrayList<String> getMessages() {
     	PreparedStatement p=null;
     	ResultSet rs=null;
@@ -172,7 +175,7 @@ public class DBConnect {
 
 
     
-    
+    // Method to get all listings from database
 	public ArrayList<Listing> getAllListings()
 	{
 		ArrayList<Listing> list= new ArrayList<Listing>();
@@ -198,6 +201,7 @@ public class DBConnect {
 		return list;
 	}
 
+    // Method to update the listing when a landlord pays for property to list
   public void updateListingDate(String pID, String date, String status)
 	{
 		try {
@@ -230,6 +234,9 @@ public class DBConnect {
 
 	}
 	
+  // Method to update notifications in database for subscribed search
+  //takes id of the subscribed search and updated status.
+  
 	public void updatenotify(Integer id, String status)
 	{	
 			initializeConnection();
@@ -249,6 +256,8 @@ public class DBConnect {
 			}
 	}
 
+	  // Method to status of a listing
+	//takes id of the listing and new status
 	public void updateStatus(String id, String status)
 	{
 		try {
@@ -266,6 +275,7 @@ public class DBConnect {
 			e.printStackTrace();
 		}
 	}
+
 
 	public void managerUpdateStatus(String id, String status)
 	{
@@ -286,6 +296,8 @@ public class DBConnect {
 		}
 	}
 
+
+	//add new property information when landlords register property
 	public void addListing(String email, String type, int bed, int bath, boolean furnish, String address, String quad, String date, String status) throws SQLException
 	{
 
@@ -319,8 +331,33 @@ public class DBConnect {
 		System.out.println("Added new listing");
 	}
 
+	public void addFee(int feeAmount, int feePeriod) throws SQLException
+	{
+
+		initializeConnection();
+
+		try {
+
+			Statement s = connect.createStatement();
+			String query = "INSERT INTO editfees (FeeAmount, Days) VALUES (?,?)";
+
+			PreparedStatement stmt = connect.prepareStatement(query);
+
+			stmt.setInt(1, feeAmount);
+			stmt.setInt(2, feePeriod);
+
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+
+		System.out.println("Added new fee");
+	}
 
 
+//Method to save the search criteria in database when registered renter subscribe to search
 	public ArrayList<Listing> saveSearch(String email, String proptype, int bedrooms,
 											int bathrooms, boolean furnished, String quadrant)
 	{
@@ -351,7 +388,7 @@ public class DBConnect {
 		return list;
 	}
 
-   
+   //method to save messages for landlord when renter sends it.
 	public ArrayList<Listing> saveMessages(String email, String message, int propID)
 	{
 		ArrayList<Listing> list= new ArrayList<Listing>();

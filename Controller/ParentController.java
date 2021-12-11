@@ -18,12 +18,19 @@ import Model.Manager;
 import Model.RegisteredRenter;
 import Model.User;
 
+/**
+ * ParentController controls all the other controllers. when need switchView method is called 
+ * in ParentCotroller by controller to change the view that belongs to different controller
+ * different switch cases are setup for switching controllers and views.
+
+ */
 public class ParentController {
 	
-	protected Landlord landlord = new Landlord();//to store email when landlord, registered renter or manager login
+	protected Landlord landlord = new Landlord();
 	protected Manager manager = new Manager();
 	protected RegisteredRenter Rrenter = new RegisteredRenter();
 
+	//all the controller
 	private ContactController contactC;
     private RegisterPropertyController registerPropC;
 	private SummaryReportController summaryRepC;
@@ -31,11 +38,11 @@ public class ParentController {
 	private PaymentController paymentC;
 	private SubscriptionController subscriptionC;
 	
-		
-	public ParentController() {
-		
-	}
+	// constructors
 	
+	public ParentController() {}
+	
+	// Constructor that takes 3 types of users. user object are passed to different controllers to initialize controllers
 	public ParentController(Landlord l, Manager m, RegisteredRenter r ) {
 		this.landlord = l;
 		this.manager = m;
@@ -113,26 +120,23 @@ public class ParentController {
 				RenterListingView registeredRenter = new RenterListingView();
 				Listing l = new Listing();
 				subscriptionC = new SubscriptionController(Rrenter, registeredRenter, l);
-				
+				break;
 				
 		case "UnregisteredRenter":
 				Listing listingsR = new Listing();
 				RenterListingView renterV= new RenterListingView();
 				System.out.println("in unregisteredrenter case");
 				ListingController lc = new ListingController (listingsR, renterV);
+				break;
 		}
 	}
 	
-	public void setLandlord(String role, String email, String password) {
-		landlord.setEmail(email);
-		landlord.setPassword(password);
-		landlord.setRole(role);
-		System.out.println("setting user email to: "+ email);
-	}
-	
+	//helper method to update the database when a new listing is listed and check using
+	//registered renter model if it matches with any of the subscribed searches and updates database if needed.
 	public void notifyRenter(String propId) {
 	DBConnect db = new DBConnect();
-	//need to get all subscritons not listings.
+	
+	//need to get all subscriptions not listings.
 	ArrayList<Integer> temp = new ArrayList<Integer>();
 	try {
 		temp = Rrenter.subscriptionNotice(db.getAllsubscribedSearches(), db.getListing(), propId);
@@ -148,7 +152,8 @@ public class ParentController {
 			}
 		}
 	}
-	
+
+	//main method to run program
     public static void main(String[] args) {
     	Landlord landlord = new Landlord();
     	Manager manager = new Manager();
