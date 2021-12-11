@@ -13,9 +13,15 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * This view is a view for the landlord.
+ * This view is responsible for showing the landlord all their properties they have registered
+ * and all the info pertaining to them in a table, including their status on each listing. They
+ * can edit their own listings statuses here
+ */
 public class EditListStatusLandlordView implements Component{
     private ArrayList<Listing> listings = new ArrayList<Listing>();
-    List<String[]> values = new ArrayList<String[]>();
+    List<String[]> values = new ArrayList<String[]>();      //The following are just variables for the various gui components like buttons, fields, etc
     private JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane();
     private JButton RegisterBtn= new JButton("Register a Property");
@@ -44,13 +50,13 @@ public class EditListStatusLandlordView implements Component{
     	
     }
     
-    public EditListStatusLandlordView(ArrayList<Listing> input)
+    public EditListStatusLandlordView(ArrayList<Listing> input) //The constructor takes in an arraylist which contains all properties a landlord has registered 
     {
-        setTable(input);
+        setTable(input); //This sets the table to values of the arraylist which contains all of that specific landlords properties that are registered
         // draw();
     }
 
-    public void setTable(ArrayList<Listing> input)
+    public void setTable(ArrayList<Listing> input) //Sets the table
     {
         Object columnNames[] = { "Property ID", "Type", "Bedrooms", "Bathrooms", "Furnished", "Quadrant", "Status", "Balance"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
@@ -72,7 +78,7 @@ public class EditListStatusLandlordView implements Component{
     }
 
     @Override
-    public void draw()
+    public void draw() //Puts all the gui components on the frame
     {	
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
@@ -143,16 +149,10 @@ public class EditListStatusLandlordView implements Component{
     	draw();
     }
 
-    // public static void main(String []args)
-    // {
-    //     ArrayList <Listing> in = new ArrayList<Listing>();
-    //     in.add(new Listing(1, "Apartment", 4, 5, true, "NE", "10:10", "106 5th Ave", "johndoe@gmail.com", "Active", true));
-    //     in.add(new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "202 3rd Ave", "johndoe@gmail.com", "Active", true));
-    //     EditListStatusLandlordView x = new EditListStatusLandlordView(in);
-    //     Listing obj = new Listing(2, "Apartment", 2, 2, true, "SW", "10:10", "90 6th Ave", "johndoe@gmail.com", "Active", true);
-    //     System.out.println(obj.getID());
-    // }
 
+    /**
+     * These are the action listeners for the navbar buttons and the submit button for editing the status
+     */
     public void RegisterPerformed(ActionListener a) //For register property navbar redirect
     {
         this.RegisterBtn.addActionListener(a);
@@ -178,6 +178,9 @@ public class EditListStatusLandlordView implements Component{
         this.payBtn.addActionListener(a);
     }
 
+    /**
+     * Getters to be used by the  controllers to tell the database the values needed to be added to it
+     */
     public String getpayInput()
     {
         return Integer.toString((int)IDList.getSelectedItem());
