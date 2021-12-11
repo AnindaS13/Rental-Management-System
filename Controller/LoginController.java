@@ -8,6 +8,9 @@ import Model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//controller checks for login information and call parent controller method
+// to switch view according to login email whether its manager, landlord or registered renter 
+// logged in 
 
 public class LoginController extends ParentController{
 
@@ -15,6 +18,7 @@ public class LoginController extends ParentController{
     LoginView loginView;
     DBConnect db = new DBConnect();
 
+    //constructor
     public LoginController(User model, LoginView view)
     {	
     	super();
@@ -25,10 +29,12 @@ public class LoginController extends ParentController{
         loginView.guestLoginButton(new guestLogin());
     }
 
+    //database connection to get user information
     public void connectDB() {
         db.initializeConnection();
     }
 
+    //method to appropriate view depending on email.
     public void switchView(String role, String email, String password)
     {	
     	loginView.clearFrame();
@@ -52,29 +58,21 @@ public class LoginController extends ParentController{
     	else super.switchView("UnregisteredRenter");
     }
 
-//    public void setRole(String username, String role)
-//    {
-//    	super.setUserRole(username, role);
-//    }
 
     public class LoginButtonListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(" login button pressed");
             boolean verify = userModel.verifyLogin(db.getUsers(), loginView.getUsername(), loginView.getPassword());
             if(verify)
             {
                 System.out.println("Login successful");
-//                userModel.setEmail(loginView.getUsername());
-//                userModel.setPassword(loginView.getPassword());
                 switchView(userModel.getRole(), loginView.getUsername(),loginView.getPassword()); // need to set this later after parent controller is fixed
             }
             else
             {
                 System.out.println("User does not exist");
             }
-            // loginView.setOutput(db.getListing());
         }
     }
     
