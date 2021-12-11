@@ -9,10 +9,9 @@ import Model.User;
 
 public class DBConnect {
 
-    public final String dburl = "jdbc:mysql://127.0.0.1:3307/rental";
+    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
     public final String username = "root";
-    public final String password ="root";
-
+    public final String password ="calgary1";
     private Connection connect;
     private ResultSet results;
     
@@ -78,6 +77,7 @@ public class DBConnect {
     	connect.close();
     	return allListing;
     }
+    
 
     // Method to get all users (registered renters and landlord) from database
 	public ArrayList<User> getUsers()
@@ -276,7 +276,7 @@ public class DBConnect {
 		}
 	}
 
-
+//method to update the status of listings by managers
 	public void managerUpdateStatus(String id, String status)
 	{
 		try {
@@ -331,6 +331,7 @@ public class DBConnect {
 		System.out.println("Added new listing");
 	}
 
+	//method to change fee by managers
 	public void addFee(int feeAmount, int feePeriod) throws SQLException
 	{
 

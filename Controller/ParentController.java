@@ -22,7 +22,6 @@ import Model.User;
  * ParentController controls all the other controllers. when need switchView method is called 
  * in ParentCotroller by controller to change the view that belongs to different controller
  * different switch cases are setup for switching controllers and views.
-
  */
 public class ParentController {
 	
@@ -135,8 +134,6 @@ public class ParentController {
 	//registered renter model if it matches with any of the subscribed searches and updates database if needed.
 	public void notifyRenter(String propId) {
 	DBConnect db = new DBConnect();
-	
-	//need to get all subscriptions not listings.
 	ArrayList<Integer> temp = new ArrayList<Integer>();
 	try {
 		temp = Rrenter.subscriptionNotice(db.getAllsubscribedSearches(), db.getListing(), propId);
