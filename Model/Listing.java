@@ -3,6 +3,15 @@ package Model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Class Listing is a model for each property registered in the database.
+ * It consists of data members id, propertyType, numbedRooms, numbathRooms, isFurnished, quadrant, listingTime,
+ * address, email, status, balance and role
+ * It contains two constructors, one default constructor and the other initializes all the data members
+ * It contains methods filterListings(), houseRented(), housesActive(), totalListings(), landLordIDFromListing(),
+ * getLandlordListings() and filterTime() as well as getter and setter functions for all data members
+ */
+
 public class Listing {
 
     private int ID; // pk, ai
@@ -20,8 +29,10 @@ public class Listing {
     private char role; 
 
 
+    // default constructor
     public Listing () {}
 
+    // constructor
     public Listing(int id, String propertyType, int bedrooms, int bathrooms, boolean isFurnished, String quadrant, String listingTime, String address, String email, String status, boolean balance)
     {
         this.ID = id;
@@ -38,7 +49,7 @@ public class Listing {
 
     }
 
-
+    // Getter and Setter functions below for each data member
     public int getID()
     {
         return this.ID;
@@ -131,6 +142,7 @@ public class Listing {
     }
 
 
+    // This method filters the listng with specific search criteria's and returns the filtered list
     public ArrayList<Listing> filterListings (ArrayList<Listing> listings, String propType, int bedrooms, int bathrooms, boolean furnished, String quad)
     {
         ArrayList<Listing> filteredlist = new ArrayList<Listing>();
@@ -145,6 +157,7 @@ public class Listing {
         return filteredlist;
     }
 
+    // This method returns the number of houses rented in the listing
     public int housesRented(ArrayList<Listing> listings)
     {
         int count = 0;
@@ -158,13 +171,14 @@ public class Listing {
         return count;
     }
 
+    // returns the total number of listings in the database
     public int totalListings(ArrayList<Listing> listings)
     {
         return listings.size();
     }
 
 
-
+    // returns the landlord listings
     public ArrayList<ArrayList<Listing>> getLandlordListings(ArrayList<User> landlords, ArrayList<Listing> listings)
     {
         ArrayList<ArrayList<Listing>> list = new ArrayList<ArrayList<Listing>>();
@@ -184,7 +198,7 @@ public class Listing {
         return list;
     }
 
-
+    // returns the number of houses active in listings
     public int housesActive(ArrayList<Listing> listings)
     {
         int count = 0;
@@ -198,6 +212,7 @@ public class Listing {
         return count;
     }
 
+    // returns landlord listings with specific property id
     public String landLordIdFromListing (ArrayList<Listing> listings, int propID)
     {
         String temp = null;
@@ -212,7 +227,7 @@ public class Listing {
         return temp;
     }
 
-
+    // Method filterTime() returns listings with a specified time frame
     public ArrayList<ArrayList<Listing>> filterTime (ArrayList<ArrayList<Listing>> allList, LocalDate date)
     {
         ArrayList<ArrayList<Listing>> filteredlist = new ArrayList<>();

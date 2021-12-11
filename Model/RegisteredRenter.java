@@ -2,6 +2,12 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * Class RegisteredRenter is a model for all registered renter users. It extends from class User and contains data members key, propertyType,
+ * numbedRooms, numbathRooms, isFurnished, quadrant and listing.
+ * It contains methods subscriptionNotice() and setter and getter functions for its data members
+ */
+
 public class RegisteredRenter extends User {
 
     // email ask fk from user
@@ -14,10 +20,11 @@ public class RegisteredRenter extends User {
     private Listing listing;
 
 
-    public RegisteredRenter() {
+    public RegisteredRenter() { // default constructor
 
     }
 
+    // constructor
     public RegisteredRenter(String email, String password, String fname, String lname, String role, String propertyType, int bedrooms, int bathrooms, boolean furnished, String quadrant) {
         super(email, password, fname, lname, role);
         this.propertyType = propertyType;
@@ -36,6 +43,7 @@ public class RegisteredRenter extends User {
 
     }
 
+    // method subscriptionNotice() handles the subscription feature for registered renter. It receives the searches, listings and the property ID
     public ArrayList<Integer> subscriptionNotice(ArrayList<String> searches, ArrayList<Listing> activeListings, String propId) {
     	
     	ArrayList<Integer> temp = new ArrayList<Integer>();

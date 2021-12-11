@@ -2,6 +2,14 @@ package Model;
 
 import java.util.ArrayList;
 
+
+/**
+ * Class User is a model for each user of the property rental system. It has data members email, password, FName, LName and role.
+ * It contains two constructors, one default constructor and one that initializes all the data members.
+ * It contains methods verifyLogin(), getLandlords(), getRegisteredRenters() and setters and getters for each data members
+ * Class user is the parent class of class Landlord, Manager, RegisteredRenter and UnregisteredRenter
+ */
+
 public class User {
 
     protected String email; // pk, nn
@@ -13,7 +21,7 @@ public class User {
     
 
 
-public User()
+public User() // default constructor
     {
         this.email = null;
         this.password = null;
@@ -23,7 +31,7 @@ public User()
     }
 
 
-    public User(String email, String password, String FName, String LName, String role)
+    public User(String email, String password, String FName, String LName, String role) // constructor
     {
         this.email = email;
         this.password = password;
@@ -32,7 +40,8 @@ public User()
         this.role = role;
     }
 
-
+    // Method verifyLogin() receives an array list of users and email and password to verify of the user trying to login
+    // exists. It returns true if user exists and false if the user does not exist
     public boolean verifyLogin(ArrayList<User> users, String email, String password)
     {
         for (int i = 0; i < users.size(); i++)
@@ -49,7 +58,8 @@ public User()
         }
         return false;
     }
-    
+
+    // Method getLandLords recieves an arraylist of users and returns an arraylist of landlords from users
     public ArrayList<User> getLandlords(ArrayList<User> users)
     {
         ArrayList<User> landlords = new ArrayList<User>();
@@ -63,6 +73,7 @@ public User()
         return landlords;
     }
 
+    // Method getRegisteredRenters recieves an arraylist of users and returns an arraylist of registered renters from users
     public ArrayList<User> getRegisteredRenters(ArrayList<User> users)
     {
         ArrayList<User> renters = new ArrayList<User>();
@@ -76,7 +87,7 @@ public User()
         return renters;
     }
     
-    
+    // Getter and setter functions below
     public String getEmail() {
         return this.email;
     }

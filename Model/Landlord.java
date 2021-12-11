@@ -2,6 +2,14 @@ package Model;
 
 import java.util.ArrayList;
 
+
+/**
+ * Class Landlord is a model that represents the landlord user. It is a subclass of class User.
+ * It contains data members messageID and an array list of strung message.
+ * It contains two constructors, one is a default constructor and the other initializes all the data members
+ * This class contains methods RetrieveMessage(ArrayList<String>) and LandlordListings(ArrayList<Listing>)
+ */
+
 public class Landlord extends User {
 
     // inherits email from user, use email as fk
@@ -26,8 +34,6 @@ public class Landlord extends User {
     {	
     	String email = getEmail(); 	// get the email of current user logged in
     	ArrayList<String> result = new ArrayList<String>();
-   // 	System.out.println("user logged in: "+ super.getEmail());
-   // 	System.out.println("Displaying all messages");
     	for(int i=0; i<allMsg.size(); i++) {
     		String [] temp = allMsg.get(i).split("\n"); //Split each String in ArrayList to get email and messages
 	    		if(temp[0].equals(email)) {		//check if messages belong to current user
@@ -39,10 +45,6 @@ public class Landlord extends User {
     	return result;
     }
 
-    // public Listing addProperty()
-    // {
-    //     return;
-    // }
     
     public ArrayList<Listing> LandlordListings (ArrayList<Listing> allListings){
     	
