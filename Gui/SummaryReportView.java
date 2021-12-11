@@ -32,6 +32,7 @@ public class SummaryReportView implements Component{
 
     private int timePeriod;
 
+    private JButton timePeriodBtn= new JButton("Submit");
     private JButton RenterLandlordBtn = new JButton("Renter/Landlord List");
     private JButton ListingsBtn= new JButton("Listings");
     private JButton SumRepBtn = new JButton("Summary Report");
@@ -144,6 +145,11 @@ public class SummaryReportView implements Component{
         frame.add(totalHousesRented);
         frame.setLayout(null);
         frame.setVisible(true);
+
+        timePeriodBtn.setBackground(button);
+        timePeriodBtn.setBounds(400, 80, 130, 40);
+        timePeriodField.setForeground(Color.WHITE);
+        // frame.add(timePeriodBtn);
         System.out.println("in draw");
     }
 
@@ -173,6 +179,11 @@ public class SummaryReportView implements Component{
         this.ListingsBtn.addActionListener(a);
     }
 
+    public void timePeriodPerformed(ActionListener a) //For messages navbar redirect
+    {
+        this.timePeriodBtn.addActionListener(a);
+    }
+
     public void SummaryReportPerformed(ActionListener a) //For messages navbar redirect
     {
         this.SumRepBtn.addActionListener(a);
@@ -188,7 +199,12 @@ public class SummaryReportView implements Component{
     {
         this.RenterLandlordBtn.addActionListener(a);
     }
-    
+
+    public void TimePeriodPerformed (ActionListener a)
+    {
+        this.timePeriodField.addActionListener(a);
+    }
+
     public int getTotalNumHousesListed() {
         return totalNumHousesListed;
     }
@@ -268,6 +284,13 @@ public class SummaryReportView implements Component{
 
     public void setTimePeriodField(int timePeriodField) {
         this.timePeriodField.setSelectedItem(timePeriodField);
+    }
+
+    public void repaint() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+
     }
 
 }

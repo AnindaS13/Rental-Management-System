@@ -9,9 +9,9 @@ import Model.User;
 
 public class DBConnect {
 
-    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
-    public final String username = "root";
-    public final String password ="calgary1";
+    public final String dburl = "jdbc:mysql://localhost/rentalproperties";
+    public final String username = "ENSF409";
+    public final String password ="ensf409";
 
     private Connection connect;
     private ResultSet results;
@@ -194,6 +194,31 @@ public class DBConnect {
 		}
 
 		System.out.println("Added new listing");
+	}
+
+	public void addFee(int feeAmount, int feePeriod) throws SQLException
+	{
+
+		initializeConnection();
+
+		try {
+
+			Statement s = connect.createStatement();
+			String query = "INSERT INTO editfees (FeeAmount, Days) VALUES (?,?)";
+
+			PreparedStatement stmt = connect.prepareStatement(query);
+
+			stmt.setInt(1, feeAmount);
+			stmt.setInt(2, feePeriod);
+
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+
+		System.out.println("Added new fee");
 	}
 
 
