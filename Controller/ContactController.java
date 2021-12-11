@@ -9,6 +9,7 @@ import Model.UnregisteredRenter;
 import Model.RegisteredRenter;
 import Model.Landlord;
 
+//controller to send messages to landlords, both unregistered and registered renters
 
 public class ContactController extends ParentController {
 	
@@ -21,18 +22,20 @@ public class ContactController extends ParentController {
 
 		//getting all messages of the user (landlord)
 		ArrayList<String> userMsg = landlord.RetreiveMessage(db.getMessages());
+		//setting output in view
 		messages.setOutput(userMsg);
+		
+		//action listeners
 		messages.RegisterPerformed(new RegisterButton());
 		messages.ListingsPerformed(new ListingButton());
 		messages.MessagesPerformed(new MessageButton());
 	}
 	
-	
+	//implementation to action listernes
 	public class RegisterButton implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("register button pressed");	
 			switchView("RegisterProperty");
 		}
 	}
@@ -41,7 +44,6 @@ public class ContactController extends ParentController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Listing button pressed");
 			switchView("landlordListings");
 		}
 	}
@@ -50,12 +52,12 @@ public class ContactController extends ParentController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Message button pressed");
 			ArrayList<String> userMsg = landlord.RetreiveMessage(db.getMessages());
 			messages.setOutput(userMsg);
 		}
 	}
 	
+	//switch method to change the view, handled by parent controller.
 	@Override
 	public void switchView(String view) {
 		super.switchView(view);

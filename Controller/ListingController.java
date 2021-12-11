@@ -34,12 +34,11 @@ public class ListingController extends ParentController {
 		super.switchView(view);
 	}
 	
-	// action listener for search button
+	// action listener for search button for RenterListingView
 	public class ButtonListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("button pressed");
 			ArrayList<Listing> temp = new ArrayList<Listing>();
 			
 			try {

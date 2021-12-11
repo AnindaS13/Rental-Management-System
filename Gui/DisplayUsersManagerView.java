@@ -11,16 +11,20 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ * This class is responsible for displaying two tables to the GUI.
+ * One of these tables is a list of every registered renter in the database who is using the system.
+ * The other table is a list of every landlord in the database.
+ */
 public class DisplayUsersManagerView implements Component{
-    private JButton RenterLandlordBtn = new JButton("Renter/Landlord List");
-    private JButton ListingsBtn= new JButton("Listings");
+    private JButton RenterLandlordBtn = new JButton("Renter/Landlord List"); //Here all the variables declared are relevant to gui components like buttons and styling colors etc
+    private JButton ListingsBtn= new JButton("Listings");                    
     private JButton SumRepBtn = new JButton("Summary Report");
     private JButton editFeeBtn = new JButton("Edit Fees");
 
     private JLabel landlordHeader = new JLabel("Here is the list of all landlords:");
     private JLabel renterHeader = new JLabel("Here is the list of all renters:");
-    private JTable landlordTable = new JTable();
+    private JTable landlordTable = new JTable();                                //Creation of the tables, but they are empty here. Get populated later
     private JTable renterTable = new JTable();
 
     private JScrollPane RenterscrollPane = new JScrollPane();
@@ -34,16 +38,20 @@ public class DisplayUsersManagerView implements Component{
     
     public DisplayUsersManagerView() {}
     
-    public DisplayUsersManagerView(ArrayList<User> landinput, ArrayList<User> rentinput)
+    /**
+     * Constructor that takes in a landlord arraylist containing all landlords which is to be used to populate the table
+     * It also takes an arraylist of registered renters for the renters table 
+     */
+    public DisplayUsersManagerView(ArrayList<User> landinput, ArrayList<User> rentinput)  
     {
-        setLandlordTable(landinput);
+        setLandlordTable(landinput); //These two methods fill in the tables
         setRenterTable(rentinput);
         //draw();
     }
 
 
     @Override
-    public void draw()
+    public void draw() //Function that takes care of adding everything to the frame(all gui elements)
     {
 
 
@@ -108,7 +116,7 @@ public class DisplayUsersManagerView implements Component{
         frame.setVisible(true);
     }
 
-    public void setLandlordTable(ArrayList<User> landinput)
+    public void setLandlordTable(ArrayList<User> landinput) //This is to set the values in the landlord table to all landlords(recieved from DB)
     {
         Object columnNames[] = {"Email", "First Name", "Last Name"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
@@ -120,7 +128,7 @@ public class DisplayUsersManagerView implements Component{
         landlordTable.setModel(model);
     }
 
-    public void setRenterTable(ArrayList<User> rentinput)
+    public void setRenterTable(ArrayList<User> rentinput) //This is to set the values in the registered renter table to all landlords(recieved from DB)
     {
         Object columnNames[] = {"Email", "First Name", "Last Name"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
@@ -153,17 +161,6 @@ public class DisplayUsersManagerView implements Component{
         this.RenterLandlordBtn.addActionListener(a);
     }
 
-//    public static void main(String []args)
-//    {
-//        ArrayList<Landlord> x = new ArrayList<Landlord>();
-//        x.add(new Landlord("bob@gmail.com", "123456", "Bob", "Miller","Landlord", 123, "Hi"));
-//        x.add(new Landlord("jane@gmail.com", "23232", "Jane", "Doe","Landlord", 323, "Eee"));
-//        ArrayList<RegisteredRenter> r = new ArrayList<RegisteredRenter>();
-//        r.add(new RegisteredRenter("john@gmail.com", "434343", "John", "Doe", "Renter", "apt", 3,5,true, "NE"));
-//        r.add(new RegisteredRenter("ralph@gmail.com", "76745", "Ralph", "Griffin", "Renter", "apt", 3,5,true, "SW"));
-//
-//        DisplayUsersManagerView item = new DisplayUsersManagerView(x,r);
-//    }
 
 
 }

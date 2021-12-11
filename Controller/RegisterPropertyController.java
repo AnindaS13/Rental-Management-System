@@ -17,6 +17,8 @@ import Gui.EditListStatusLandlordView;
 import Gui.EditStatusManagerView;
 import Gui.RegisterPropertyView;
 
+// controller for registering new property by landlords, updating status by managers and
+//landlords. Pay fee option for landlords to list property
 public class RegisterPropertyController extends ParentController{
 
 	RegisterPropertyView registerProperty;
@@ -38,6 +40,8 @@ public class RegisterPropertyController extends ParentController{
 		// displaying all landlords listings
 		landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
 		
+		//action listener for different views. for navigation same actionlistener are assigned
+		//for registerProperty view and landlordView.
 		registerProperty.RegisterPerformed(new RegisterButton());
 		registerProperty.ListingsPerformed(new ListingButton());
 		registerProperty.MessagesPerformed(new MessageButton());
@@ -56,22 +60,22 @@ public class RegisterPropertyController extends ParentController{
 		managerView.updateStatus (new managerUpdateStatus());
 	}
 	
-	
+	//implementation of action listeners
+	//action listeners for landlord views
 	public class RegisterButton implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("register button pressed");
 			registerProperty.draw();
 		}
 	}
 
+	//udpate the status of listing by landlords
 	public class UpdateStatusButton implements ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("Update status pressed");
 			String id = landlordView.getIDForStatusUpdateInput();
 			String status = landlordView.getStatus();
 			db.updateStatus(id, status);
@@ -80,6 +84,7 @@ public class RegisterPropertyController extends ParentController{
 		}
 	}
 
+	//udpate the status of listing by managers
 	public class managerUpdateStatus implements ActionListener
 	{
 		@Override
@@ -93,6 +98,7 @@ public class RegisterPropertyController extends ParentController{
 		}
 	}
 
+	//fee payment by landlords
 	public class PayButton implements ActionListener{
 
 		@Override
@@ -109,33 +115,31 @@ public class RegisterPropertyController extends ParentController{
 		}
 	}
 
-	
+	//to display all the listing of landlords to them
 	public class ListingButton implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Listing button pressed");
 			landlordView.draw();
 			landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
 		}
 	}
 	
+	//to get the messages that are either sent by registered or unregistered renter
 	public class MessageButton implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Message button pressed");
-			System.out.println("user email in register propert is: "+landlord.getEmail());
 			switchView("LandlordMessages");
 		}
 	}
 
+	//to register a new property
 	public class AddPropertyButton implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Add property button pressed");	
-			// String email = .getEmail();
 			String type = registerProperty.getTypeInput();
 			int bed = registerProperty.getBedNum();
 			int bath = registerProperty.getBathNum();
@@ -155,25 +159,27 @@ public class RegisterPropertyController extends ParentController{
 		}
 	}
 	
+	//method to switch view. handled by parent controller
 	@Override
 	public void switchView(String view) {
 		super.switchView(view);
 	}
 	
+	//actionlisteners for manager view
+	
 	public class managerRenterLandlordList implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("renter landlord list");
 			switchView("RenterLandlordList");
 		}
 	}
 	
+	//manager navigation menu buttons
 	public class managerEditStatus implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Edit listing pressed");
 			managerView.setTable(db.getAllListings());
 		}
 	}
@@ -182,7 +188,6 @@ public class RegisterPropertyController extends ParentController{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("SummaryReport pressed");
 			switchView("SummaryReportView");
 		}
 	}
@@ -191,13 +196,12 @@ public class RegisterPropertyController extends ParentController{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("editfeeclicked");
 			switchView("EditFee");
 		}
 	}
 	
 
-	
+	//method to switch from 1 view to another view, all 3 views are controller by this controller
 	public void setView(boolean v1, boolean v2, boolean v3) {
 		if(v1) {
 			registerProperty.draw();
@@ -210,18 +214,11 @@ public class RegisterPropertyController extends ParentController{
 		}
 	}
 	
+	//setting up output table in managerview
 	public void listingsForManager() {
 		managerView.setTable(db.getAllListings());
 	}
 	
-//	public static void main(String[] args) {
-//	System.out.println("Register property controller main");
-//	Manager m = new Manager();
-//	Landlord l = new Landlord(); 
-//	RegisterPropertyView r = new RegisterPropertyView();
-//	
-//	RegisterPropertyController c = new RegisterPropertyController(l, m, r);
-//	}
 }
 
 

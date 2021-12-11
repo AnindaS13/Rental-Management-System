@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+/**
+ * Basic login view for the user to log in to the system as a User
+ * A user can be: a registered renter, landlord, or manager
+ * It also gives the option to log in as a guest (unregistered renter)
+ */
 public class LoginView implements Component {
     // display invlaid login button
     private JButton search = new JButton("Search"); // should be deleted but deleting affects the controller
@@ -27,10 +32,13 @@ public class LoginView implements Component {
 
     private JLabel title = new JLabel("Rental Property Management System");
 
-    public LoginView() {
+    public LoginView() { //Constructor just adds the login page components into the frame using draw()
         draw();
     }
 
+    /**
+     * Action listeners for buttons like login and login as guest
+     */
     public void loginButton(ActionListener actionListener) {
         this.loginButton.addActionListener(actionListener);
     }
@@ -40,7 +48,7 @@ public class LoginView implements Component {
     
     @SuppressWarnings("serial")
     @Override
-    public void draw() {
+    public void draw() {  //Adds the gui components to the frame
 
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
@@ -94,6 +102,9 @@ public class LoginView implements Component {
         frame.setVisible(true);
     }
 
+    /**
+     * Getters and setters
+     */
     public Boolean getValidLogin() {
         return validLogin;
     }

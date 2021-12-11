@@ -12,9 +12,14 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.User;
 
-public class SummaryReportView implements Component{
+/**
+ * The summary report view is for the manager.
+ * In this view the manager can see all the total number of listings pertainin to a certain period.
+ * Furthermore, they get the total number of active listings and rented houses in a period
+ */
+public class SummaryReportView implements Component{ 
     List<String[]> values = new ArrayList<String[]>();
-    private JTable table = new JTable();
+    private JTable table = new JTable();                    //Below are a lot of the gui components which are instantiated here
     private JScrollPane scrollPane = new JScrollPane();
 
     private JTextField numHousesListedField = new JTextField("listed");
@@ -43,7 +48,7 @@ public class SummaryReportView implements Component{
 
     public SummaryReportView() {}
     
-    public SummaryReportView(ArrayList<ArrayList<Listing>> listings, ArrayList<User> landlords )
+    public SummaryReportView(ArrayList<ArrayList<Listing>> listings, ArrayList<User> landlords ) //The report is passed an array of landlords and listings to display appropriate  data on the report and table 
     {
 //        setLandlords(landlords);
 //        setListings(listings);
@@ -54,7 +59,7 @@ public class SummaryReportView implements Component{
         draw();
     }
 
-    public void setTable(ArrayList<ArrayList<Listing>> listings, ArrayList<User> landlords)
+    public void setTable(ArrayList<ArrayList<Listing>> listings, ArrayList<User> landlords) //This sets the table to display the landlords and the listings according to them for the report
     {
         Object columnNames[] = { "Property ID", "Landlord", "Address", "Status", "Period"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
@@ -69,7 +74,7 @@ public class SummaryReportView implements Component{
     }
 
     @Override
-    public void draw() {
+    public void draw() { //Adds all the gui components to the frame
     	
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
@@ -153,27 +158,9 @@ public class SummaryReportView implements Component{
         System.out.println("in draw");
     }
 
-    public static void main(String []args)
-    {
-        ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
-        ArrayList<User> landlords = new ArrayList<>();
-        ArrayList<Listing> a = new ArrayList<>();
-        ArrayList<Listing> b = new ArrayList<>();
-
-        a.add(new Listing(1, "Apartment", 4, 5, true, "NE", "10:10", "house1", "johndoe@gmail.com", "Active", true));
-        a.add(new Listing(2, "Dupplex", 6, 2, false, "NE", "10:10","house1", "jeff@gmail.com", "Active", true));
-        b.add(new Listing(3, "Dupplex", 8, 3, false, "NW", "10:10","house1", "bob@gmail.com", "Active", true));
-
-
-        listings.add(a);
-        listings.add(b);
-
-        landlords.add(new User("email", "pass", "john", "doe", "landlord"));
-        landlords.add(new User("jeff@gmail.com", "jeff", "Jeff", "B", "Renter"));
-
-        SummaryReportView x = new SummaryReportView(listings, landlords);
-    }
-
+    /**
+     * Below are many action liseneters for the various events going on in the page
+     */
     public void ListingsPerformed(ActionListener a) // For Listings navbar redirect
     {
         this.ListingsBtn.addActionListener(a);
@@ -205,6 +192,9 @@ public class SummaryReportView implements Component{
         this.timePeriodField.addActionListener(a);
     }
 
+    /**
+     * Getters and setters are below for the database and controllers to use to edit and update info
+     */
     public int getTotalNumHousesListed() {
         return totalNumHousesListed;
     }

@@ -58,7 +58,7 @@ public class LoginController extends ParentController{
     	else super.switchView("UnregisteredRenter");
     }
 
-
+    //Login button actionlistener from loginView
     public class LoginButtonListener implements ActionListener{
 
         @Override
@@ -76,6 +76,7 @@ public class LoginController extends ParentController{
         }
     }
     
+    //action listener for guest login
     public class guestLogin implements ActionListener{
 
         @Override

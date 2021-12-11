@@ -13,9 +13,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * This view is the view for the manager, and it is responsible
+ * for displaying the gui components to allow the manager to edit the fees and period 
+ */
 public class EditFeesView implements Component{
 
-    private JButton RenterLandlordBtn = new JButton("Renter/Landlord List");
+    private JButton RenterLandlordBtn = new JButton("Renter/Landlord List"); //These variables are all varius gui elements being made here and styles like color are made 
     private JButton ListingsBtn= new JButton("Listings");
     private JButton SumRepBtn = new JButton("Summary Report");
     private JButton editFeeBtn = new JButton("Edit Fees");
@@ -29,13 +33,13 @@ public class EditFeesView implements Component{
     private Color button = new Color(0,0,0);
 
 
-    public EditFeesView()
+    public EditFeesView()  //Calls the draw function to display the gui in constructor
     {
         draw();
     }
 
     @Override
-    public void draw()
+    public void draw() //Function responsible for adding all gui elements to the frame
     {
 
         frame.getContentPane().removeAll();
@@ -94,6 +98,10 @@ public class EditFeesView implements Component{
     EditFeesView x = new EditFeesView();
     }
 
+
+    /**
+     * Below are action listeners for the navbar buttons and other buttons on this view like submit
+     */
     public void renterLandlordPerformed(ActionListener a) //For register property navbar redirect
     {
         this.RenterLandlordBtn.addActionListener(a);
@@ -109,7 +117,7 @@ public class EditFeesView implements Component{
         this.SumRepBtn.addActionListener(a);
     }
 
-    public void EditFeesPerformed (ActionListener a)
+    public void EditFeesPerformed (ActionListener a) 
     {
         this.editFeeBtn.addActionListener(a);
     }
@@ -119,6 +127,9 @@ public class EditFeesView implements Component{
         this.subChanges.addActionListener(a);
     }
 
+    /**
+     * Getters and setters for info needed to be passed to DB
+     */
     public int getFee() {
         return Integer.parseInt((String) this.fee.getText()) ;
     }

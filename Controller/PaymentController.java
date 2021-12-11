@@ -33,7 +33,7 @@ public class PaymentController extends ParentController {
         	switchView("RenterLandlordList");
         }
     }
-	
+
 	public class editListing implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -59,9 +59,6 @@ public class PaymentController extends ParentController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-
-			System.out.println("Fee Submit Button Pressed");
-
 			int fee = feeView.getFee();
 			int feePeriod = feeView.getPer();
 
@@ -72,11 +69,11 @@ public class PaymentController extends ParentController {
 				ex.printStackTrace();
 			}
 
-				}
+		}
 	}
 
 
-	
+//swtich view that calls method from parent controller to switch view
 	@Override
 	public void switchView(String view) {
 		super.switchView(view);

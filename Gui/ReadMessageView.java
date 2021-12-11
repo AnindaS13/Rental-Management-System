@@ -13,8 +13,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
+/**
+ * Read message view for the landlord
+ * Allows them to see messages sent by the renters about their properties
+ * Along with the message comes the property id so they know
+ * which property it is refferring to
+ */
 public class ReadMessageView implements Component{
-    private ArrayList<Listing> listings = new ArrayList<Listing>();
+    private ArrayList<Listing> listings = new ArrayList<Listing>(); //Below, are a lot of the gui components being made but not added to frame
     List<String[]> values = new ArrayList<String[]>();
     private JButton RegisterBtn= new JButton("Register a Property");
     private JButton ListingsBtn= new JButton("Listings");
@@ -27,11 +33,11 @@ public class ReadMessageView implements Component{
     private Color tableBack = new Color(31,97,141);
     private Color headBack = new Color(21,67,96);
     
-    public ReadMessageView() {
+    public ReadMessageView() { //Here the constructor calls draw() whch adds the gui components to frame
         draw();
     }
 
-    public void setOutput(ArrayList<String> input) {
+    public void setOutput(ArrayList<String> input) { //Sets the table to all the messages a landlord recieved, got from the database
     	Object columnNames[] = {"Message"};
     	DefaultTableModel model = new DefaultTableModel(columnNames, 0);
     	
@@ -43,7 +49,7 @@ public class ReadMessageView implements Component{
     }
     
     @Override
-    public void draw()
+    public void draw() //Function which adds all the gui compoenents to frame
     {	
     	
         frame.getContentPane().removeAll();
@@ -89,10 +95,10 @@ public class ReadMessageView implements Component{
         frame.setVisible(true);
     }
 
-    public static void main(String[] args){
-        ReadMessageView x = new ReadMessageView();
-    }
 
+    /**
+     * Action listeners for the navbar buttons
+     */
     public void RegisterPerformed(ActionListener a) //For register property navbar redirect
     {
         this.RegisterBtn.addActionListener(a);

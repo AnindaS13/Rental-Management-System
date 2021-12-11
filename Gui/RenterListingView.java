@@ -9,11 +9,18 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * This class is the renter view, and its responsible for displaying all listings to the renter
+ * Furthermore, there is a search feature which allows them to search for listings based on their criteria
+ * A unregistered (guest) renter can also see these features, however they cannot subscrbbe to search features
+ * which a registered renter can. When a registered renter subscribes to a search, they get notified everytime a new 
+ * listinf of that criteria is added.
+ */
 public class RenterListingView implements Component {
 	private ArrayList<Listing> listings = new ArrayList<Listing>();
     List<String[]> values = new ArrayList<String[]>();
 
-    private JComboBox PropertyType = new JComboBox();
+    private JComboBox PropertyType = new JComboBox(); //Below are a lot of the GUI components made to be added to frame
     private JComboBox bedrooms = new JComboBox();
     private JComboBox bathrooms = new JComboBox();
     private JComboBox quadrant = new JComboBox();
@@ -43,7 +50,7 @@ public class RenterListingView implements Component {
         //setOutput();
     }
     
-    public void setOutput(ArrayList<Listing> input) {
+    public void setOutput(ArrayList<Listing> input) { //This sets the value of the table with all listings pertaining to a search for the renter to see
     	Object columnNames[] = { "Property ID", "Type", "Bedrooms", "Bathrooms", "Furnished", "Quadrant"};
     	DefaultTableModel model = new DefaultTableModel(columnNames, 0);
     	
@@ -56,6 +63,9 @@ public class RenterListingView implements Component {
     	table.setModel(model);
     }
 
+    /**
+     * Below are a lof of action listeners for searching, subscribing, etc
+     */
     public void searchButton(ActionListener actionListener) {
         this.search.addActionListener(actionListener);
     }
@@ -80,7 +90,7 @@ public class RenterListingView implements Component {
 
     @SuppressWarnings("serial")
     @Override
-    public void draw() {
+    public void draw() { //function that actually adds the components to the frame
     	System.out.println("role set to "+this.role);
         Color foreGroundColor = Color.BLACK;
         Color backgroundColor = Color.lightGray;
@@ -253,6 +263,7 @@ public class RenterListingView implements Component {
         frame.setVisible(true);
     }
 
+    //Getters and setters for specific info, and input info
     public ArrayList<Listing> getListings() {
         return listings;
     }
@@ -349,9 +360,5 @@ public class RenterListingView implements Component {
     public void setNotify(Boolean notify) {
     	System.out.println("setting notify to "+notify);
         this.notify = notify;
-    }
-
-    public static void main(String[] args) {
-        RenterListingView u = new RenterListingView();
     }
 }
