@@ -2,6 +2,7 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import Gui.EditFeesView;
 import Model.Manager;
@@ -10,6 +11,7 @@ public class PaymentController extends ParentController {
 	
 	Manager manager; 
 	EditFeesView feeView;
+	DBConnect db = new DBConnect();
 	
 	public PaymentController (Manager m, EditFeesView e) {
 		this.feeView = e;
@@ -54,9 +56,24 @@ public class PaymentController extends ParentController {
 	public class updteStatus implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-        	switchView("ManagerEditView");
-        }
-    }
+
+
+			System.out.println("Fee Submit Button Pressed");
+
+			int fee = feeView.getFee();
+			int feePeriod = feeView.getPer();
+
+			//Add this data to database.
+			try {
+				db.addFee(fee, feePeriod);
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+
+				}
+	}
+
+
 	
 	@Override
 	public void switchView(String view) {
