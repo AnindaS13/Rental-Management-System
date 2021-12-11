@@ -11,7 +11,7 @@ public class DBConnect {
 
     public final String dburl = "jdbc:mysql://localhost/newRental";
     public final String username = "root";
-    public final String password ="";
+    public final String password ="As.51299001";
 
     private Connection connect;
     private ResultSet results;
@@ -264,6 +264,25 @@ public class DBConnect {
 		catch(SQLException e)
 		{
 			e.printStackTrace();
+		}
+	}
+
+	public void managerUpdateStatus(String id, String status)
+	{
+		try {
+			Statement s = connect.createStatement();
+			String query = "UPDATE listing SET status =? where ID="+id;
+
+			PreparedStatement stmt = connect.prepareStatement(query);
+
+			stmt.setString(1,status);
+			stmt.execute();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			System.out.println("Not a valid ID");
 		}
 	}
 

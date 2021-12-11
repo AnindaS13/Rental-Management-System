@@ -77,6 +77,19 @@ public class RegisterPropertyController extends ParentController{
 		}
 	}
 
+	public class managerUpdateStatus implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println("Update status for manager pressed");
+			String ID = managerView.getIdEntered();
+			String status = managerView.getEnteredStatus();
+			db.managerUpdateStatus(ID, status);
+			switchView("RenterLandlordList");
+		}
+	}
+
 	public class PayButton implements ActionListener{
 
 		@Override
@@ -181,13 +194,7 @@ public class RegisterPropertyController extends ParentController{
 		}
 	}
 	
-	public class managerUpdateStatus implements ActionListener{
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-		}
-	}
 	
 	public void setView(boolean v1, boolean v2, boolean v3) {
 		if(v1) {
