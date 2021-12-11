@@ -2,6 +2,7 @@ package Controller;
 
 import Gui.DisplayUsersManagerView;
 // import Gui.SummaryReportView;
+import Gui.EditFeesView;
 import Gui.EditStatusManagerView;
 import Gui.SummaryReportView;
 import Model.Listing;
@@ -24,6 +25,7 @@ public class SummaryReportController extends ParentController{
     Manager manager;
     SummaryReportView reportView;
     DisplayUsersManagerView allUsers;
+    EditFeesView feeView;
 
 //    ArrayList<User> landlords = new ArrayList<>();
 //    ArrayList<ArrayList<Listing>> listings = new ArrayList<>();
@@ -40,12 +42,15 @@ public class SummaryReportController extends ParentController{
         this.allUsers = view2;
         this.reportView = view;
         
+        // reportView.SummaryReportPerformed(new ReportButtonListener());
+        reportView.TimePeriodPerformed(new ReportButtonListener());
         fillUsertable();
         
         reportView.SummaryReportPerformed(new ReportButtonListener());
         reportView.EditFeesPerformed(new EditFee());
         reportView.renterLandlordPerformed(new RenterLandlords());
         reportView.ListingsPerformed(new Listings());
+        reportView.EditFeesPerformed(new timePeriodButton());
         
         allUsers.SummaryReportPerformed(new ReportButtonListener());
         allUsers.EditFeesPerformed(new EditFee());
@@ -68,9 +73,78 @@ public class SummaryReportController extends ParentController{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        	setView(true, false);
+        	// setView(true, false);
         	System.out.println("SR- Summary Report button pressed");
 
+            // total listing - need to double check
+            int totalListing = listigModel.totalListings(db.getAllListings());
+            // System.out.println("Total Listings: " + totalListing);
+            reportView.setNumHousesListedField(totalListing);
+
+
+            // landlord and listing arraylists
+            ArrayList<User> landlords = manager.getLandlords(db.getUsers());
+            // System.out.println("User length: " + landlords.size());
+
+            // retrieving all listings from db
+            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
+
+
+            // now filter listings based on time period
+            LocalDate currDate = LocalDate.now();
+            // System.out.println(currDate.toString());
+            LocalDate lastDate = currDate.minusDays(reportView.getTimePeriodField());
+            System.out.println(lastDate.toString());
+
+            ArrayList<ArrayList<Listing>> filteredlist = listigModel.filterTime(listings, lastDate);
+
+
+
+            // do setters
+            reportView.setLandlords(landlords);
+            reportView.setListings(filteredlist);
+            // System.out.println("Listing length: " + listings.size());
+            // System.out.println("First Index length: " + listings.get(0).get(1).getID());
+
+            reportView.setTable(filteredlist, landlords);
+
+            // houses rented
+            int houseRented = 0; // listigModel.housesRented(db.getAllListings());
+            for (int i = 0; i < filteredlist.size(); i++)
+            {
+                for(int j =0; j < filteredlist.get(i).size(); j++)
+                {
+                    if(filteredlist.get(i).get(j).getStatus().equals("Rented"))
+                    {
+                        houseRented++;
+                    }
+                }
+            }
+            reportView.setNumHousesRentedField(houseRented);
+            // System.out.println("Total Houses Rented: " + houseRented);
+
+            // houses active
+            int houseActive = 0; // listigModel.housesActive(db.getAllListings());
+            for (int i = 0; i < filteredlist.size(); i++)
+            {
+                for(int j =0; j < filteredlist.get(i).size(); j++)
+                {
+                    if(filteredlist.get(i).get(j).getStatus().equals("Active"))
+                    {
+                        houseActive++;
+                    }
+                }
+            }
+            reportView.setNumActiveListingsField(houseActive);
+            // System.out.println("Total Houses Active: " + houseActive);
+
+
+
+            // switchView("SummaryReportView"); // need to set this later after parent controller is fixed
+        }
+    }
+
+    public class timePeriodButton implements ActionListener {
             int totalListing = listigModel.totalListings(db.getAllListings());
             System.out.println("Total Listings: " + totalListing);
             reportView.setNumHousesListedField(totalListing);
@@ -122,7 +196,76 @@ public class SummaryReportController extends ParentController{
             reportView.setTable(listings, landlords);
             
 
-            // switchView("login"); // need to set this later after parent controller is fixed
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            System.out.println("HERE");
+            reportView.repaint();
+            // total listing - need to double check
+            int totalListing = listigModel.totalListings(db.getAllListings());
+            // System.out.println("Total Listings: " + totalListing);
+            reportView.setNumHousesListedField(totalListing);
+
+
+            // landlord and listing arraylists
+            ArrayList<User> landlords = manager.getLandlords(db.getUsers());
+            // System.out.println("User length: " + landlords.size());
+
+            // retrieving all listings from db
+            ArrayList<ArrayList<Listing>> listings = listigModel.getLandlordListings(landlords, db.getAllListings());
+
+
+            // now filter listings based on time period
+            LocalDate currDate = LocalDate.now();
+            // System.out.println(currDate.toString());
+            LocalDate lastDate = currDate.minusDays(reportView.getTimePeriodField());
+            System.out.println(lastDate.toString());
+
+            ArrayList<ArrayList<Listing>> filteredlist = listigModel.filterTime(listings, lastDate);
+
+
+
+            // do setters
+            reportView.setLandlords(landlords);
+            reportView.setListings(filteredlist);
+            // System.out.println("Listing length: " + listings.size());
+            // System.out.println("First Index length: " + listings.get(0).get(1).getID());
+
+            reportView.setTable(filteredlist, landlords);
+
+            // houses rented
+            int houseRented = 0; // listigModel.housesRented(db.getAllListings());
+            for (int i = 0; i < filteredlist.size(); i++)
+            {
+                for(int j =0; j < filteredlist.get(i).size(); j++)
+                {
+                    if(filteredlist.get(i).get(j).getStatus().equals("Rented"))
+                    {
+                        houseRented++;
+                    }
+                }
+            }
+            reportView.setNumHousesRentedField(houseRented);
+            // System.out.println("Total Houses Rented: " + houseRented);
+
+            // houses active
+            int houseActive = 0; // listigModel.housesActive(db.getAllListings());
+            for (int i = 0; i < filteredlist.size(); i++)
+            {
+                for(int j =0; j < filteredlist.get(i).size(); j++)
+                {
+                    if(filteredlist.get(i).get(j).getStatus().equals("Active"))
+                    {
+                        houseActive++;
+                    }
+                }
+            }
+            reportView.setNumActiveListingsField(houseActive);
+            // System.out.println("Total Houses Active: " + houseActive);
+
+
+            setView(false, true);
+            // switchView("SummaryReportView"); // need to set this later after parent controller is fixed
         }
     }
     
@@ -162,6 +305,25 @@ public class SummaryReportController extends ParentController{
 		if(v2) {
 			allUsers.draw();
 		}	
+    }
+
+    public class FeeSubmitButton implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Fee Submit Button Pressed");
+
+            int fee = feeView.getFee();
+            int feePeriod = feeView.getPer();
+
+            //Add this data to database.
+            try {
+                db.addFee(fee, feePeriod);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+
+        }
     }
 
     public void fillUsertable() {

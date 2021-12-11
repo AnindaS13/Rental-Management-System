@@ -118,4 +118,20 @@ public class EditFeesView implements Component{
     {
         this.subChanges.addActionListener(a);
     }
+
+    public int getFee() {
+        return Integer.parseInt((String) this.fee.getText()) ;
+    }
+
+    public void setFee(int fee) {
+        this.fee.setText(Integer.toString(fee));
+    }
+
+    public int getPer() {
+        return Integer.parseInt((String) this.per.getText()) ;
+    }
+
+    public void setPer(int per) {
+        this.per.setText(Integer.toString(per));
+    }
 }

@@ -27,6 +27,8 @@ public class EditStatusManagerView implements Component{
     private Color tableBack = new Color(31,97,141);
     private Color headBack = new Color(21,67,96);
 
+    private String[] statuses = {"Active", "Canceled", "Suspended", "Rented"};
+    private JComboBox StatusList = new JComboBox(statuses);
     
     public EditStatusManagerView()
     {
@@ -81,7 +83,8 @@ public class EditStatusManagerView implements Component{
         idOfProp.setBounds(50,600,400,20);
         idVal.setBounds(50,620,400,30);
         changedStatus.setBounds(50,660,400,20);
-        statusVal.setBounds(50,680,400,30);
+        StatusList.setBounds(50,680,400,30);
+        //statusVal.setBounds(50,680,400,30);
         submitChange.setBounds(50, 730,400,30);
 
         idOfProp.setForeground(Color.white);
@@ -110,9 +113,10 @@ public class EditStatusManagerView implements Component{
         frame.getContentPane().setBackground(back);
         frame.add(navBarpanel);
         frame.add(idOfProp);
-        frame.add(statusVal);
+        //frame.add(statusVal);
         frame.add(idVal);
         frame.add(changedStatus);
+        frame.add(StatusList);
         frame.add(submitChange);
         frame.setLayout(null);
         frame.setVisible(true);
@@ -155,4 +159,13 @@ public class EditStatusManagerView implements Component{
         this.submitChange.addActionListener(a);
     }
 
+    public String getEnteredStatus()
+    {
+        return (String)StatusList.getSelectedItem();
+    }
+
+    public String getIdEntered()
+    {
+        return idVal.getText();
+    }
 }
