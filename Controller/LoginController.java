@@ -84,14 +84,4 @@ public class LoginController extends ParentController{
         }
     }
 
-//    public static void main(String[] args)
-//    {
-//        System.out.println("Login controller");
-//        User u = new User();
-//        LoginView l = new LoginView();
-//        LoginController controller = new LoginController (u, l);
-//        controller.connectDB();
-//    }
-
-
 }

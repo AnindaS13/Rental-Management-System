@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import Gui.EditFeesView;
 import Model.Manager;
 
+//Controller to change the fee and pay period by the managers
 public class PaymentController extends ParentController {
 	
 	Manager manager; 
@@ -22,7 +23,8 @@ public class PaymentController extends ParentController {
 		feeView.updateStatus(new updteStatus());
 	}
 	
-	
+//action listeners are navigation, SwitchView is called when another view is needed
+// that belong to different controller
 	public class renterLandlordList implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {

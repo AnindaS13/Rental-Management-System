@@ -10,6 +10,7 @@ import Gui.RenterListingView;
 import Model.Listing;
 
 //this controller is displays listing for unregistered renters
+
 public class ListingController extends ParentController {
 	
 	Listing listingModel;

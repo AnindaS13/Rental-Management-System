@@ -17,8 +17,7 @@ import Gui.EditStatusManagerView;
 import Gui.RegisterPropertyView;
 
 public class RegisterPropertyController extends ParentController{
-//	Landlord landlord;
-//	Manager manager;
+
 	RegisterPropertyView registerProperty;
 	EditListStatusLandlordView landlordView;
 	EditStatusManagerView managerView;
@@ -34,6 +33,7 @@ public class RegisterPropertyController extends ParentController{
 		this.landlordView = lp;
 		this.managerView = mp;
 		registerProperty.draw();
+		
 		// displaying all landlords listings
 		landlordView.setTable(landlord.LandlordListings(db.getAllListings()));
 		
@@ -47,7 +47,6 @@ public class RegisterPropertyController extends ParentController{
 		landlordView.MessagesPerformed(new MessageButton());
 		landlordView.paySubmission(new PayButton());
 		landlordView.updateStatus(new UpdateStatusButton());
-	//	landlordView.AddPropPerformed(new AddPropertyButton());
 				
 		managerView.renterLandlordPerformed(new managerRenterLandlordList());
 		managerView.ListingsPerformed(new managerEditStatus());
@@ -130,8 +129,6 @@ public class RegisterPropertyController extends ParentController{
 			String address = registerProperty.getAddress();
 			String quad = registerProperty.getQuadrant();
 			String date = "";
-			// LocalDate date = LocalDate.now();
-			// String listTime = date.toString(); //new SimpleDateFormat("HH.mm").format(new java.util.Date());
 			String status = "Registered";
 			System.out.println(type+", "+bed+", "+bath+", "+furnish+", "+
 								quad+", "+ date +", "+status);
