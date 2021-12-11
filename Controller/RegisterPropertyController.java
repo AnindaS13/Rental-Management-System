@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import Model.Listing;
 
 import Controller.ContactController.ListingButton;
 import Controller.ContactController.MessageButton;

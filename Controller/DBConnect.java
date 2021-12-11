@@ -9,9 +9,9 @@ import Model.User;
 
 public class DBConnect {
 
-    public final String dburl = "jdbc:mysql://127.0.0.1:3306/ensf";
+    public final String dburl = "jdbc:mysql://127.0.0.1:3307/rental";
     public final String username = "root";
-    public final String password ="calgary1";
+    public final String password ="root";
 
     private Connection connect;
     private ResultSet results;
