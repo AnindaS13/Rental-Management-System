@@ -40,6 +40,8 @@ public class SummaryReportController extends ParentController{
         this.allUsers = view2;
         this.reportView = view;
         
+        fillUsertable();
+        
         reportView.SummaryReportPerformed(new ReportButtonListener());
         reportView.EditFeesPerformed(new EditFee());
         reportView.renterLandlordPerformed(new RenterLandlords());
@@ -148,16 +150,8 @@ public class SummaryReportController extends ParentController{
         @Override
         public void actionPerformed(ActionEvent e) {
         	System.out.println("SR- renter landlord list clicked");
-            User u = new User();
-            ArrayList<User> users = db.getUsers();
-            ArrayList<User> landlords = u.getLandlords(users);
-            ArrayList<User> registeredRenters = u.getRegisteredRenters(users);
-            System.out.println(landlords.size());
-            System.out.println(registeredRenters.size());
-            allUsers.setLandlordTable(landlords);
-            allUsers.setRenterTable(registeredRenters);
-
-        	setView(false,true);
+        	
+        	fillUsertable(); 
         }
     }
     
@@ -170,6 +164,17 @@ public class SummaryReportController extends ParentController{
 		}	
     }
 
+    public void fillUsertable() {
+	    User u = new User();
+	    ArrayList<User> users = db.getUsers();
+	    ArrayList<User> landlords = u.getLandlords(users);
+	    ArrayList<User> registeredRenters = u.getRegisteredRenters(users);
+	    System.out.println(landlords.size());
+	    System.out.println(registeredRenters.size());
+	    allUsers.setLandlordTable(landlords);
+	    allUsers.setRenterTable(registeredRenters);
+    }
+    
 //    public static void main(String[] args)
 //    {
 //        System.out.println("Summary Report controller");
